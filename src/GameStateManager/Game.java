@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import FileSystem.FileOut;
 import Input.InputHandler;
 
 
@@ -30,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 	InputHandler IH;
 	public static GameStateManager gameStateManager = new GameStateManager();
 	
-
+	FileOut test = new FileOut();
 	Thread thread;
 
 	static boolean gameRunning = false;
@@ -84,7 +85,8 @@ public class Game extends Canvas implements Runnable {
 
 		IH = new InputHandler();
 		frame.addKeyListener(IH);
-		
+	
+		test.print();
 
 		gameRunning = true;
 		
