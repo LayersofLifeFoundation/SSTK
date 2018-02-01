@@ -11,7 +11,10 @@ public class GameStateManager {
 
 	private int currentState = 0;
 	
+	private OverworldState overworld = new OverworldState();
+	
 	public GameStateManager() {
+		gameStates.add(overworld);
 	}
 
 	public void changeState(int i) {

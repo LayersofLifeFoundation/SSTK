@@ -95,7 +95,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void tick() {
 	
-		//gameStateManager.tick();
+		gameStateManager.tick();
 
 	}
 
@@ -111,7 +111,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		//gameStateManager.render(g);
+		gameStateManager.render(g);
 
 		
 		
