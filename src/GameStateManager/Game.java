@@ -11,13 +11,17 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import FileSystem.FileOut;
 import Input.InputHandler;
 
 
 
 public class Game extends Canvas implements Runnable {
 	
-	//author Nick Hellerud
+	//author Nick Hellerud, Jordan Haas, Ryan Cox
+	/*
+	 * This is a self project for our cs250 class
+	 */
 
 	JFrame frame;
 
@@ -30,7 +34,7 @@ public class Game extends Canvas implements Runnable {
 	InputHandler IH;
 	public static GameStateManager gameStateManager = new GameStateManager();
 	
-
+	FileOut test = new FileOut();
 	Thread thread;
 
 	static boolean gameRunning = false;
@@ -84,19 +88,27 @@ public class Game extends Canvas implements Runnable {
 
 		IH = new InputHandler();
 		frame.addKeyListener(IH);
-		
+	
+		test.print();
 
 		gameRunning = true;
 		
 		
 	}
 
+	/*
+	 * function that should run any non-graphical elements that need to be updated
+	 */
 	public void tick() {
 	
-		//gameStateManager.tick();
+		gameStateManager.tick();
 
 	}
-
+	
+	
+	/*
+	 *function that updates the jframe 
+	 */
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
@@ -109,7 +121,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		//gameStateManager.render(g);
+		gameStateManager.render(g);
 
 		
 		
