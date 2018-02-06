@@ -15,23 +15,27 @@ public class Player {
 	public void moveUp() {
 		if(OverworldState.movMap.canMoveTo(x, y - 1)) {
 			y--;
+			System.out.println("X: " + x + " Y : " + y);
 		}
 	
 	}
 	public void moveDown() {
 		if(OverworldState.movMap.canMoveTo(x, y + 1)) {
 			y++;
+			System.out.println("X: " + x + " Y : " + y);
 		}
 	
 	}
 	public void moveLeft() {
 		if(OverworldState.movMap.canMoveTo(x - 1, y)) {
 			x--;
+			System.out.println("X: " + x + " Y : " + y);
 		}
 	}
 	public void moveRight() {
 		if(OverworldState.movMap.canMoveTo(x + 1, y)) {
 			x++;
+			System.out.println("X: " + x + " Y : " + y);
 		}
 	}
 	
@@ -47,5 +51,12 @@ public class Player {
 	public int returnY() {
 		return y;
 	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
 
+	public void setY(int y) {
+		this.y = y;
+	}
 }
