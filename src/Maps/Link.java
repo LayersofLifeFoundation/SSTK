@@ -7,8 +7,16 @@ import GameStateManager.OverworldState;
 
 public class Link {
 	
+	/*
+	 * Provides a tile to link different maps
+	 */
+	
 	int x,y,toX,toY;
 	String linkMovement, linkText;
+	
+	/*
+	 * A bunch of functions to set variables
+	 */
 	
 	public void setX(int x) {
 		this.x = x;
@@ -29,6 +37,10 @@ public class Link {
 		linkText = s;
 	}
 	
+	
+	/*
+	 * Changes map if player is on given x and y
+	 */
 	public void tick() {
 		if(OverworldState.player.returnX() == x && OverworldState.player.returnY() == y) {
 			try {
@@ -43,6 +55,7 @@ public class Link {
 			}
 		}
 	}
+	
 	
 	public void render(Graphics g) {
 		

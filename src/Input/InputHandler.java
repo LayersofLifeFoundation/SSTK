@@ -10,10 +10,16 @@ import GameStateManager.OverworldState;
 
 public class InputHandler implements KeyListener {
 
+	/*
+	 * Key bindings
+	 */
 	public void keyPressed(KeyEvent a) {
 		int keyCode = a.getKeyCode();
 		String keyChar = KeyEvent.getKeyText(a.getKeyChar());
 		if(Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
+			/*
+			 * Key bounds for the OverworldState
+			 */
 			if(keyCode == KeyEvent.VK_W) {
 				OverworldState.player.moveUp();
 			}

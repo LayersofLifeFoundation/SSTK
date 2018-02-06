@@ -9,6 +9,14 @@ import java.io.IOException;
 
 public class FileOut {
 	
+	/*
+	 * Example on how to use file input output in Java
+	 * using buffered reader and buffered writter
+	 * 
+	 * 
+	 * 
+	 */
+	
 	public static void read() throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("hi.in"));

@@ -6,19 +6,28 @@ import FileSystem.MapRetrevial;
 
 public class MovementMap {
 	
-	static int[][] map = new int[100][100];
+	static int[][] map = new int[50][50];
 	
+	/*
+	 * retrieves the data for the double array map
+	 */
 	public static void loadMap(String mapName) throws IOException {
 		MapRetrevial.retriveMovementMap(map, mapName);
 	}
 	
+	/*
+	 * Returns if the given x and y can be a valid place for the player
+	 */
 	public static boolean canMoveTo(int x, int y) {
-		if(map[x][y] == 0) {
+		if(map[y][x] == 0) {
 			return true;
 		}
 		return false;
 	}
 	
+	/*
+	 * prints the double array map
+	 */
 	public static void printMap() {
 		for(int i = 0; i < 10; i++) {
 			for(int k = 0; k < 10; k++) {

@@ -18,7 +18,10 @@ import Input.InputHandler;
 
 public class Game extends Canvas implements Runnable {
 	
-	//author Nick Hellerud
+	//author Nick Hellerud, Jordan Haas, Ryan Cox
+	/*
+	 * This is a self project for our cs250 class
+	 */
 
 	JFrame frame;
 
@@ -93,12 +96,19 @@ public class Game extends Canvas implements Runnable {
 		
 	}
 
+	/*
+	 * function that should run any non-graphical elements that need to be updated
+	 */
 	public void tick() {
 	
 		gameStateManager.tick();
 
 	}
-
+	
+	
+	/*
+	 *function that updates the jframe 
+	 */
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
