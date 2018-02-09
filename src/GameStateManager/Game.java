@@ -9,6 +9,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import FileSystem.FileOut;
@@ -27,10 +28,18 @@ public class Game extends Canvas implements Runnable {
 
 	public final static int WIDTH = 1080;
 	public final static int HEIGHT = WIDTH / 16 * 9;
+	public final static int PIXSIZE = 48;
 	public final static String Title = "PokeDAB";
 	public final Dimension gameSize = new Dimension(WIDTH, HEIGHT);
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+
+	//temp
+
+	
+	
+		
+	
 	InputHandler IH;
 	public static GameStateManager gameStateManager = new GameStateManager();
 	
@@ -41,7 +50,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void run() {
 		while (gameRunning) {
-
+			
 			tick();
 			render();
 
@@ -123,7 +132,6 @@ public class Game extends Canvas implements Runnable {
 		
 		gameStateManager.render(g);
 
-		
 		
 		
 

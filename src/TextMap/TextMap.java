@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.io.IOException;
 
 import FileSystem.MapRetrevial;
+import GameStateManager.Game;
 import GameStateManager.OverworldState;
 
 public class TextMap {
@@ -29,11 +30,12 @@ public class TextMap {
 		g.setFont(font);
 		for(int i = 0; i < 50; i++) {
 			for(int k = 0; k < 50; k++) {
-				if(k != OverworldState.player.returnY() || i != OverworldState.player.returnX()) {
+				if(k != OverworldState.player.returnY() || i != OverworldState.player.returnX()) 
+				{
 					if(map[k][i] == null) {
 						map[k][i] = " ";
-					}
-					g.drawString(map[k][i], (i * 20), (k * 20) + 20);
+										}
+					g.drawString(map[k][i], (i * Game.PIXSIZE), (k * Game.PIXSIZE) + 20);
 				}
 			}
 		}
