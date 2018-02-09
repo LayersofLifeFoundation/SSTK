@@ -21,23 +21,19 @@ public class Player {
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
 
-	public Player()
-	{
-		try {
-			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static BufferedImage grabImage(BufferedImage img, int col, int row) 
-	{
+	public static BufferedImage grabImage(BufferedImage img, int col, int row){
 		BufferedImage image = img.getSubimage( (col - 1) * Game.PIXSIZE, (row - 1) * Game.PIXSIZE, Game.PIXSIZE, Game.PIXSIZE);
 		return image;
 	}
 		
-
+	public Player(){
+		try {
+			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		currentSprite = grabImage(spriteSheet, 2, 8);
+	}	
 	/*
 	 * Functions for the four directions that the player can move
 	 */
