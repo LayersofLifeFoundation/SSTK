@@ -33,12 +33,6 @@ public class Game extends Canvas implements Runnable {
 	public final Dimension gameSize = new Dimension(WIDTH, HEIGHT);
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-
-	//temp
-
-	
-	
-		
 	
 	InputHandler IH;
 	public static GameStateManager gameStateManager = new GameStateManager();
@@ -102,7 +96,6 @@ public class Game extends Canvas implements Runnable {
 
 		gameRunning = true;
 		
-		
 	}
 
 	/*
@@ -113,7 +106,6 @@ public class Game extends Canvas implements Runnable {
 		gameStateManager.tick();
 
 	}
-	
 	
 	/*
 	 *function that updates the jframe 
@@ -132,10 +124,7 @@ public class Game extends Canvas implements Runnable {
 		
 		gameStateManager.render(g);
 
-		
-		
-
-		g.dispose();
+			g.dispose();
 		bs.show();
 	}
 

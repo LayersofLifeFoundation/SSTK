@@ -45,7 +45,7 @@ public class Player {
 		if(OverworldState.movMap.canMoveTo(x, y - 1)) {
 			y -= 1;
 			System.out.println("X: " + x + " Y : " + y);
-			currentSprite = grabImage(spriteSheet, 2, 8);
+			currentSprite = grabImage(spriteSheet, 1, 4);
 		}
 	
 	}
@@ -53,6 +53,7 @@ public class Player {
 		if(OverworldState.movMap.canMoveTo(x, y + 1)) {
 			y += 1;
 			System.out.println("X: " + x + " Y : " + y);
+			currentSprite = grabImage(spriteSheet, 1, 3);
 		}
 	
 	}
@@ -60,12 +61,14 @@ public class Player {
 		if(OverworldState.movMap.canMoveTo(x - 1, y)) {
 			x -= 1;
 			System.out.println("X: " + x + " Y : " + y);
+			currentSprite = grabImage(spriteSheet, 1, 2);
 		}
 	}
 	public void moveRight() {
 		if(OverworldState.movMap.canMoveTo(x + 1,  y)) {
 			x += 1;
 			System.out.println("X: " + x + " Y : " + y);
+			currentSprite = grabImage(spriteSheet, 1, 1);
 		}
 	}
 	
@@ -75,8 +78,7 @@ public class Player {
 	public static void render(Graphics g) {
 		g.setFont(font);
 		g.setColor(Color.white);
-		 g.drawRect(x * Game.PIXSIZE, y * Game.PIXSIZE + 20, Game.PIXSIZE, Game.PIXSIZE);
-		 g.drawImage(currentSprite, 48, 48,null);
+		g.drawImage(currentSprite, x * Game.PIXSIZE, y * Game.PIXSIZE,null);
 	}
 	
 	
