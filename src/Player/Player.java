@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
@@ -17,11 +18,11 @@ public class Player {
 	
 	static int x = 1;
 	static int y = 1;
-	static Font font  = new Font("Courier New", Font.PLAIN, Game.PIXSIZE);
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-
-	public static BufferedImage grabImage(BufferedImage img, int col, int row){
+	public int tim = 100;
+	//returns the sprite at the specified index of the sprite sheet
+	public static BufferedImage grabImage(BufferedImage img, int row, int col){
 		BufferedImage image = img.getSubimage( (col - 1) * Game.PIXSIZE, (row - 1) * Game.PIXSIZE, Game.PIXSIZE, Game.PIXSIZE);
 		return image;
 	}
@@ -32,49 +33,108 @@ public class Player {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		currentSprite = grabImage(spriteSheet, 2, 8);
+		currentSprite = grabImage(spriteSheet, 8, 2);
 	}	
 	/*
 	 * Functions for the four directions that the player can move
 	 */
-	public void moveUp() {
+	public void moveUp() throws InterruptedException {
 		if(OverworldState.movMap.canMoveTo(x, y - 1)) {
 			y -= 1;
 			System.out.println("X: " + x + " Y : " + y);
-			currentSprite = grabImage(spriteSheet, 1, 4);
+			animateUp();
 		}
 	
 	}
-	public void moveDown() {
+	public void moveDown() throws InterruptedException {
 		if(OverworldState.movMap.canMoveTo(x, y + 1)) {
 			y += 1;
 			System.out.println("X: " + x + " Y : " + y);
-			currentSprite = grabImage(spriteSheet, 1, 3);
+			animateDown();
+			animateDie();
 		}
 	
 	}
-	public void moveLeft() {
+	public void moveLeft() throws InterruptedException {
 		if(OverworldState.movMap.canMoveTo(x - 1, y)) {
 			x -= 1;
 			System.out.println("X: " + x + " Y : " + y);
-			currentSprite = grabImage(spriteSheet, 1, 2);
+			animateLeft();
 		}
 	}
-	public void moveRight() {
+	public void moveRight() throws InterruptedException {
 		if(OverworldState.movMap.canMoveTo(x + 1,  y)) {
 			x += 1;
 			System.out.println("X: " + x + " Y : " + y);
-			currentSprite = grabImage(spriteSheet, 1, 1);
+			animateRight();
 		}
 	}
 	
+	public void animateRight() throws InterruptedException{
+		for(int i = 1; i <= 7; i++) {
+			currentSprite = grabImage(spriteSheet, 1, i);
+			TimeUnit.MILLISECONDS.sleep(tim);
+		}
+		currentSprite = grabImage(spriteSheet, 3, 1);
+	}
+
+	public void  animateLeft() throws InterruptedException{
+		for(int i = 1; i <= 7; i++) {
+			currentSprite = grabImage(spriteSheet, 2, i);
+			TimeUnit.MILLISECONDS.sleep(tim);
+		}
+		currentSprite = grabImage(spriteSheet, 3, 1);
+	}
+	
+	public void  animateDown() throws InterruptedException{
+		for(int i = 0; i <= 1; i++) {
+			currentSprite = grabImage(spriteSheet, 3, 2);
+			TimeUnit.MILLISECONDS.sleep(tim + 50);
+			currentSprite = grabImage(spriteSheet, 3, 1);
+			TimeUnit.MILLISECONDS.sleep(tim + 50);
+		}
+	}
+	
+	public void    animateUp() throws InterruptedException{
+		for(int i = 0; i <= 1; i++) {
+			currentSprite = grabImage(spriteSheet, 4, 1);
+			TimeUnit.MILLISECONDS.sleep(tim + 50);
+			currentSprite = grabImage(spriteSheet, 4, 2);
+			TimeUnit.MILLISECONDS.sleep(tim + 50);
+		}
+		TimeUnit.MILLISECONDS.sleep(tim + 50);
+		currentSprite = grabImage(spriteSheet, 3, 1);
+	}
+	
+	public void punchRight() throws InterruptedException{
+		for(int i = 1; i <= 4; i++) {
+			currentSprite = grabImage(spriteSheet, 5, i);
+			TimeUnit.MILLISECONDS.sleep(tim);
+		}
+	}
+	
+	public void punchLeft() throws InterruptedException{
+		for(int i = 1; i <= 4; i++) {
+			currentSprite = grabImage(spriteSheet, 6, i);
+			TimeUnit.MILLISECONDS.sleep(tim);
+		}
+	}
+	
+	public void animateDie() throws InterruptedException{
+		for(int i = 1; i <= 13; i++) {
+			currentSprite = grabImage(spriteSheet, 7, i);
+			TimeUnit.MILLISECONDS.sleep(tim);
+		}
+	}
+	
+	public void tick() {
+		
+	}
 	/*
 	 * draws player
 	 */
 	public static void render(Graphics g) {
-		g.setFont(font);
-		g.setColor(Color.white);
-		g.drawImage(currentSprite, x * Game.PIXSIZE, y * Game.PIXSIZE,null);
+		g.drawImage(currentSprite, x * Game.PIXSIZE, y * Game.PIXSIZE + 20,null);
 	}
 	
 	

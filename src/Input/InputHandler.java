@@ -21,16 +21,36 @@ public class InputHandler implements KeyListener {
 			 * Key bounds for the OverworldState
 			 */
 			if(keyCode == KeyEvent.VK_W) {
-				OverworldState.player.moveUp();
+				try {
+					OverworldState.player.moveUp();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if(keyCode == KeyEvent.VK_A) {
-				OverworldState.player.moveLeft();
+				try {
+					OverworldState.player.moveLeft();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if(keyCode == KeyEvent.VK_S) {
-				OverworldState.player.moveDown();
+				try {
+					OverworldState.player.moveDown();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if(keyCode == KeyEvent.VK_D) {
-				OverworldState.player.moveRight();
+				try {
+					OverworldState.player.moveRight();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	
