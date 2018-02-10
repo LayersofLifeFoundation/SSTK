@@ -52,6 +52,20 @@ public class InputHandler implements KeyListener {
 					e.printStackTrace();
 				}
 			}
+			
+			if(keyCode == KeyEvent.VK_R) {
+				try {
+					OverworldState.player.animateDie();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(keyCode == KeyEvent.VK_P) {
+				OverworldState.player.Dab();
+			}
+			
 		}
 	
 	}

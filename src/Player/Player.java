@@ -121,12 +121,25 @@ public class Player {
 	}
 	
 	public void animateDie() throws InterruptedException{
-		for(int i = 1; i <= 13; i++) {
+		for(int i = 1; i <= 10; i++) {
 			currentSprite = grabImage(spriteSheet, 7, i);
 			TimeUnit.MILLISECONDS.sleep(tim);
 		}
+		for(int j = 0; j < 15; j++) {
+			for(int i = 11; i <= 13; i++) {
+				currentSprite = grabImage(spriteSheet, 7, i);
+				TimeUnit.MILLISECONDS.sleep(tim);
+			}
+			
+		}
 	}
 	
+	public void Dab() {
+		while(true) {
+		currentSprite = grabImage(spriteSheet, 8, 2);
+		currentSprite = grabImage(spriteSheet, 8, 3);
+		}
+	}
 	public void tick() {
 		
 	}
