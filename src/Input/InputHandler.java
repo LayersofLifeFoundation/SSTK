@@ -25,7 +25,7 @@ public class InputHandler implements KeyListener {
 					OverworldState.player.moveUp();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 			if(keyCode == KeyEvent.VK_A) {
@@ -33,7 +33,7 @@ public class InputHandler implements KeyListener {
 					OverworldState.player.moveLeft();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 			if(keyCode == KeyEvent.VK_S) {
@@ -41,7 +41,7 @@ public class InputHandler implements KeyListener {
 					OverworldState.player.moveDown();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 			if(keyCode == KeyEvent.VK_D) {
@@ -49,7 +49,7 @@ public class InputHandler implements KeyListener {
 					OverworldState.player.moveRight();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 			
@@ -58,17 +58,20 @@ public class InputHandler implements KeyListener {
 					OverworldState.player.animateDie();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 			
 			if(keyCode == KeyEvent.VK_P) {
-				OverworldState.player.Dab();
+				
+					OverworldState.player.Dab();
+				
 			}
 			
 		}
+		
+		}
 	
-	}
 
 	public void keyReleased(KeyEvent a) {
 		int keyCode = a.getKeyCode();

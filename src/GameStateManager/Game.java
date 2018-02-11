@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 	public static GameStateManager gameStateManager = new GameStateManager();
 	
 	FileOut test = new FileOut();
-	Thread thread;
+	public static Thread thread;
 
 	static boolean gameRunning = false;
 

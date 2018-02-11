@@ -31,7 +31,7 @@ public class Player {
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		currentSprite = grabImage(spriteSheet, 8, 2);
 	}	
@@ -51,7 +51,6 @@ public class Player {
 			y += 1;
 			System.out.println("X: " + x + " Y : " + y);
 			animateDown();
-			animateDie();
 		}
 	
 	}
