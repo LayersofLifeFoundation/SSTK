@@ -245,17 +245,12 @@ public class Player {
 		
 		//If player is idle, _____________
 		if(!isMoving) {
-			if(noAnime > 8 && noAnime % 2 == 1) {
-				currentSprite = grabImage(spriteSheet, 8, 2);
-			}
-			if(noAnime > 8 && noAnime % 2 == 0) {
-				currentSprite = grabImage(spriteSheet, 8, 3);
-			}
-			noAnime++;
-		}else {
+			if(noAnime > 8) {
+			currentSprite = grabImage(spriteSheet, 3, 1);
 			noAnime = 0;
+		}else 
+			noAnime++;
 		}
-			
 	}
 	/*
 	 * draws player
