@@ -41,6 +41,7 @@ public class OverworldState extends GameState{
 	 * Passing down the tick() function even more to any object that needs to update
 	 */
 	public void tick() {
+		player.tick();
 		try {
 			for(Link link:links) {
 				link.tick();

@@ -7,6 +7,7 @@ import java.io.IOException;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
+import Player.Player;
 
 public class InputHandler implements KeyListener {
 
@@ -28,7 +29,7 @@ public class InputHandler implements KeyListener {
 					//e.printStackTrace();
 				}
 			}
-			if(keyCode == KeyEvent.VK_A) {
+			if(keyCode == KeyEvent.VK_A ) {
 				try {
 					OverworldState.player.moveLeft();
 				} catch (InterruptedException e) {
@@ -44,7 +45,7 @@ public class InputHandler implements KeyListener {
 					//e.printStackTrace();
 				}
 			}
-			if(keyCode == KeyEvent.VK_D) {
+			if(keyCode == KeyEvent.VK_D ) {
 				try {
 					OverworldState.player.moveRight();
 				} catch (InterruptedException e) {
