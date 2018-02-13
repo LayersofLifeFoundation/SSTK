@@ -7,6 +7,7 @@ import java.io.IOException;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
+import Player.Player;
 
 public class InputHandler implements KeyListener {
 
@@ -21,20 +22,57 @@ public class InputHandler implements KeyListener {
 			 * Key bounds for the OverworldState
 			 */
 			if(keyCode == KeyEvent.VK_W) {
-				OverworldState.player.moveUp();
+				try {
+					OverworldState.player.moveUp();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
 			}
-			if(keyCode == KeyEvent.VK_A) {
-				OverworldState.player.moveLeft();
+			if(keyCode == KeyEvent.VK_A ) {
+				try {
+					OverworldState.player.moveLeft();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
 			}
 			if(keyCode == KeyEvent.VK_S) {
-				OverworldState.player.moveDown();
+				try {
+					OverworldState.player.moveDown();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
 			}
-			if(keyCode == KeyEvent.VK_D) {
-				OverworldState.player.moveRight();
+			if(keyCode == KeyEvent.VK_D ) {
+				try {
+					OverworldState.player.moveRight();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
 			}
+			
+			if(keyCode == KeyEvent.VK_R) {
+				try {
+					OverworldState.player.animateDie();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			}
+			
+			if(keyCode == KeyEvent.VK_P) {
+				
+					OverworldState.player.Dab();
+				
+			}
+			
+		}
+		
 		}
 	
-	}
 
 	public void keyReleased(KeyEvent a) {
 		int keyCode = a.getKeyCode();
