@@ -1,9 +1,16 @@
 package GameStateManager;
 
 import java.awt.Graphics;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import FileSystem.MapRetrevial;
 import Maps.Link;
@@ -22,26 +29,26 @@ public class OverworldState extends GameState{
 	public static Player player = new Player();
 	public static ArrayList<Link> links = new ArrayList<Link>();
 
-	AudioPlayer ap = AudioPlayer.player;
-    AudioStream SwampMusic;
-    //ContinuousAudioDataStream loop = null;
+
+
 	/*
 	 * loading and initializing objects in OverworldState
 	 */
 	public OverworldState(){
+		Link.startSound("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\Music\\Intro.wav"); 
+		
 		try {
-			
 			movMap.loadMap("Test.txt");
 			textMap.loadMap("test");			
-			 SwampMusic = new AudioStream(new FileInputStream("Assets\\spooky.wav"));
-		       // loop = new ContinuousAudioDataStream(MD);
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		movMap.printMap();
-		 ap.start(SwampMusic);
+		
 	}
 	
 	/*
