@@ -16,7 +16,7 @@ import GameStateManager.OverworldState;
 public class Player {
 	
 	
-	static int x = 12;
+	static int x = 5;
 	static int y = 5;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
@@ -30,8 +30,17 @@ public class Player {
 	boolean moveRight = false;
 	int leftAnime = 0;
 	boolean moveLeft = false;
+	int punLeftAnime = 0;
+	public boolean punLeft = false;
+	int punRightAnime = 0;
+	public boolean punRight = false;
+	int dieAnime = 0;
+	public boolean die = false;
+	public boolean dab = false;
+	boolean dabState = false;
 	
 	public int tim = 100;
+	
 	//returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col){
 		BufferedImage image = img.getSubimage( (col - 1) * Game.PIXSIZE, (row - 1) * Game.PIXSIZE, Game.PIXSIZE, Game.PIXSIZE);
@@ -44,7 +53,7 @@ public class Player {
 		} catch (IOException e) {
 			//e.printStackTrace();
 		}
-		currentSprite = grabImage(spriteSheet, 8, 1);
+		currentSprite = grabImage(spriteSheet, 3, 1);
 	}	
 	/*
 	 * Functions for the four directions that the player can move
@@ -86,8 +95,8 @@ public class Player {
 		}
 	}
 	
-	public void animateRight(int i) throws InterruptedException{
-		
+	//functions for changing sprites at intervals i
+	public void animateRight(int i) {	
 		if(i >= 0 && i < 2) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 1, 1);
@@ -110,8 +119,7 @@ public class Player {
 		
 		}	
 	}
-
-	public void  animateLeft(int i) throws InterruptedException{
+	public void  animateLeft(int i){
 		if(i >= 0 && i < 2) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 2, 1);
@@ -134,118 +142,164 @@ public class Player {
 		
 		}		
 	}
-	
-	public void  animateDown(int i) throws InterruptedException{
+	public void  animateDown(int i){
 		if(i >= 0 && i < 9) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 3, 1);
 		}else if(i >= 9 && i < 18){
 			currentSprite = grabImage(spriteSheet, 3, 2);
 		}else {
-			//currentSprite = grabImage(spriteSheet, 3, 1);
 			moveDown = false;
 			downAnime = 0;
-			isMoving = false;
-			
+			isMoving = false;		
 		}
 	}
-	
-	public void animateUp(int i) throws InterruptedException{
+	public void animateUp(int i){
 		if(i >= 0 && i < 9) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 4, 1);
 		}else if(i >= 9 && i < 18){
 			currentSprite = grabImage(spriteSheet, 4, 2);
 		}else {
-			//currentSprite = grabImage(spriteSheet, 3, 1);
 			moveUp = false;
 			upAnime = 0;
 			isMoving = false;
 		}
-	}
-	
-	public void punchRight() throws InterruptedException{
-		for(int i = 1; i <= 4; i++) {
-			currentSprite = grabImage(spriteSheet, 5, i);
-			TimeUnit.MILLISECONDS.sleep(tim);
+	}	
+	public void punchRight(int i){
+		if(i >= 0 && i < 9) {
+			isMoving = true;
+			currentSprite = grabImage(spriteSheet, 5, 1);
+		}else if(i >= 9 && i < 18){
+			currentSprite = grabImage(spriteSheet, 5, 2);
+		}else if(i >= 18 && i < 27){
+			currentSprite = grabImage(spriteSheet, 5, 3);
+		}else if(i >= 27 && i < 36){
+			currentSprite = grabImage(spriteSheet, 5, 4);
+		}else {
+			punRight = false;
+			punRightAnime = 0;
+			isMoving = false;
+		}
+	}	
+	public void punchLeft(int i){
+		if(i >= 0 && i < 9) {
+			isMoving = true;
+			currentSprite = grabImage(spriteSheet, 6, 1);
+		}else if(i >= 9 && i < 18){
+			currentSprite = grabImage(spriteSheet, 6, 2);
+		}else if(i >= 18 && i < 27){
+			currentSprite = grabImage(spriteSheet, 6, 3);
+		}else if(i >= 27 && i < 36){
+			currentSprite = grabImage(spriteSheet, 6, 4);
+		}else {
+			punLeft = false;
+			punLeftAnime = 0;
+			isMoving = false;
 		}
 	}
-	
-	public void punchLeft() throws InterruptedException{
-		for(int i = 1; i <= 4; i++) {
-			currentSprite = grabImage(spriteSheet, 6, i);
-			TimeUnit.MILLISECONDS.sleep(tim);
-		}
-	}
-	
-	public void animateDie() throws InterruptedException{
-		for(int i = 1; i <= 10; i++) {
-			currentSprite = grabImage(spriteSheet, 7, i);
-			TimeUnit.MILLISECONDS.sleep(tim);
-		}
-		for(int j = 0; j < 15; j++) {
-			for(int i = 11; i <= 13; i++) {
-				currentSprite = grabImage(spriteSheet, 7, i);
-				TimeUnit.MILLISECONDS.sleep(tim);
-			}
-			
-		}
-	}
-	
+	public void animateDie(int i){
+		int tim = 3;
+		if(i >= 0 && i < tim) {
+			isMoving = true;
+			currentSprite = grabImage(spriteSheet, 7, 1);
+		}else if(i >= tim  && i < tim * 2){
+			currentSprite = grabImage(spriteSheet, 7, 2);
+		}else if(i >= tim * 2 && i < tim * 3){
+			currentSprite = grabImage(spriteSheet, 7, 3);
+		}else if(i >= tim * 3 && i < tim * 4){
+			currentSprite = grabImage(spriteSheet, 7, 4);
+		}else if(i >= tim * 4 && i < tim * 5){
+			currentSprite = grabImage(spriteSheet, 7, 5);
+		}else if(i >= tim * 5 && i < tim * 6){
+			currentSprite = grabImage(spriteSheet, 7, 6);
+		}else if(i >= tim * 6 && i < tim * 7){
+			currentSprite = grabImage(spriteSheet, 7, 7);
+		}else if(i >= tim * 7 && i < tim * 8){
+			currentSprite = grabImage(spriteSheet, 7, 8);
+		}else if(i >= tim * 8 && i < tim * 9){
+			currentSprite = grabImage(spriteSheet, 7, 9);
+		}else if(i >= tim * 9 && i < tim * 10){
+			currentSprite = grabImage(spriteSheet, 7, 10);
+		}else if(i >= tim * 10 && i < tim * 11){
+			currentSprite = grabImage(spriteSheet, 7, 11);
+		}else if(i >= tim * 11 && i < tim * 12){
+			currentSprite = grabImage(spriteSheet, 7, 12);
+		}else if(i >= tim * 12 && i < tim * 13){
+			currentSprite = grabImage(spriteSheet, 7, 13);
+		}else if(i >= tim * 13 && i < tim * 14){
+			currentSprite = grabImage(spriteSheet, 7, 11);
+		}else if(i >= tim * 14 && i < tim * 15){
+			currentSprite = grabImage(spriteSheet, 7, 12);
+		}else if(i >= tim * 15 && i < tim * 16){
+			currentSprite = grabImage(spriteSheet, 7, 13);
+		}else if(i >= tim * 16 && i < tim * 17){
+			currentSprite = grabImage(spriteSheet, 7, 11);
+		}else if(i >= tim * 17 && i < tim * 18){
+			currentSprite = grabImage(spriteSheet, 7, 12);
+		}else if(i >= tim * 18 && i < tim * 19){
+			currentSprite = grabImage(spriteSheet, 7, 13);
+		}else if(i >= tim * 19 && i < tim * 20){
+			currentSprite = grabImage(spriteSheet, 8, 4);
+		}else {
+			die = false;
+			dieAnime = 0;
+			isMoving = false;
+		}		
+	}	
 	public void Dab() {
-		while(true) {
-		currentSprite = grabImage(spriteSheet, 8, 2);
-	    currentSprite = grabImage(spriteSheet, 8, 3);
-		}
+			if(dabState == false){
+				currentSprite = grabImage(spriteSheet, 8, 2);
+				dabState = true;
+				System.out.println("UNDERDFJ");
+			}
+			else {
+				currentSprite = grabImage(spriteSheet, 8, 3);
+				dabState = false;
+			}
 	}
 
 	public void tick() {
 		if(moveUp) {
 			System.out.println("Hi");
-			try {
-				animateUp(upAnime);
-				//isMoving = true;
-				System.out.println(upAnime);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			animateUp(upAnime);
+			//isMoving = true;
 			upAnime++;
 		}
 		
 		if(moveDown) {
-			try {
-				animateDown(downAnime);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			animateDown(downAnime);
 			downAnime++;
 		}
 		
 		if(moveLeft) {
-			try {
-				animateLeft(leftAnime);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			animateLeft(leftAnime);
 			leftAnime++;
 		}
 		
 		if(moveRight) {
-			try {
-				animateRight(rightAnime);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			animateRight(rightAnime);
 			rightAnime++;
+		}
+		
+		if(punLeft) {
+			punchLeft(punLeftAnime);
+			punLeftAnime++;
+		}
+		
+		if(punRight) {
+			punchRight(punRightAnime);
+			punRightAnime++;
+		}
+		
+		if(die) {
+			animateDie(dieAnime);
+				dieAnime++;
 		}
 		
 		//If player is idle, _____________
 		if(!isMoving) {
-			if(noAnime > 8) {
+			if(noAnime > 15) {
 			currentSprite = grabImage(spriteSheet, 3, 1);
 			noAnime = 0;
 		}else 
