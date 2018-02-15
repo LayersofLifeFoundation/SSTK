@@ -1,0 +1,58 @@
+package Intro;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import GameStateManager.GameState;
+
+public class InputState extends GameState{
+	
+	Font font  = new Font("Courier New", Font.PLAIN, 80);
+	static int selectedState = 0;
+	
+	static ArrayList<Button> buttons = new ArrayList<Button>();
+	public InputState() {
+		buttons.add(new Button(0, 500, 400, "Start"));
+		buttons.add(new Button(1,500, 440, "Exit"));
+		buttons.get(selectedState).select();
+	}
+	
+	public static void pushButton() {
+		buttons.get(selectedState).press();
+	}
+	
+	public static void moveUp() {
+		buttons.get(selectedState).deselect();
+		if(selectedState == 0) {
+			selectedState = 1;
+		}else {
+			selectedState--;
+		}
+		buttons.get(selectedState).select();
+	}
+	
+	public static void moveDown() {
+		buttons.get(selectedState).deselect();
+		if(selectedState == 1) {
+			selectedState = 0;
+		}else {
+			selectedState++;
+		}
+		buttons.get(selectedState).select();
+	}
+	
+	public void tick() {
+		
+	}
+	
+	public void render(Graphics g) {
+		g.setColor(Color.RED);
+		g.setFont(font);
+		g.drawString("Shrek Saves The Kids", 80, 300);
+		for(Button b: buttons) {
+			b.render(g);
+		}
+	}
+}

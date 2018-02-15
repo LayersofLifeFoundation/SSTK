@@ -3,6 +3,8 @@ package GameStateManager;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import Intro.InputState;
+
 
 
 public class GameStateManager {
@@ -12,13 +14,16 @@ public class GameStateManager {
 
 	private ArrayList<GameState> gameStates = new ArrayList<GameState>();
 
-	private int currentState = 0;
+	private int currentState = 1;
 	
 	private OverworldState overworld = new OverworldState();
+	private InputState input = new InputState();
 	public int overworldStateNumber = 0;
+	public int introState = 1;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
+		gameStates.add(input);
 	}
 
 	/*
