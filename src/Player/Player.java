@@ -16,8 +16,8 @@ import GameStateManager.OverworldState;
 public class Player {
 	
 	
-	static int x = 5;
-	static int y = 5;
+	static int x = 3;
+	static int y = 3;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
 	int noAnime = 0;
@@ -25,6 +25,7 @@ public class Player {
 	boolean moveUp = false;
 	int upAnime = 0;
 	int downAnime = 0;
+	static int OGPIX = 48;
 	boolean moveDown = false;
 	int rightAnime = 0;
 	boolean moveRight = false;
@@ -43,7 +44,7 @@ public class Player {
 	
 	//returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col){
-		BufferedImage image = img.getSubimage( (col - 1) * Game.PIXSIZE, (row - 1) * Game.PIXSIZE, Game.PIXSIZE, Game.PIXSIZE);
+		BufferedImage image = img.getSubimage( (col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
 		return image;
 	}
 		
@@ -199,7 +200,7 @@ public class Player {
 		}
 	}
 	public void animateDie(int i){
-		int tim = 3;
+		int tim = 5;
 		if(i >= 0 && i < tim) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 7, 1);
@@ -251,7 +252,7 @@ public class Player {
 			if(dabState == false){
 				currentSprite = grabImage(spriteSheet, 8, 2);
 				dabState = true;
-				System.out.println("UNDERDFJ");
+				
 			}
 			else {
 				currentSprite = grabImage(spriteSheet, 8, 3);
@@ -261,7 +262,6 @@ public class Player {
 
 	public void tick() {
 		if(moveUp) {
-			System.out.println("Hi");
 			animateUp(upAnime);
 			//isMoving = true;
 			upAnime++;
@@ -310,10 +310,9 @@ public class Player {
 	 * draws player
 	 */
 	public static void render(Graphics g) {
-		g.drawImage(currentSprite, x * Game.PIXSIZE, y * Game.PIXSIZE + 20,null);
+		g.drawImage(currentSprite, Game.WIDTH / 2  - Game.WIDTH / 2 % 49, Game.HEIGHT / 2 - Game.HEIGHT / 2 % 49,null);
 	}
-	
-	
+		
 	/*
 	 * getter and setter functions for the variables x and y
 	 */

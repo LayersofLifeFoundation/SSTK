@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
 
 	public final static int WIDTH = 1080;
 	public final static int HEIGHT = WIDTH / 16 * 9;
-	public final static int PIXSIZE = 48;
+	public final static int PIXSIZE = 49;
 	public final static String Title = "PokeDAB";
 	public final Dimension gameSize = new Dimension(WIDTH, HEIGHT);
 

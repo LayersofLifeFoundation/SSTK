@@ -1,9 +1,11 @@
 package GameStateManager;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -28,19 +30,19 @@ public class OverworldState extends GameState{
 	public static TextMap textMap = new TextMap();
 	public static Player player = new Player();
 	public static ArrayList<Link> links = new ArrayList<Link>();
-
-
+	public BufferedImage map;
+	BufferedImage subMap;
 
 	/*
 	 * loading and initializing objects in OverworldState
 	 */
 	public OverworldState(){
-		Link.startSound("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\Music\\Intro.wav"); 
+		Link.startSound("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\Music\\onepunch.wav"); 
 		
 		try {
-			movMap.loadMap("Test.txt");
+			movMap.loadMap("World1.txt");
 			textMap.loadMap("test");			
-			
+			map = ImageIO.read(getClass().getResource("/Swamp_Map.png"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -56,6 +58,7 @@ public class OverworldState extends GameState{
 	 */
 	public void tick() {
 		player.tick();
+
 		try {
 			for(Link link:links) {
 				link.tick();
@@ -70,7 +73,9 @@ public class OverworldState extends GameState{
 	 * Passes down the render function
 	 */
 	public void render(Graphics g) {
-		textMap.render(g);
+		//textMap.render(g);
+		subMap = map.getSubimage(1000 + player.returnX() * Game.PIXSIZE - 11 * Game.PIXSIZE, 1000 + player.returnY() * Game.PIXSIZE - 6 * Game.PIXSIZE, Game.WIDTH + 30, Game.HEIGHT +30);
+		g.drawImage(subMap, 0, 0, null);
 		player.render(g);
 		
 	}
