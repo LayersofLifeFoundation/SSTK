@@ -31,7 +31,8 @@ public class Button {
 	
 	public void press(){
 		if(actionNum == 0) {
-			Game.gameStateManager.changeState(0);
+			Game.gameStateManager.changeState(2);
+			IntroductionState.startIntroState();
 		}else if(actionNum == 1) {
 			Game.stop();
 		}	

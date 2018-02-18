@@ -37,7 +37,7 @@ public class OverworldState extends GameState{
 	 * loading and initializing objects in OverworldState
 	 */
 	public OverworldState(){
-		Link.startSound("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\Music\\onepunch.wav"); 
+		
 		
 		try {
 			movMap.loadMap("World1.txt");
@@ -51,6 +51,11 @@ public class OverworldState extends GameState{
 		
 		movMap.printMap();
 		
+	}
+	
+	
+	public static void stateOverworldState() {
+		Link.startSound("Music\\onepunch.wav"); 
 	}
 	
 	/*

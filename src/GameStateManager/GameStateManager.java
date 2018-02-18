@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import Intro.InputState;
+import Intro.IntroductionState;
 
 
 
@@ -18,12 +19,15 @@ public class GameStateManager {
 	
 	private OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
+	private IntroductionState intro  = new IntroductionState();
 	public int overworldStateNumber = 0;
 	public int introState = 1;
+	public int introductionState = 2;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
 		gameStates.add(input);
+		gameStates.add(intro);
 	}
 
 	/*

@@ -8,6 +8,7 @@ import GameStateManager.Game;
 import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
 import Intro.InputState;
+import Intro.IntroductionState;
 import Player.Player;
 
 public class InputHandler implements KeyListener {
@@ -18,6 +19,14 @@ public class InputHandler implements KeyListener {
 	public void keyPressed(KeyEvent a) {
 		int keyCode = a.getKeyCode();
 		String keyChar = KeyEvent.getKeyText(a.getKeyChar());
+		
+		if(Game.gameStateManager.getState() == Game.gameStateManager.introductionState) {
+			if(keyCode == KeyEvent.VK_ENTER) {
+				Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+				IntroductionState.stop();
+				OverworldState.stateOverworldState();
+			}
+		}
 		
 		if(Game.gameStateManager.getState() == Game.gameStateManager.introState) {
 			if(keyCode == KeyEvent.VK_W) {
@@ -30,6 +39,9 @@ public class InputHandler implements KeyListener {
 				InputState.pushButton();
 			}
 		}
+		
+		
+		
 		
 		if(Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
