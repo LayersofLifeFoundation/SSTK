@@ -7,6 +7,7 @@ import java.io.IOException;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
+import Intro.InputState;
 import Player.Player;
 
 public class InputHandler implements KeyListener {
@@ -17,6 +18,19 @@ public class InputHandler implements KeyListener {
 	public void keyPressed(KeyEvent a) {
 		int keyCode = a.getKeyCode();
 		String keyChar = KeyEvent.getKeyText(a.getKeyChar());
+		
+		if(Game.gameStateManager.getState() == Game.gameStateManager.introState) {
+			if(keyCode == KeyEvent.VK_W) {
+				InputState.moveUp();
+			}
+			if(keyCode == KeyEvent.VK_S) {
+				InputState.moveDown();
+			}
+			if(keyCode == KeyEvent.VK_ENTER) {
+				InputState.pushButton();
+			}
+		}
+		
 		if(Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
 			 * Key bounds for the OverworldState
