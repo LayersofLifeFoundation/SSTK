@@ -80,6 +80,8 @@ public class MapRetrevial {
 				links.get(count).setLinkMovement(line);
 				line = in.readLine();
 				links.get(count).setLinkText(line);
+				line = in.readLine();
+				links.get(count).setNextTrack(line);
 				count++;
 		
 		}

@@ -6,7 +6,7 @@ import FileSystem.MapRetrevial;
 
 public class MovementMap {
 	
-	static int[][] map = new int[50][50];
+	static int[][] map = new int[100][100];
 	
 	/*
 	 * retrieves the data for the double array map
