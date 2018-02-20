@@ -94,7 +94,10 @@ public class InputHandler implements KeyListener {
 			}
 			
 			if(keyCode == KeyEvent.VK_4) {			
-				OverworldState.player.Dab();	
+				OverworldState.player.Dab();
+				if(!Music.boosted) {
+					Music.boost();
+				}
 			}
 			
 		}

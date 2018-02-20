@@ -258,13 +258,13 @@ public class Player {
 	public void Dab() {
 			if(dabState == false){
 				currentSprite = grabImage(spriteSheet, 8, 2);
-					Music.startSound("SFX\\Hitmarker.wav", false);
+					//Music.startSound("SFX\\Hitmarker.wav", false);
 				dabState = true;
 				
 			}
 			else {
 				currentSprite = grabImage(spriteSheet, 8, 3);
-				Music.startSound("SFX\\Hitmarker.wav", false);
+				//Music.startSound("SFX\\Hitmarker.wav", false);
 				dabState = false;
 			}
 	}

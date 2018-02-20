@@ -11,10 +11,12 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Music {
-	static Clip audioClip;
-	static AudioInputStream audioStream;
+import GameStateManager.GameStateManager;
 
+public class Music {
+	public static Clip audioClip;
+	public static AudioInputStream audioStream;
+	public static boolean boosted = false;
 	//start a looping sound
 	public static void startSound(String path, boolean loop) {
 		File audioFile = new File(path);
@@ -43,6 +45,20 @@ public class Music {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	//changes current track to specified track at time position of previous track
+	public static void boost() {
+		boosted = true;
+		String newPath = "";
+		if(GameStateManager.overworldStateNumber == 0) {
+			newPath = "Music\\XAll_Star_ChipX.wav";
+		}
+		long time = audioClip.getMicrosecondPosition();
+		stopSound();
+		startSound(newPath, true);
+		audioClip.setMicrosecondPosition(time);
+		
 	}
 
 	
