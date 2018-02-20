@@ -5,18 +5,24 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.Clip;
+
 import GameStateManager.GameState;
+import Sounds.Music;
 
 public class InputState extends GameState{
 	
 	Font font  = new Font("Courier New", Font.PLAIN, 80);
 	static int selectedState = 0;
 	
+	
 	static ArrayList<Button> buttons = new ArrayList<Button>();
 	public InputState() {
 		buttons.add(new Button(0, 500, 400, "Start"));
 		buttons.add(new Button(1,500, 440, "Exit"));
 		buttons.get(selectedState).select();
+		Music.startSound("Music\\TitleScreen.wav", true);
 	}
 	
 	public static void pushButton() {

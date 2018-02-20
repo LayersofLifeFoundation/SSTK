@@ -10,6 +10,7 @@ import GameStateManager.OverworldState;
 import Intro.InputState;
 import Intro.IntroductionState;
 import Player.Player;
+import Sounds.Music;
 
 public class InputHandler implements KeyListener {
 
@@ -23,7 +24,7 @@ public class InputHandler implements KeyListener {
 		if(Game.gameStateManager.getState() == Game.gameStateManager.introductionState) {
 			if(keyCode == KeyEvent.VK_ENTER) {
 				Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
-				IntroductionState.stop();
+				Music.stopSound();
 				OverworldState.stateOverworldState();
 			}
 		}

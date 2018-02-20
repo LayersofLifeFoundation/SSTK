@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import GameStateManager.Game;
+import Sounds.Music;
 
 public class Button {
 	
@@ -31,6 +32,7 @@ public class Button {
 	
 	public void press(){
 		if(actionNum == 0) {
+			Music.stopSound();
 			Game.gameStateManager.changeState(2);
 			IntroductionState.startIntroState();
 		}else if(actionNum == 1) {

@@ -11,13 +11,14 @@ import javax.imageio.ImageIO;
 
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
+import Sounds.Music;
 
 
 public class Player {
 	
 	
-	static int x = 3;
-	static int y = 3;
+	static int x = 7;
+	static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
 	int noAnime = 0;
@@ -98,20 +99,21 @@ public class Player {
 	
 	//functions for changing sprites at intervals i
 	public void animateRight(int i) {	
-		if(i >= 0 && i < 2) {
-			isMoving = true;
+		int speed = 2;
+		isMoving = true;
+		if(i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 1, 1);
-		}else if(i >= 2 && i < 4) {
+		}else if(i >= speed && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 1, 2);
-		}else if(i >= 4 && i < 6){
+		}else if(i >= speed * 2 && i < speed * 3){
 			currentSprite = grabImage(spriteSheet, 1, 3);
-		}else if(i >= 6 && i < 8){
+		}else if(i >= speed * 3 && i < speed * 4){
 			currentSprite = grabImage(spriteSheet, 1, 4);
-		}else if(i >= 8 && i < 10){
+		}else if(i >= speed * 4 && i < speed * 5){
 			currentSprite = grabImage(spriteSheet, 1, 5);
-		}else if(i >= 10 && i < 12){
+		}else if(i >= speed * 5 && i < speed * 6){
 			currentSprite = grabImage(spriteSheet, 1, 6);
-		}else if(i >= 12 && i < 14){
+		}else if(i >= speed * 6 && i < speed * 7){
 			currentSprite = grabImage(spriteSheet, 1, 7);
 		}else {
 			moveRight = false;
@@ -121,20 +123,21 @@ public class Player {
 		}	
 	}
 	public void  animateLeft(int i){
-		if(i >= 0 && i < 2) {
-			isMoving = true;
+		int speed = 2;
+		isMoving = true;
+		if(i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 2, 1);
-		}else if(i >= 2 && i < 4){
+		}else if(i >= speed && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 2, 2);
-		}else if(i >= 4 && i < 6){
+		}else if(i >= speed * 2 && i < speed * 3){
 			currentSprite = grabImage(spriteSheet, 2, 3);
-		}else if(i >= 6 && i < 8){
+		}else if(i >= speed * 3 && i < speed * 4){
 			currentSprite = grabImage(spriteSheet, 2, 4);
-		}else if(i >= 8 && i < 10){
+		}else if(i >= speed * 4 && i < speed * 5){
 			currentSprite = grabImage(spriteSheet, 2, 5);
-		}else if(i >= 10 && i < 12){
+		}else if(i >= speed * 5 && i < speed * 6){
 			currentSprite = grabImage(spriteSheet, 2, 6);
-		}else if(i >= 12 && i < 14){
+		}else if(i >= speed * 6 && i < speed * 7){
 			currentSprite = grabImage(spriteSheet, 2, 7);
 		}else {
 			moveLeft = false;
@@ -144,10 +147,11 @@ public class Player {
 		}		
 	}
 	public void  animateDown(int i){
-		if(i >= 0 && i < 9) {
+		int speed = 9;
+		if(i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 3, 1);
-		}else if(i >= 9 && i < 18){
+		}else if(i >= speed && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 3, 2);
 		}else {
 			moveDown = false;
@@ -156,10 +160,11 @@ public class Player {
 		}
 	}
 	public void animateUp(int i){
-		if(i >= 0 && i < 9) {
+		int speed = 9;
+		if(i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 4, 1);
-		}else if(i >= 9 && i < 18){
+		}else if(i >= speed && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 4, 2);
 		}else {
 			moveUp = false;
@@ -168,14 +173,15 @@ public class Player {
 		}
 	}	
 	public void punchRight(int i){
-		if(i >= 0 && i < 9) {
-			isMoving = true;
+		int speed = 9;
+		isMoving = true;
+		if(i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 5, 1);
-		}else if(i >= 9 && i < 18){
+		}else if(i >= speed  && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 5, 2);
-		}else if(i >= 18 && i < 27){
+		}else if(i >= speed * 2 && i < speed * 3){
 			currentSprite = grabImage(spriteSheet, 5, 3);
-		}else if(i >= 27 && i < 36){
+		}else if(i >= speed * 3 && i < speed * 4){
 			currentSprite = grabImage(spriteSheet, 5, 4);
 		}else {
 			punRight = false;
@@ -184,14 +190,15 @@ public class Player {
 		}
 	}	
 	public void punchLeft(int i){
-		if(i >= 0 && i < 9) {
-			isMoving = true;
+		int speed = 9;
+		isMoving = true;
+		if(i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 6, 1);
-		}else if(i >= 9 && i < 18){
+		}else if(i >= speed  && i < speed * 2){
 			currentSprite = grabImage(spriteSheet, 6, 2);
-		}else if(i >= 18 && i < 27){
+		}else if(i >= speed * 2 && i < speed * 3){
 			currentSprite = grabImage(spriteSheet, 6, 3);
-		}else if(i >= 27 && i < 36){
+		}else if(i >= speed * 3 && i < speed * 4){
 			currentSprite = grabImage(spriteSheet, 6, 4);
 		}else {
 			punLeft = false;
@@ -251,11 +258,13 @@ public class Player {
 	public void Dab() {
 			if(dabState == false){
 				currentSprite = grabImage(spriteSheet, 8, 2);
+					Music.startSound("SFX\\Hitmarker.wav", false);
 				dabState = true;
 				
 			}
 			else {
 				currentSprite = grabImage(spriteSheet, 8, 3);
+				Music.startSound("SFX\\Hitmarker.wav", false);
 				dabState = false;
 			}
 	}
@@ -297,14 +306,6 @@ public class Player {
 				dieAnime++;
 		}
 		
-		//If player is idle, _____________
-		if(!isMoving) {
-			if(noAnime > 15) {
-			currentSprite = grabImage(spriteSheet, 3, 1);
-			noAnime = 0;
-		}else 
-			noAnime++;
-		}
 	}
 	/*
 	 * draws player

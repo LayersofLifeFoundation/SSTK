@@ -6,21 +6,16 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
 import Player.Player;
+import Sounds.Music;
 import TextMap.TextMap;
 import java.io.*;
-import sun.audio.*;
+
 public class OverworldState extends GameState{
 	/*
 	 * GameState that loads the text base view that is used mostly for testing
@@ -55,7 +50,7 @@ public class OverworldState extends GameState{
 	
 	
 	public static void stateOverworldState() {
-		Link.startSound("Music\\onepunch.wav"); 
+		Music.startSound("Music\\All_Star_Chip.wav", true); 
 	}
 	
 	/*
