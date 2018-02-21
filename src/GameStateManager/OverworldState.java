@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
+import NPC.NPC;
 import Player.Player;
 import Sounds.Music;
 import TextMap.TextMap;
@@ -27,6 +28,7 @@ public class OverworldState extends GameState{
 	public static ArrayList<Link> links = new ArrayList<Link>();
 	public BufferedImage map;
 	BufferedImage subMap;
+	public static ArrayList<NPC> npcs = new ArrayList<NPC>();
 
 	/*
 	 * loading and initializing objects in OverworldState
@@ -35,8 +37,9 @@ public class OverworldState extends GameState{
 		
 		
 		try {
-			movMap.loadMap("World1.txt");
-			textMap.loadMap("test");			
+			movMap.loadMap("World1");
+			textMap.loadMap("test");	
+			MapRetrevial.readNPC("World1");
 			map = ImageIO.read(getClass().getResource("/Swamp_Map.png"));
 			
 		} catch (IOException e) {
@@ -51,6 +54,15 @@ public class OverworldState extends GameState{
 	
 	public static void stateOverworldState() {
 		Music.startSound("Music\\All_Star_Chip.wav", true); 
+	}
+	
+	public static boolean NPCPresent(int x, int y) {
+		for(NPC npc:npcs) {
+			if(npc.x == x && npc.y == y) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/*
@@ -77,6 +89,9 @@ public class OverworldState extends GameState{
 		subMap = map.getSubimage(1000 + player.returnX() * Game.PIXSIZE - 11 * Game.PIXSIZE, 1000 + player.returnY() * Game.PIXSIZE - 6 * Game.PIXSIZE, Game.WIDTH + 30, Game.HEIGHT +30);
 		g.drawImage(subMap, 0, 0, null);
 		player.render(g);
+		for(NPC npc:npcs) {
+			npc.render(g);
+		}
 		
 	}
 }

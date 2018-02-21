@@ -60,7 +60,7 @@ public class Player {
 	 */
 	public void moveUp() throws InterruptedException {
 		if(!moveUp && !isMoving) {
-			if(OverworldState.movMap.canMoveTo(x, y - 1)) {
+			if(OverworldState.movMap.canMoveTo(x, y - 1) && !OverworldState.NPCPresent(x, y - 1)) {
 				y -= 1;
 				System.out.println("X: " + x + " Y : " + y);
 				moveUp = true;
@@ -69,7 +69,7 @@ public class Player {
 	}
 	public void moveDown() throws InterruptedException {
 		if(!moveDown && !isMoving) {
-			if(OverworldState.movMap.canMoveTo(x, y + 1)) {
+			if(OverworldState.movMap.canMoveTo(x, y + 1) && !OverworldState.NPCPresent(x, y + 1)) {
 				y += 1;
 				System.out.println("X: " + x + " Y : " + y);
 				moveDown = true;
@@ -78,7 +78,7 @@ public class Player {
 	}
 	public void moveLeft() throws InterruptedException {
 		if(!moveLeft && !isMoving) {
-			if(OverworldState.movMap.canMoveTo(x - 1, y)) {
+			if(OverworldState.movMap.canMoveTo(x - 1, y) && !OverworldState.NPCPresent(x - 1, y)) {
 				x -= 1;
 				System.out.println("X: " + x + " Y : " + y);
 				moveLeft = true;
@@ -87,7 +87,7 @@ public class Player {
 	}
 	public void moveRight() throws InterruptedException {
 		if(!moveRight && !isMoving) {
-			if(OverworldState.movMap.canMoveTo(x + 1,  y)) {
+			if(OverworldState.movMap.canMoveTo(x + 1,  y) && !OverworldState.NPCPresent(x + 1, y )) {
 				x += 1;
 				System.out.println("X: " + x + " Y : " + y);
 				moveRight = true;
