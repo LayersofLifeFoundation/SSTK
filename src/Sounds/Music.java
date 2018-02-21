@@ -57,9 +57,18 @@ public class Music {
 		long time = audioClip.getMicrosecondPosition();
 		stopSound();
 		startSound(newPath, true);
-		audioClip.setMicrosecondPosition(time);
-		
+		audioClip.setMicrosecondPosition(time);	
 	}
-
 	
+	public static void norm() {
+		boosted = false;
+		String newPath = "";
+		if(GameStateManager.overworldStateNumber == 0) {
+			newPath = "Music\\All_Star_Chip.wav";
+		}
+		long time = audioClip.getMicrosecondPosition();
+		stopSound();
+		startSound(newPath, true);
+		audioClip.setMicrosecondPosition(time);	
+	}
 }

@@ -41,8 +41,6 @@ public class Player {
 	public boolean dab = false;
 	boolean dabState = false;
 	
-	public int tim = 100;
-	
 	//returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col){
 		BufferedImage image = img.getSubimage( (col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -257,14 +255,11 @@ public class Player {
 	}	
 	public void Dab() {
 			if(dabState == false){
-				currentSprite = grabImage(spriteSheet, 8, 2);
-					//Music.startSound("SFX\\Hitmarker.wav", false);
+				currentSprite = grabImage(spriteSheet, 8, 2);		
 				dabState = true;
-				
 			}
 			else {
 				currentSprite = grabImage(spriteSheet, 8, 3);
-				//Music.startSound("SFX\\Hitmarker.wav", false);
 				dabState = false;
 			}
 	}
