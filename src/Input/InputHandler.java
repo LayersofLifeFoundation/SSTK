@@ -92,26 +92,24 @@ public class InputHandler implements KeyListener {
 
 			if (keyCode == KeyEvent.VK_4) {
 				OverworldState.player.Dab();
-				if (!Music.boosted) {
+				if (Music.boosted == false) {
+					
+					System.out.println(Music.boosted);
 					Music.boost();
+					Music.boosted = true;
+					System.out.println(Music.boosted);
 				}
 			}else {
-				if (Music.boosted) {
+				if(Music.boosted) {
 					Music.norm();
+				}
 			}
-
-		}
-
 		
 	}
 
 	}
 
 	public void keyReleased(KeyEvent a) {
-		int keyCode = a.getKeyCode();
-		if (a.getKeyCode() == KeyEvent.VK_4) {
-			Music.boost();
-		}
 	}
 
 	public void keyTyped(KeyEvent d) {

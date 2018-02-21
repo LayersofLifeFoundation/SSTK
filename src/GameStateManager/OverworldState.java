@@ -27,6 +27,7 @@ public class OverworldState extends GameState{
 	public static ArrayList<Link> links = new ArrayList<Link>();
 	public BufferedImage map;
 	BufferedImage subMap;
+	public static String swampMusic = "Music\\All_Star_Chip.wav";
 
 	/*
 	 * loading and initializing objects in OverworldState
@@ -50,7 +51,7 @@ public class OverworldState extends GameState{
 	
 	
 	public static void stateOverworldState() {
-		Music.startSound("Music\\All_Star_Chip.wav", true); 
+		Music.startSound(swampMusic, true); 
 	}
 	
 	/*
