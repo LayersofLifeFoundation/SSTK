@@ -46,6 +46,9 @@ public class InputHandler implements KeyListener {
 			/*
 			 * Key bounds for the OverworldState
 			 */
+			if (keyCode == KeyEvent.VK_SPACE) {
+				OverworldState.interact();
+			}
 			if (keyCode == KeyEvent.VK_W) {
 				try {
 					OverworldState.player.moveUp();

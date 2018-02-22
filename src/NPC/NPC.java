@@ -12,6 +12,7 @@ import GameStateManager.OverworldState;
 public class NPC {
 	
 	private static final int OGPIX = 48;
+	public String name;
 	public int x;
 	public int y;
 	int sRow;
@@ -56,6 +57,14 @@ public class NPC {
 	
 	public void setText(String s) {
 		dialog = s;
+	}
+	
+	public String getText() {
+		return dialog;
+	}
+	
+	public void setName(String s) {
+		name = s;
 	}
 	
 	public void render(Graphics g) {

@@ -98,6 +98,8 @@ public class MapRetrevial {
 	
 		while((line = in.readLine()) != null) {
 				OverworldState.npcs.add(new NPC());
+				OverworldState.npcs.get(count).setName(line);
+				line = in.readLine();
 				OverworldState.npcs.get(count).setX(Integer.parseInt(line));
 				line = in.readLine();
 				OverworldState.npcs.get(count).setY(Integer.parseInt(line));
