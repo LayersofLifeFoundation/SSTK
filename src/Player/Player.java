@@ -1,5 +1,6 @@
 package Player;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class Player {
 	static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
+	public static BufferedImage hpImg;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -36,6 +38,10 @@ public class Player {
 	boolean dabState = false;
 	String facing = "Down";
 
+	
+	public static int maxHP = 230;
+	public static int HPLev;
+	
 	// returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -43,8 +49,10 @@ public class Player {
 	}
 
 	public Player() {
+		HPLev = 30;
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
+			hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 		} catch (IOException e) {
 			// e.printStackTrace();
 		}
@@ -275,6 +283,7 @@ public class Player {
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
+			HPLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
@@ -317,6 +326,10 @@ public class Player {
 			animateDie(dieAnime);
 			dieAnime++;
 		}
+		
+		if(HPLev > maxHP) {
+			HPLev = maxHP;
+		}
 
 	}
 
@@ -325,6 +338,19 @@ public class Player {
 	 */
 	public static void render(Graphics g) {
 		g.drawImage(currentSprite, Game.WIDTH / 2 - Game.WIDTH / 2 % 49, Game.HEIGHT / 2 - Game.HEIGHT / 2 % 49, null);
+	
+	
+	//draw HP bar 294X24px
+	//green starts at px49 and ends at px279 
+		g.drawImage(hpImg, 0, 0, 294, 24, null);
+		if(HPLev <= maxHP / 4) {
+			g.setColor(Color.RED);
+		}else if(HPLev <= maxHP / 2) {
+			g.setColor(Color.YELLOW);	
+		}else {
+			g.setColor(Color.GREEN);
+		}
+		g.fillRect(49, 0, HPLev, 18);
 	}
 
 	/*

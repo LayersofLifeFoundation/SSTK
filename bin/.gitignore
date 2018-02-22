@@ -1,9 +1,7 @@
+/NPC/
 /GameStateManager/
-/Player/
-/TextMap/
 /Input/
-/SIntro.wav
-/Shrek.png
-/Maps/
-/Sounds/
-/FileSystem/
+/Intro/
+/HPBar.png
+/Player/
+/HPBar.pdn

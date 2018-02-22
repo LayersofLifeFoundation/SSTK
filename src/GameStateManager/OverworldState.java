@@ -30,7 +30,7 @@ public class OverworldState extends GameState {
 	public static ArrayList<Link> links = new ArrayList<Link>();
 	public BufferedImage map;
 	BufferedImage subMap;
-<<<<<<< HEAD
+
 	public static ArrayList<NPC> npcs = new ArrayList<NPC>();
 	static String dialog;
 	static ArrayList<String> lines = new ArrayList<String>();
@@ -40,9 +40,9 @@ public class OverworldState extends GameState {
 	Font font = new Font("Courier New", Font.PLAIN, 30);
 	Font bold = new Font("Courier New", Font.BOLD, 30);
 	static String npcName;
-=======
+
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
->>>>>>> master
+
 
 	/*
 	 * loading and initializing objects in OverworldState
@@ -65,11 +65,8 @@ public class OverworldState extends GameState {
 	}
 
 	public static void stateOverworldState() {
-<<<<<<< HEAD
-		Music.startSound("Music\\All_Star_Chip.wav", true);
-=======
+
 		Music.startSound(swampMusic, true); 
->>>>>>> master
 	}
 
 	public static boolean NPCPresent(int x, int y) {

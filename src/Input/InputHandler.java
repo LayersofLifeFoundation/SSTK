@@ -28,7 +28,7 @@ public class InputHandler implements KeyListener {
 				Music.stopSound();
 				OverworldState.stateOverworldState();
 			}
-		}4
+		}
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.introState) {
 			if (keyCode == KeyEvent.VK_W) {
