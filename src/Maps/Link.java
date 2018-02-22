@@ -13,7 +13,7 @@ public class Link {
 	
 	int x,y,toX,toY;
 	String linkMovement, linkText;
-	String nextTrack;
+	public static String nextTrack;
 	/*
 	 * Provides a tile to link different maps
 	 */	

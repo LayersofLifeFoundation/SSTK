@@ -28,7 +28,7 @@ public class InputHandler implements KeyListener {
 				Music.stopSound();
 				OverworldState.stateOverworldState();
 			}
-		}
+		}4
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.introState) {
 			if (keyCode == KeyEvent.VK_W) {
@@ -100,22 +100,16 @@ public class InputHandler implements KeyListener {
 					Music.boost();
 				}
 			}else {
-				if (Music.boosted) {
+				if(Music.boosted) {
 					Music.norm();
+				}
 			}
-
-		}
-
 		
 	}
 
 	}
 
 	public void keyReleased(KeyEvent a) {
-		int keyCode = a.getKeyCode();
-		if (a.getKeyCode() == KeyEvent.VK_4) {
-			Music.boost();
-		}
 	}
 
 	public void keyTyped(KeyEvent d) {

@@ -17,9 +17,10 @@ public class Music {
 	public static Clip audioClip;
 	public static AudioInputStream audioStream;
 	public static boolean boosted = false;
+	public static File audioFile;
 	//start a looping sound
 	public static void startSound(String path, boolean loop) {
-		File audioFile = new File(path);
+		audioFile = new File(path);
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 			AudioFormat format = audioStream.getFormat();
@@ -27,6 +28,7 @@ public class Music {
 			audioClip = (Clip) AudioSystem.getLine(info);
 			audioClip.open(audioStream);
 			audioClip.start();
+			System.out.println(audioFile);
 			if(loop) {
 			audioClip.loop(-1);
 			}
@@ -48,10 +50,13 @@ public class Music {
 	}
 	
 	//changes current track to specified track at time position of previous track
+	@SuppressWarnings("unlikely-arg-type")
 	public static void boost() {
 		boosted = true;
 		String newPath = "";
-		if(GameStateManager.overworldStateNumber == 0) {
+		//String strr =  audioFile.getName();
+		//System.out.println(strr+ "K");
+		if(audioFile.getName().equals("All_Star_Chip.wav")) {
 			newPath = "Music\\XAll_Star_ChipX.wav";
 		}
 		long time = audioClip.getMicrosecondPosition();
@@ -59,11 +64,11 @@ public class Music {
 		startSound(newPath, true);
 		audioClip.setMicrosecondPosition(time);	
 	}
-	
+	 
 	public static void norm() {
 		boosted = false;
 		String newPath = "";
-		if(GameStateManager.overworldStateNumber == 0) {
+		if(audioFile.getName().equals("XAll_Star_ChipX.wav")) {
 			newPath = "Music\\All_Star_Chip.wav";
 		}
 		long time = audioClip.getMicrosecondPosition();
