@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 import GameStateManager.OverworldState;
 import Maps.Link;
+import NPC.NPC;
 
 public class MapRetrevial {
 	
@@ -22,7 +22,7 @@ public class MapRetrevial {
 	 */
 	public static void retriveMovementMap(int[][] map, String mapName ) throws IOException {
 		String line;
-		BufferedReader in = new BufferedReader(new FileReader("map\\MovementMaps\\" + mapName));
+		BufferedReader in = new BufferedReader(new FileReader("map\\"+ mapName + "\\movement.txt"));
 		int count = 0;
 		while((line = in.readLine()) != null) {
 			for(int i = 0; i < line.length();i++) {
@@ -85,6 +85,35 @@ public class MapRetrevial {
 				count++;
 		
 		}
+	}
+	
+	public static void readNPC(String mapName) throws IOException {
+		String line;
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\NPC.txt"));
+		int count = 0;
+		OverworldState.npcs.clear();
+		
+		
+		
+	
+		while((line = in.readLine()) != null) {
+				OverworldState.npcs.add(new NPC());
+				OverworldState.npcs.get(count).setName(line);
+				line = in.readLine();
+				OverworldState.npcs.get(count).setX(Integer.parseInt(line));
+				line = in.readLine();
+				OverworldState.npcs.get(count).setY(Integer.parseInt(line));
+				line = in.readLine();
+				OverworldState.npcs.get(count).setR(Integer.parseInt(line));
+				line = in.readLine();
+				OverworldState.npcs.get(count).setC(Integer.parseInt(line));
+				line = in.readLine();
+				OverworldState.npcs.get(count).setText(line);
+				OverworldState.npcs.get(count).setSprite();
+				count++;
+		
+		}
+		
 	}
 
 }
