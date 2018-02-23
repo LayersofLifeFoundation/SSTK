@@ -287,6 +287,7 @@ public class Player {
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
+			HPLev++;
 		}
 	}
 
@@ -347,7 +348,7 @@ public class Player {
 			g.setColor(Color.RED);
 		}else if(HPLev <= maxHP / 2) {
 			g.setColor(Color.YELLOW);	
-		}else {
+		}else{
 			g.setColor(Color.GREEN);
 		}
 		g.fillRect(49, 0, HPLev, 18);

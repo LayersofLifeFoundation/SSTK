@@ -23,7 +23,7 @@ public class NPC {
 	
 	public NPC() {
 		try {
-			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
+			spriteSheet = ImageIO.read(getClass().getResource("/NPC_Sprite_Sheet.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
