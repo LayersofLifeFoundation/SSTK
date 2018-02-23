@@ -40,6 +40,7 @@ public class Player {
 
 	
 	public static double hpMax = 10030;
+	//current HP
 	public static double hpLev;
 	public static double hpPercent;
 	// returns the sprite at the specified index of the sprite sheet
@@ -81,7 +82,7 @@ public class Player {
 			if (!moveDown && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x, y + 1) && !OverworldState.NPCPresent(x, y + 1)) {
 					y += 1;
-
+					System.out.println("X: "+ x + "\nY: " + y);
 				}
 				moveDown = true;
 				facing = "Down";
@@ -355,9 +356,6 @@ public class Player {
 			g.setColor(Color.GREEN);
 		}
 		g.fillRect(49, 0, (int) (229 * hpPercent), 18);
-		System.out.println("HP percent: " + hpPercent);
-		System.out.println("HP Max: " + hpMax);
-		System.out.println("HP Lev: " + hpLev);
 	}
 
 	/*

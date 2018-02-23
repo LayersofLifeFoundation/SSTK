@@ -28,7 +28,6 @@ public class Music {
 			audioClip = (Clip) AudioSystem.getLine(info);
 			audioClip.open(audioStream);
 			audioClip.start();
-			System.out.println(audioFile);
 			if(loop) {
 			audioClip.loop(-1);
 			}
@@ -50,12 +49,9 @@ public class Music {
 	}
 	
 	//changes current track to specified track at time position of previous track
-	@SuppressWarnings("unlikely-arg-type")
 	public static void boost() {
 		boosted = true;
 		String newPath = "";
-		//String strr =  audioFile.getName();
-		//System.out.println(strr+ "K");
 		if(audioFile.getName().equals("All_Star_Chip.wav")) {
 			newPath = "Music\\XAll_Star_ChipX.wav";
 		}
