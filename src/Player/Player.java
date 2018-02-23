@@ -39,10 +39,10 @@ public class Player {
 	String facing = "Down";
 
 	
-	public static double hpMax = 10030;
+	public static double pHpMax = 10030;
 	//current HP
 	public static double hpLev;
-	public static double hpPercent;
+	public static double pHpPercent;
 	// returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -69,7 +69,7 @@ public class Player {
 			if (!moveUp && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x, y - 1) && !OverworldState.NPCPresent(x, y - 1)) {
 					y -= 1;
-
+					System.out.println("X: "+ x + "\nY: " + y);
 				}
 				moveUp = true;
 				facing = "Up";
@@ -82,7 +82,7 @@ public class Player {
 			if (!moveDown && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x, y + 1) && !OverworldState.NPCPresent(x, y + 1)) {
 					y += 1;
-					System.out.println("X: "+ x + "\nY: " + y);
+					
 				}
 				moveDown = true;
 				facing = "Down";
@@ -294,7 +294,7 @@ public class Player {
 	}
 
 	public void tick() {
-		hpPercent = hpLev / hpMax;
+		pHpPercent = hpLev / pHpMax;
 		
 		if (moveUp) {
 			animateUp(upAnime);
@@ -332,8 +332,8 @@ public class Player {
 			dieAnime++;
 		}
 		
-		if(hpLev > hpMax) {
-			hpLev = hpMax;
+		if(hpLev > pHpMax) {
+			hpLev = pHpMax;
 		}
 
 	}
@@ -348,14 +348,14 @@ public class Player {
 	//draw HP bar 294X24px
 	//green starts at px49 and ends at px279 
 		g.drawImage(hpImg, 0, 0, 294, 24, null);
-		if(hpLev <= hpMax / 4) {
+		if(hpLev <= pHpMax / 4) {
 			g.setColor(Color.RED);
-		}else if(hpLev <= hpMax / 2) {
+		}else if(hpLev <= pHpMax / 2) {
 			g.setColor(Color.YELLOW);	
 		}else{
 			g.setColor(Color.GREEN);
 		}
-		g.fillRect(49, 0, (int) (229 * hpPercent), 18);
+		g.fillRect(49, 0, (int) (229 * pHpPercent), 18);
 	}
 
 	/*
