@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import Battle.BattleState;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
@@ -56,6 +57,7 @@ public class InputHandler implements KeyListener {
 					// TODO Auto-generated catch block
 					// e.printStackTrace();
 				}
+				
 			}
 			if (keyCode == KeyEvent.VK_A) {
 				try {
@@ -104,7 +106,10 @@ public class InputHandler implements KeyListener {
 					Music.norm();
 				}
 			}
-		
+			if (keyCode == KeyEvent.VK_B) {
+				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
+				BattleState.startBattleMusic();
+				}
 	}
 
 	}

@@ -16,7 +16,7 @@ public class Player {
 	static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-	public static BufferedImage hpImg;
+	//public static BufferedImage hpImg;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -37,12 +37,12 @@ public class Player {
 	public boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";
-
-	
-	public static double pHpMax = 10030;
+	//static int barX = 229;
+	//static int barY = 19;
+	//public static double pHpMax = 10030;
 	//current HP
-	public static double hpLev;
-	public static double pHpPercent;
+	//public static double hpLev;
+	//public static double pHpPercent;
 	// returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -50,11 +50,11 @@ public class Player {
 	}
 
 	public Player() {
-		hpLev = 229;
+		//hpLev = 229;
 		
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
-			hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
+			//hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 		} catch (IOException e) {
 			// e.printStackTrace();
 		}
@@ -285,16 +285,16 @@ public class Player {
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
-			hpLev++;
+			//hpLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
-			hpLev++;
+			//hpLev++;
 		}
 	}
 
 	public void tick() {
-		pHpPercent = hpLev / pHpMax;
+		//pHpPercent = hpLev / pHpMax;
 		
 		if (moveUp) {
 			animateUp(upAnime);
@@ -331,11 +331,11 @@ public class Player {
 			animateDie(dieAnime);
 			dieAnime++;
 		}
-		
+		/*
 		if(hpLev > pHpMax) {
 			hpLev = pHpMax;
 		}
-
+	*/
 	}
 
 	/*
@@ -347,7 +347,7 @@ public class Player {
 	
 	//draw HP bar 294X24px
 	//green starts at px49 and ends at px279 
-		g.drawImage(hpImg, 0, 0, 294, 24, null);
+	/*	g.drawImage(hpImg, 0, 0, 294, 24, null);
 		if(hpLev <= pHpMax / 4) {
 			g.setColor(Color.RED);
 		}else if(hpLev <= pHpMax / 2) {
@@ -355,7 +355,8 @@ public class Player {
 		}else{
 			g.setColor(Color.GREEN);
 		}
-		g.fillRect(49, 0, (int) (229 * pHpPercent), 18);
+		g.fillRect(49, 0, (int) (barX * pHpPercent), barY);
+	*/
 	}
 
 	/*

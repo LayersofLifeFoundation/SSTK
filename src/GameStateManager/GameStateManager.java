@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Battle.BattleState;
 import Intro.InputState;
 import Intro.IntroductionState;
+import Sounds.Music;
 
 
 
@@ -14,9 +15,9 @@ public class GameStateManager {
 	 * Class that decides what should run at what time
 	 */
 
-	private ArrayList<GameState> gameStates = new ArrayList<GameState>();
+	public ArrayList<GameState> gameStates = new ArrayList<GameState>();
 
-	private int currentState = 3;
+	private int currentState = 1;
 	
 	private OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
@@ -26,7 +27,7 @@ public class GameStateManager {
 	public int overworldStateNumber = 0;
 	public int introState = 1;
 	public int introductionState = 2;
-	public int battleState = 3;
+	public int battleStateNum = 3;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
@@ -48,6 +49,8 @@ public class GameStateManager {
 	public void tick() {
 
 		gameStates.get(currentState).tick();
+		
+		
 	}
 
 	
