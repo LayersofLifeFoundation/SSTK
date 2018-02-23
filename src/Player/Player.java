@@ -39,9 +39,9 @@ public class Player {
 	String facing = "Down";
 
 	
-	public static int maxHP = 230;
-	public static int HPLev;
-	
+	public static double hpMax = 10030;
+	public static double hpLev;
+	public static double hpPercent;
 	// returns the sprite at the specified index of the sprite sheet
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -49,7 +49,8 @@ public class Player {
 	}
 
 	public Player() {
-		HPLev = 30;
+		hpLev = 229;
+		
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
 			hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
@@ -283,15 +284,17 @@ public class Player {
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
-			HPLev++;
+			hpLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
-			HPLev++;
+			hpLev++;
 		}
 	}
 
 	public void tick() {
+		hpPercent = hpLev / hpMax;
+		
 		if (moveUp) {
 			animateUp(upAnime);
 			// isMoving = true;
@@ -328,8 +331,8 @@ public class Player {
 			dieAnime++;
 		}
 		
-		if(HPLev > maxHP) {
-			HPLev = maxHP;
+		if(hpLev > hpMax) {
+			hpLev = hpMax;
 		}
 
 	}
@@ -344,14 +347,17 @@ public class Player {
 	//draw HP bar 294X24px
 	//green starts at px49 and ends at px279 
 		g.drawImage(hpImg, 0, 0, 294, 24, null);
-		if(HPLev <= maxHP / 4) {
+		if(hpLev <= hpMax / 4) {
 			g.setColor(Color.RED);
-		}else if(HPLev <= maxHP / 2) {
+		}else if(hpLev <= hpMax / 2) {
 			g.setColor(Color.YELLOW);	
 		}else{
 			g.setColor(Color.GREEN);
 		}
-		g.fillRect(49, 0, HPLev, 18);
+		g.fillRect(49, 0, (int) (229 * hpPercent), 18);
+		System.out.println("HP percent: " + hpPercent);
+		System.out.println("HP Max: " + hpMax);
+		System.out.println("HP Lev: " + hpLev);
 	}
 
 	/*
