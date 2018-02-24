@@ -44,10 +44,13 @@ public class BattleState extends GameState{
 	public void render(Graphics g) {
 	shrek.render(g);
 	enemy.render(g);
-	
 	//draw buttons
 	g.setFont(font);
 	g.setColor(Color.RED);
+	g.setColor(Color.MAGENTA);
+	g.drawRect(40, 100, 350, 350); //Shrek's square
+	g.drawRect(700, 100, 350, 350); //Enema's square
+	g.drawRect(40, 480, 1010, 100); //Attack Options
 	for(Button b: moves) {
 		b.render(g);
 	
