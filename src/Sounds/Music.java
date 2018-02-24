@@ -37,6 +37,7 @@ public class Music {
 			e.printStackTrace();
 		}
 	}
+	
 	//stop a looping sound
 	public static void stopSound() {
 		audioClip.close();

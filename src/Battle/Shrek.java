@@ -21,10 +21,10 @@ public class Shrek {
 		 //player hp
 		static Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
 		public static BufferedImage hpImg;
-		public static int barX = 229;
+		public static int barX = 230;
 		public static int barY = 19;
-		public static double hpMax = 1003;
-		public static double hpLev = 500;
+		public static double hpMax = 200;
+		public static double hpLev = 200;
 		public static double hpPercent;
 		
 		//bar.add(new HpBar());
@@ -63,7 +63,7 @@ public class Shrek {
 				g.setColor(Color.GREEN);
 			}
 			g.drawImage(pb.hpImg, pb.x, pb.y, 294, 24, null);
-			g.fillRect(49+pb.x, pb.y, (int) (229 * hpPercent), 19);
+			g.fillRect(49+pb.x, pb.y, (int) (230 * hpPercent), 19);
 
 			g.setFont(font);
 			g.setColor(Color.GREEN);

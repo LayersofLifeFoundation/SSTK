@@ -21,14 +21,12 @@ public class Enemy {
 		public static BufferedImage hpImg;
 		public static int barX = 229;
 		public static int barY = 19;
-		public static double hpMax = 1003;
-		public static double hpLev = 500;
+		public static double hpMax = 10;
+		public static double hpLev = 5;
 		public static double hpPercent;
 		
-		public int x = 229;
-		public int y = 19;
 		public Enemy() {
-			hpLev = 600;
+			
 			try {
 				eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			} catch (IOException e) {
@@ -56,7 +54,7 @@ public class Enemy {
 			}else{
 				g.setColor(Color.GREEN);
 			}
-			g.fillRect(49+eb.x, eb.y, (int) (229 * hpPercent), 19);
+			g.fillRect(49+eb.x, eb.y, (int) (230 * hpPercent), 19);
 	}
 }
 

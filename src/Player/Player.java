@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
+import Sounds.Music;
 
 public class Player {
 
@@ -99,6 +100,7 @@ public class Player {
 				}
 				moveLeft = true;
 				facing = "Left";
+				
 			}
 		}
 	}
@@ -108,7 +110,7 @@ public class Player {
 			if (!moveRight && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x + 1, y) && !OverworldState.NPCPresent(x + 1, y)) {
 					x += 1;
-
+					Music.stopSound();
 				}
 				moveRight = true;
 				facing = "Right";
@@ -321,7 +323,7 @@ public class Player {
 			punchLeft(punLeftAnime);
 			punLeftAnime++;
 		}
-
+		//Music.startSound("SFX\\Hello_There.wav", true);
 		if (punRight) {
 			punchRight(punRightAnime);
 			punRightAnime++;

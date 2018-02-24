@@ -26,7 +26,7 @@ public class BattleState extends GameState{
 
 	public static void startBattleMusic() {
 		Music.stopSound();
-		Music.startSound("Music\\ONEPUNCH.wav", true);
+		Music.startSound("Music\\XffX.wav", true);
 	}
 	
 	
