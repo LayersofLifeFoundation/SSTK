@@ -19,7 +19,7 @@ public class Shrek {
 
 		
 		 //player hp
-		static Font font = new Font("Courier New", Font.PLAIN, 30);
+		static Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
 		public static BufferedImage hpImg;
 		public static int barX = 229;
 		public static int barY = 19;
@@ -67,7 +67,7 @@ public class Shrek {
 
 			g.setFont(font);
 			g.setColor(Color.GREEN);
-			g.drawString("Shrek", pb.x, pb.y - 5);
+			g.drawString("Shrek", pb.x, pb.y - 7);
 		
 	}
 }
