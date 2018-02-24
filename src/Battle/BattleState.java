@@ -3,6 +3,7 @@ package Battle;
 import GameStateManager.Game;
 import GameStateManager.GameState;
 import GameStateManager.GameStateManager;
+import Intro.Button;
 import Sounds.Music;
 
 import java.awt.Color;
@@ -19,14 +20,17 @@ public class BattleState extends GameState{
 	
 	public Shrek shrek = new Shrek();
 	public Enemy enemy = new Enemy();
-	
+	Font font = new Font("Courier New", Font.PLAIN, 30);
+	static int selectedState = 0;
+	public ArrayList<Button> moves = new ArrayList<Button>();
 	public BattleState() {
-		
+		moves.add(new Button(0, 500, 400, "Start"));
+		moves.add(new Button(1,500, 440, "Exit"));
 	}
 
 	public static void startBattleMusic() {
 		Music.stopSound();
-		Music.startSound("Music\\XffX.wav", true);
+		Music.startSound2("Music\\XffX.wav", true);
 	}
 	
 	
@@ -40,9 +44,16 @@ public class BattleState extends GameState{
 	public void render(Graphics g) {
 	shrek.render(g);
 	enemy.render(g);
-//g.drawRect(0, 0, 20, 20);
+	
+	//draw buttons
+	g.setFont(font);
+	g.setColor(Color.RED);
+	for(Button b: moves) {
+		b.render(g);
+	
 	}
 	
 	//g.drawRect(49, 0, 229, 19);
 	
+}
 }

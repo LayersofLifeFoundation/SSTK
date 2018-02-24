@@ -18,6 +18,9 @@ public class Music {
 	public static AudioInputStream audioStream;
 	public static boolean boosted = false;
 	public static File audioFile;
+	public static AudioInputStream audioStream2;
+	public static Clip audioClip2;
+	public static File audioFile2;
 	//start a looping sound
 	public static void startSound(String path, boolean loop) {
 		audioFile = new File(path);
@@ -38,11 +41,40 @@ public class Music {
 		}
 	}
 	
+	public static void startSound2(String path, boolean loop) {
+		audioFile2 = new File(path);
+		try {
+			audioStream2 = AudioSystem.getAudioInputStream(audioFile2);
+			AudioFormat format = audioStream2.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			audioClip2 = (Clip) AudioSystem.getLine(info);
+			audioClip2.open(audioStream2);
+			audioClip2.start();
+			if(loop) {
+			audioClip2.loop(-1);
+			}
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//stop a looping sound
 	public static void stopSound() {
 		audioClip.close();
 		try {
 			audioStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void stopSound2() {
+		audioClip2.close();
+		try {
+			audioStream2.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
