@@ -28,7 +28,6 @@ public class IntroductionState extends GameState{
 	
 	public static void stopIntroState() {
 		Music.stopSound();
-	//	Music.stopSound();
 	}
 	
 	public static void startIntroState() {

@@ -25,6 +25,11 @@ public class Enemy {
 		public static double hpLev = 5;
 		public static double hpPercent;
 		
+		
+		public static BufferedImage enemyPic;
+		public static Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
+		public static String name = "Enemy";
+		
 		public Enemy() {
 			
 			try {
@@ -41,8 +46,9 @@ public class Enemy {
 			hpPercent = hpLev / hpMax;
 			if(hpLev > hpMax) {
 				hpLev = hpMax;
-			}
-
+			}	
+			
+			//System.out.println(Moves.moves.get(0));
 		}
 		
 		public static void render(Graphics g) {
@@ -55,8 +61,24 @@ public class Enemy {
 				g.setColor(Color.GREEN);
 			}
 			g.fillRect(49+eb.x, eb.y, (int) (230 * hpPercent), 19);
+			
+			g.setColor(Color.GREEN);
+			g.setFont(font);
+			g.drawString(name, eb.x, eb.y - 7);
 	}
+		
+		public void setImage(BufferedImage b) {
+			enemyPic = b;
+		}
+		public void setName(String s) {
+			name = s;
+		}
+		public void setM1() {
+			
+		}
+		
 }
 
 
 
+	

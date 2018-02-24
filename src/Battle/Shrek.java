@@ -3,12 +3,14 @@ package Battle;
 	import GameStateManager.Game;
 	import GameStateManager.GameState;
 	import GameStateManager.GameStateManager;
-	import Sounds.Music;
+import Intro.Button;
+import Sounds.Music;
 
 	import java.awt.Color;
 	import java.awt.Font;
 	import java.awt.Graphics;
-	import java.awt.event.FocusEvent;
+import java.awt.Image;
+import java.awt.event.FocusEvent;
 	import java.awt.image.BufferedImage;
 	import java.io.IOException;
 	import java.util.ArrayList;
@@ -26,6 +28,12 @@ public class Shrek {
 		public static double hpMax = 200;
 		public static double hpLev = 200;
 		public static double hpPercent;
+		public static ArrayList<Button> moves = new ArrayList<Button>();
+		static Font mFont = new Font("Courier New", Font.PLAIN, 30);
+		
+		
+		public static BufferedImage shrekPic;
+		
 		
 		//bar.add(new HpBar());
 		public Shrek() {
@@ -37,9 +45,14 @@ public class Shrek {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			moves.add(new Button(0, 500, 400, "Start"));
+			moves.add(new Button(1,500, 440, "Exit"));
+			moves.add(new Button(0, 500, 400, "Start"));
+			moves.add(new Button(1,500, 440, "Exit"));
 		}
 
 		public static HpBar pb = new HpBar(hpImg, 40, 50);
+		
 		
 
 		public void tick() {
@@ -68,7 +81,20 @@ public class Shrek {
 			g.setFont(font);
 			g.setColor(Color.GREEN);
 			g.drawString("Shrek", pb.x, pb.y - 7);
+			
+			g.setFont(mFont);
+			for(Button b: moves) {
+				b.render(g);
+			
+			}
+			g.drawImage(shrekPic, 40, 100, 350, 350, null);
 		
 	}
+		
+		public void setImage(BufferedImage b) {
+			shrekPic = b;
+		}
+
+
 }
 

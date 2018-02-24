@@ -20,12 +20,12 @@ public class BattleState extends GameState{
 	
 	public Shrek shrek = new Shrek();
 	public Enemy enemy = new Enemy();
-	Font font = new Font("Courier New", Font.PLAIN, 30);
+	public Moves moves = new Moves();
+	
 	static int selectedState = 0;
-	public ArrayList<Button> moves = new ArrayList<Button>();
+	
 	public BattleState() {
-		moves.add(new Button(0, 500, 400, "Start"));
-		moves.add(new Button(1,500, 440, "Exit"));
+		
 	}
 
 	public static void startBattleMusic() {
@@ -37,6 +37,7 @@ public class BattleState extends GameState{
 	public void tick() {
 		shrek.tick();
 		enemy.tick();
+		//moves.tick();
 	}
 
 	
@@ -45,16 +46,13 @@ public class BattleState extends GameState{
 	shrek.render(g);
 	enemy.render(g);
 	//draw buttons
-	g.setFont(font);
+	
 	g.setColor(Color.RED);
 	g.setColor(Color.MAGENTA);
 	g.drawRect(40, 100, 350, 350); //Shrek's square
 	g.drawRect(700, 100, 350, 350); //Enema's square
 	g.drawRect(40, 480, 1010, 100); //Attack Options
-	for(Button b: moves) {
-		b.render(g);
 	
-	}
 	
 	//g.drawRect(49, 0, 229, 19);
 	
