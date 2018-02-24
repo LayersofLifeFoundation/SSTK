@@ -37,7 +37,7 @@ public class Enemy {
 			}
 		}
 
-		public static HpBar eb = new HpBar(hpImg, Game.WIDTH - 294, Game.HEIGHT - 24);
+		public static HpBar eb = new HpBar(hpImg, Game.WIDTH - 326, 50);
 		
 		public void tick() {
 			hpPercent = hpLev / hpMax;
@@ -46,10 +46,6 @@ public class Enemy {
 			}
 
 		}
-		
-		//temp test func
-		//true attacks enemy
-		
 		
 		public static void render(Graphics g) {
 			g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);

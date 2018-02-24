@@ -18,7 +18,8 @@ public class Shrek {
 	
 
 		
-		//player hp
+		 //player hp
+		static Font font = new Font("Courier New", Font.PLAIN, 30);
 		public static BufferedImage hpImg;
 		public static int barX = 229;
 		public static int barY = 19;
@@ -38,7 +39,7 @@ public class Shrek {
 			}
 		}
 
-		public static HpBar pb = new HpBar(hpImg, 0, Game.HEIGHT - 24);
+		public static HpBar pb = new HpBar(hpImg, 40, 50);
 		
 
 		public void tick() {
@@ -64,8 +65,9 @@ public class Shrek {
 			g.drawImage(pb.hpImg, pb.x, pb.y, 294, 24, null);
 			g.fillRect(49+pb.x, pb.y, (int) (229 * hpPercent), 19);
 
-			
-			
+			g.setFont(font);
+			g.setColor(Color.GREEN);
+			g.drawString("Shrek", pb.x, pb.y - 5);
 		
 	}
 }

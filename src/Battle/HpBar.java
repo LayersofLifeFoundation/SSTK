@@ -12,6 +12,7 @@ public class HpBar {
 		this.hpImg = hpImg;
 		this.x = x;
 		this.y = y;
+		
 	}
 	
 }
