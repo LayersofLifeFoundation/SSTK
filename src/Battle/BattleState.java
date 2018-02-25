@@ -3,6 +3,7 @@ package Battle;
 import GameStateManager.Game;
 import GameStateManager.GameState;
 import GameStateManager.GameStateManager;
+import GameStateManager.OverworldState;
 import Intro.Button;
 import Sounds.Music;
 
@@ -14,6 +15,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Random;
+import Player.Player;
+
 import javax.imageio.ImageIO;
 import Battle.*;
 
@@ -30,17 +34,12 @@ public class BattleState extends GameState{
 	public ArrayList<Enemy> plr = new ArrayList<Enemy>();
 	public static ArrayList<Button> moves = new ArrayList<Button>();
 	public static int selectedState = 0;
-	
+	public static Random enemyChoice = new Random();
 	
 	
 	
 	public BattleState() {
-		moves.add(new Button(0,  262   - 208, 550, "Ogre Breath"));
-		moves.add(new Button(1,  262*2 - 208, 550, "Ogre Breath"));
-		moves.add(new Button(2,  262*3 - 208, 550, "Ogre Breath"));
-		moves.add(new Button(3,  262*4 - 208, 550, "Ogre Breath"));
-		moves.get(selectedState).select();
-		
+	
 		try {
 			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
@@ -54,6 +53,12 @@ public class BattleState extends GameState{
 			enemy.hpLev = enemy.hpMax;
 			
 			System.out.println(shrek.imgPath);
+			moves.add(new Button(0,  262   - 208, 540, shrek.m1));
+			moves.add(new Button(1,  262*2 - 208, 540, shrek.m2));
+			moves.add(new Button(2,  262*3 - 208, 540, shrek.m3));
+			moves.add(new Button(3,  262*4 - 208, 540, shrek.m4));
+			moves.get(selectedState).select();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +67,7 @@ public class BattleState extends GameState{
 
 	public static void startBattleMusic() {
 		Music.stopSound();
-		Music.startSound("Music\\XffX.wav", true);
+		Music.startSound("Music\\SwampBattle.wav", true);
 	}
 	
 	//move button select
@@ -86,6 +91,8 @@ public class BattleState extends GameState{
 	}
 	
 	public static void attack() {
+		int choice = enemyChoice.nextInt() % 4;
+		Music.startSound2("SFX\\Hitmarker.wav", false);
 		if(selectedState == 0) {
 			enemy.hpLev -= shrek.m1d;
 		}
@@ -98,7 +105,19 @@ public class BattleState extends GameState{
 		if(selectedState == 3) {
 			enemy.hpLev -= shrek.m4d;
 		}
-		
+	
+		if(choice == 0) {
+			shrek.hpLev -= enemy.m1d;
+		}
+		if(choice == 1) {
+			shrek.hpLev -= enemy.m2d;
+		}
+		if(choice == 2) {
+			shrek.hpLev -= enemy.m3d;
+		}
+		if(choice == 3) {
+			shrek.hpLev -= enemy.m4d;
+		}
 		
 		
 		hpBound();
@@ -127,16 +146,29 @@ public class BattleState extends GameState{
 		if(enemy.hpLev > enemy.hpMax) {
 			enemy.hpLev = enemy.hpMax;
 		}
-		if(enemy.hpLev < 0) {
+		if(enemy.hpLev <= 0) {
 			enemy.hpLev = 0;
 			System.out.println(enemy.name + " is a dead meme!");
+			Music.stopSound();
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+			OverworldState.stateOverworldState();
+		}
+		if(shrek.hpLev <= 0) {
+			shrek.hpLev = 0;
+			System.out.println(shrek.name + " is a dead meme!");
+			Player.die = true;
+			Music.stopSound();
+			Music.startSound2("SFX\\omae.wav", false);
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+	
 		}
 	}
+	
+	
 	
 	public void tick() {
 		enemy.tick();
 		shrek.tick();
-		
 	}
 
 	

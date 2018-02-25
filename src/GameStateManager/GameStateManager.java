@@ -22,7 +22,7 @@ public class GameStateManager {
 	private OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro  = new IntroductionState();
-	private BattleState battle = new BattleState();
+	public BattleState battle = new BattleState();
 	
 	public int overworldStateNumber = 0;
 	public int introState = 1;

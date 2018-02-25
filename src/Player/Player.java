@@ -34,7 +34,7 @@ public class Player {
 	int punRightAnime = 0;
 	public boolean punRight = false;
 	int dieAnime = 0;
-	public boolean die = false;
+	public static boolean die = false;
 	public boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";

@@ -41,20 +41,7 @@ public class Button {
 		}	
 	}
 	
-	public void pressMove() {
-		if(actionNum == 0) {
-			BattleState.shrek.hpLev -= BattleState.enemy.m1d;
-		}
-		if(actionNum == 1) {
-			BattleState.shrek.hpLev -= BattleState.enemy.m2d;
-		}
-		if(actionNum == 2) {
-			BattleState.shrek.hpLev -= BattleState.enemy.m3d;
-		}
-		if(actionNum == 3) {
-			BattleState.shrek.hpLev -= BattleState.enemy.m4d;
-		}
-	}
+	
 	
 	public void render(Graphics g) {
 		g.setFont(font);
