@@ -42,7 +42,19 @@ public class InputHandler implements KeyListener {
 				InputState.pushButton();
 			}
 		}
-
+		
+		//in battle
+		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
+			if (keyCode == KeyEvent.VK_D) {
+				BattleState.moveRight();
+			}
+			if (keyCode == KeyEvent.VK_A) {
+				BattleState.moveLeft();
+			}
+			if (keyCode == KeyEvent.VK_SPACE) {
+				BattleState.attack();
+			}
+		}
 		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
 			 * Key bounds for the OverworldState

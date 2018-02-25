@@ -28,7 +28,7 @@ public class Shrek {
 		public static double hpMax = 200;
 		public static double hpLev = 200;
 		public static double hpPercent;
-		public static ArrayList<Button> moves = new ArrayList<Button>();
+	//	public ArrayList<Button> moves = new ArrayList<Button>();
 		static Font mFont = new Font("Courier New", Font.PLAIN, 30);
 		
 		
@@ -39,10 +39,7 @@ public class Shrek {
 		public Shrek() {
 			hpLev = 329;
 			
-			moves.add(new Button(0, 500, 400, "Start"));
-			moves.add(new Button(1,500, 440, "Exit"));
-			moves.add(new Button(0, 500, 400, "Start"));
-			moves.add(new Button(1,500, 440, "Exit"));
+		
 		}
 
 		//public static HpBar pb = new HpBar(hpImg, 40, 50);
@@ -73,10 +70,7 @@ public class Shrek {
 			//g.fillRect(49+pb.x, pb.y, (int) (230 * hpPercent), 19);
 			
 			g.setFont(mFont);
-			for(Button b: moves) {
-				b.render(g);
 			
-			}
 			g.drawImage(shrekPic, 40, 100, 350, 350, null);
 		
 	}

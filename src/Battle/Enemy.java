@@ -43,7 +43,7 @@ public class Enemy {
 		public int barX = 229;
 		public int barY = 19;
 	
-		public double hpLev = 70;
+		public double hpLev;
 		public double hpPercent;
 				
 		
@@ -56,7 +56,7 @@ public class Enemy {
 		public String m1;
 		public int   m1d;
 		public int   m1a;
-		public String m2;
+		public  String m2;
 		public int   m2d;
 		public int   m2a;
 		public String m3;

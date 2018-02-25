@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import Battle.BattleState;
 import GameStateManager.Game;
 import Sounds.Music;
 
@@ -38,6 +39,21 @@ public class Button {
 		}else if(actionNum == 1) {
 			Game.stop();
 		}	
+	}
+	
+	public void pressMove() {
+		if(actionNum == 0) {
+			BattleState.shrek.hpLev -= BattleState.enemy.m1d;
+		}
+		if(actionNum == 1) {
+			BattleState.shrek.hpLev -= BattleState.enemy.m2d;
+		}
+		if(actionNum == 2) {
+			BattleState.shrek.hpLev -= BattleState.enemy.m3d;
+		}
+		if(actionNum == 3) {
+			BattleState.shrek.hpLev -= BattleState.enemy.m4d;
+		}
 	}
 	
 	public void render(Graphics g) {

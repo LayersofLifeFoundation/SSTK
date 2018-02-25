@@ -22,18 +22,24 @@ import FileSystem.MapRetrevial;
 public class BattleState extends GameState{
 	public BufferedImage hpImg;
 	public HpBar pb = new HpBar(hpImg, 40, 50);
-	public HpBar eb = new HpBar(hpImg, Game.WIDTH - 326, 50);
-	
-	//public Shrek shrek = new Shrek();
-	public Enemy enemy = new Enemy();
-	public Enemy shrek = new Enemy();
-	public Moves moves = new Moves();
+	public HpBar eb = new HpBar(hpImg, 700, 50);
+	public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 50);
+	public static Enemy enemy = new Enemy();
+	public static Enemy shrek = new Enemy();
 	public ArrayList<Enemy> nmy = new ArrayList<Enemy>();
 	public ArrayList<Enemy> plr = new ArrayList<Enemy>();
-	int selectedState = 0;
+	public static ArrayList<Button> moves = new ArrayList<Button>();
+	public static int selectedState = 0;
+	
+	
 	
 	
 	public BattleState() {
+		moves.add(new Button(0,  262   - 208, 550, "Ogre Breath"));
+		moves.add(new Button(1,  262*2 - 208, 550, "Ogre Breath"));
+		moves.add(new Button(2,  262*3 - 208, 550, "Ogre Breath"));
+		moves.add(new Button(3,  262*4 - 208, 550, "Ogre Breath"));
+		moves.get(selectedState).select();
 		
 		try {
 			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
@@ -43,7 +49,9 @@ public class BattleState extends GameState{
 			MapRetrevial.readEnemy(shrek, "World1", "Shrek.txt");
 			MapRetrevial.readEnemy(enemy, "World1", "Fat_Yoshi.txt");
 			shrek.enemyPic = ImageIO.read(getClass().getResource("/BattleShrek.png"));
-			enemy.enemyPic =   ImageIO.read(getClass().getResource("/Fat_Yoshi.jpg"));
+			shrek.hpLev = shrek.hpMax;
+			enemy.enemyPic = ImageIO.read(getClass().getResource("/Fat_Yoshi.jpg"));
+			enemy.hpLev = enemy.hpMax;
 			
 			System.out.println(shrek.imgPath);
 		} catch (IOException e) {
@@ -57,6 +65,47 @@ public class BattleState extends GameState{
 		Music.startSound("Music\\XffX.wav", true);
 	}
 	
+	//move button select
+	public static void moveRight() {
+		moves.get(selectedState).deselect();
+		if(selectedState == 3) {
+			selectedState = 0;
+		}else {
+			selectedState++;
+		}
+		moves.get(selectedState).select();
+	}
+	public static void moveLeft() {
+		moves.get(selectedState).deselect();
+		if(selectedState == 0) {
+			selectedState = 3;
+		}else {
+			selectedState--;
+		}
+		moves.get(selectedState).select();
+	}
+	
+	public static void attack() {
+		if(selectedState == 0) {
+			enemy.hpLev -= shrek.m1d;
+		}
+		if(selectedState == 1) {
+			enemy.hpLev -= shrek.m2d;
+		}
+		if(selectedState == 2) {
+			enemy.hpLev -= shrek.m3d;
+		}
+		if(selectedState == 3) {
+			enemy.hpLev -= shrek.m4d;
+		}
+		
+		
+		
+		hpBound();
+		System.out.println("Shrek: " + shrek.hpLev);
+		System.out.println("Enemy: " + enemy.hpLev);
+	}
+	
 	public void hpColor(Enemy e, Graphics g) {
 		if(e.hpLev <= e.hpMax / 4) {
 			g.setColor(Color.RED);
@@ -66,10 +115,28 @@ public class BattleState extends GameState{
 			g.setColor(Color.GREEN);
 		}
 	}
+	public static void hpBound() {
+		shrek.hpPercent = shrek.hpLev / shrek.hpMax;
+		if(shrek.hpLev > shrek.hpMax) {
+			shrek.hpLev = shrek.hpMax;
+		}
+		if(shrek.hpLev < 0) {
+			shrek.hpLev = 0;
+		}
+		enemy.hpPercent = enemy.hpLev / enemy.hpMax;
+		if(enemy.hpLev > enemy.hpMax) {
+			enemy.hpLev = enemy.hpMax;
+		}
+		if(enemy.hpLev < 0) {
+			enemy.hpLev = 0;
+			System.out.println(enemy.name + " is a dead meme!");
+		}
+	}
 	
 	public void tick() {
 		enemy.tick();
 		shrek.tick();
+		
 	}
 
 	
@@ -78,6 +145,10 @@ public class BattleState extends GameState{
 	enemy.render(g);
 	shrek.render(g);
 	//draw buttons
+	g.setFont(font);
+	for(Button b: moves) {
+		b.render(g);
+	}
 	
 	//test stuff
 	g.setColor(Color.RED);
