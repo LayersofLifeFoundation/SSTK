@@ -15,17 +15,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import javax.imageio.ImageIO;
+import Battle.*;
+
+import FileSystem.MapRetrevial;
 
 public class BattleState extends GameState{
 	
 	public Shrek shrek = new Shrek();
 	public Enemy enemy = new Enemy();
 	public Moves moves = new Moves();
-	
+	public static ArrayList<Enemy> nmy = new ArrayList<Enemy>();
 	static int selectedState = 0;
 	
 	public BattleState() {
 		
+		try {
+			
+			MapRetrevial.readEnemy();
+			Enemy.enemyPic = ImageIO.read(getClass().getResource(Enemy.imgPath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void startBattleMusic() {
@@ -53,7 +64,7 @@ public class BattleState extends GameState{
 	g.drawRect(700, 100, 350, 350); //Enema's square
 	g.drawRect(40, 480, 1010, 100); //Attack Options
 	
-	
+	g.drawImage(Enemy.enemyPic, 700, 100, 350, 350, null);
 	//g.drawRect(49, 0, 229, 19);
 	
 }

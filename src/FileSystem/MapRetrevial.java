@@ -5,9 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Battle.BattleState;
+import Battle.Enemy;
 import GameStateManager.OverworldState;
 import Maps.Link;
 import NPC.NPC;
+import Battle.*;
 
 public class MapRetrevial {
 	
@@ -93,12 +96,11 @@ public class MapRetrevial {
 		int count = 0;
 		OverworldState.npcs.clear();
 		
-		
-		
-	
 		while((line = in.readLine()) != null) {
-				OverworldState.npcs.add(new NPC());
-				OverworldState.npcs.get(count).setName(line);
+				
+			OverworldState.npcs.add(new NPC());
+
+			OverworldState.npcs.get(count).setName(line);
 				line = in.readLine();
 				OverworldState.npcs.get(count).setX(Integer.parseInt(line));
 				line = in.readLine();
@@ -116,4 +118,52 @@ public class MapRetrevial {
 		
 	}
 
+	public static void readEnemy() throws IOException {
+		String line;
+		BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\map\\World1\\Enemies.txt"));
+		int count = 0;
+		BattleState.nmy.clear();
+		
+		while((line = in.readLine()) != null) {
+				BattleState.nmy.add(new Enemy());	
+				BattleState.nmy.get(count).setImage(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setName(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setHP(Double.parseDouble(line));
+				line = in.readLine();
+				BattleState.nmy.get(count).setM1(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setM1d(Integer.parseInt(line));
+				line = in.readLine();
+				BattleState.nmy.get(count).setM1a(Integer.parseInt(line));
+				line = in.readLine();
+
+				BattleState.nmy.get(count).setM2(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setM2d(Integer.parseInt(line));
+				line = in.readLine();
+				BattleState.nmy.get(count).setM2a(Integer.parseInt(line));
+				line = in.readLine();
+				
+				BattleState.nmy.get(count).setM3(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setM3d(Integer.parseInt(line));
+				line = in.readLine();
+				BattleState.nmy.get(count).setM3a(Integer.parseInt(line));
+				line = in.readLine();
+				
+				BattleState.nmy.get(count).setM4(line);
+				line = in.readLine();
+				BattleState.nmy.get(count).setM4d(Integer.parseInt(line));
+				line = in.readLine();
+				BattleState.nmy.get(count).setM4a(Integer.parseInt(line));
+				line = in.readLine();
+				
+				count++;
+		
+		}
+		
+	}
+	
 }
