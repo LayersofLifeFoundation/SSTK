@@ -4,12 +4,16 @@ FAT YOSHI
 Meet Shrek
 20
 85
+SFX\\smack.wav
 Simple Request
 29
 65
+SFX\\smack.wav
 VoRe?
 100
 3
+SFX\\smack.wav
 Jelly Belly
 12
 95
+SFX\\smack.wav

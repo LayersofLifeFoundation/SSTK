@@ -4,12 +4,16 @@ SHREK
 The Roar
 20
 80
+SFX\\smack.wav
 Onion Barrage
 13
 95
+SFX\\smack.wav
 Dawngkay!
 29
 65
+SFX\\smack.wav
 Therapy
 16
 90
+SFX\\smack.wav

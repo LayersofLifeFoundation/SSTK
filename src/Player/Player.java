@@ -99,8 +99,8 @@ public class Player {
 				}
 				moveLeft = true;
 				facing = "Left";
-				Music.stopSound();
-				Music.startSound2("SFX\\omae.wav", true);
+				//Music.stopSound();
+		//		Music.startSound2("SFX\\omae.wav", true);
 				//Music.startSound2("SFX\\Airhorn.wav", true);
 				//Music.startSound2("SFX\\Hello_There.wav", true);
 				//Music.startSound2("SFX\\Hitmarker.wav", true);

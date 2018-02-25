@@ -130,18 +130,23 @@ public class MapRetrevial {
 				line = in.readLine();
 				e.setHP(Double.parseDouble(line));
 				line = in.readLine();
+				
 				e.setM1(line);
 				line = in.readLine();
 				e.setM1d(Integer.parseInt(line));
 				line = in.readLine();
 				e.setM1a(Integer.parseInt(line));
 				line = in.readLine();
-
+				e.setM1s(line);
+				line = in.readLine();
+				
 				e.setM2(line);
 				line = in.readLine();
 				e.setM2d(Integer.parseInt(line));
 				line = in.readLine();
 				e.setM2a(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM2s(line);
 				line = in.readLine();
 				
 				e.setM3(line);
@@ -150,6 +155,8 @@ public class MapRetrevial {
 				line = in.readLine();
 				e.setM3a(Integer.parseInt(line));
 				line = in.readLine();
+				e.setM3s(line);
+				line = in.readLine();
 				
 				e.setM4(line);
 				line = in.readLine();
@@ -157,7 +164,8 @@ public class MapRetrevial {
 				line = in.readLine();
 				e.setM4a(Integer.parseInt(line));
 				line = in.readLine();
-
+				e.setM4s(line);
+				line = in.readLine();
 		
 		}
 		

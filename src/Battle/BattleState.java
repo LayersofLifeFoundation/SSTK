@@ -24,6 +24,7 @@ import Battle.*;
 import FileSystem.MapRetrevial;
 
 public class BattleState extends GameState{
+	static boolean dead;
 	public BufferedImage hpImg;
 	public HpBar pb = new HpBar(hpImg, 40, 50);
 	public HpBar eb = new HpBar(hpImg, 700, 50);
@@ -34,7 +35,7 @@ public class BattleState extends GameState{
 	public ArrayList<Enemy> plr = new ArrayList<Enemy>();
 	public static ArrayList<Button> moves = new ArrayList<Button>();
 	public static int selectedState = 0;
-	public static Random enemyChoice = new Random();
+	public static Random RNG = new Random();
 	
 	
 	
@@ -91,38 +92,72 @@ public class BattleState extends GameState{
 	}
 	
 	public static void attack() {
-		int choice = enemyChoice.nextInt() % 4;
+		int choice = RNG.nextInt() % 4;
 		Music.startSound2("SFX\\Hitmarker.wav", false);
-		if(selectedState == 0) {
-			enemy.hpLev -= shrek.m1d;
-		}
-		if(selectedState == 1) {
-			enemy.hpLev -= shrek.m2d;
-		}
-		if(selectedState == 2) {
-			enemy.hpLev -= shrek.m3d;
-		}
-		if(selectedState == 3) {
-			enemy.hpLev -= shrek.m4d;
-		}
-	
-		if(choice == 0) {
-			shrek.hpLev -= enemy.m1d;
-		}
-		if(choice == 1) {
-			shrek.hpLev -= enemy.m2d;
-		}
-		if(choice == 2) {
-			shrek.hpLev -= enemy.m3d;
-		}
-		if(choice == 3) {
-			shrek.hpLev -= enemy.m4d;
-		}
-		
+		playerAttack();
+		enemyMoveSelect();
 		
 		hpBound();
 		System.out.println("Shrek: " + shrek.hpLev);
 		System.out.println("Enemy: " + enemy.hpLev);
+	}
+	public static void playerAttack() {
+		if(selectedState == 0) {
+			System.out.println(shrek.name + " used " + shrek.m1);
+			enemy.hpLev -= shrek.m1d;
+			Music.startSound2(shrek.m1s, false);
+		}
+		if(selectedState == 1) {
+			System.out.println(shrek.name + " used " + shrek.m2);
+			enemy.hpLev -= shrek.m2d;
+			Music.startSound2(shrek.m2s, false);
+		}
+		if(selectedState == 2) {
+			System.out.println(shrek.name + " used " + shrek.m3);
+			enemy.hpLev -= shrek.m3d;
+			Music.startSound2(shrek.m2s, false);
+		}
+		if(selectedState == 3) {
+			System.out.println(shrek.name + " used " + shrek.m4);
+			enemy.hpLev -= shrek.m4d;
+			Music.startSound2(shrek.m2s, false);
+		}
+	}
+	public static void enemyMoveSelect() {
+		int choice = RNG.nextInt() % 4;	
+		int accurate = RNG.nextInt() % 100;	
+		if(choice == 0) {
+			System.out.println(enemy.name + " used " + enemy.m1);
+			if(accurate <= enemy.m1a) {
+			shrek.hpLev -= enemy.m1d;
+			Music.startSound2(enemy.m1s, false);
+			}else 
+				System.out.println(enemy.name + " missed!");
+		}
+		if(choice == 1) {
+			System.out.println(enemy.name + " used " + enemy.m2);
+			if(accurate <= enemy.m2a) {
+			shrek.hpLev -= enemy.m2d;
+			Music.startSound2(enemy.m1s, false);
+		}else 
+			System.out.println(enemy.name + " missed!");
+		}
+		if(choice == 2) {
+			System.out.println(enemy.name + " used " + enemy.m3);
+			if(accurate <= enemy.m3a) {
+			shrek.hpLev -= enemy.m3d;
+			Music.startSound2(enemy.m1s, false);
+			}else 
+				System.out.println(enemy.name + " missed!");
+		}
+		if(choice == 3) {
+			System.out.println(enemy.name + " used " + enemy.m4);
+			if(accurate <= enemy.m3a) {
+			shrek.hpLev -= enemy.m4d;
+			Music.startSound2(enemy.m1s, false);
+			}else 
+				System.out.println(enemy.name + " missed!");
+		}
 	}
 	
 	public void hpColor(Enemy e, Graphics g) {
@@ -149,6 +184,8 @@ public class BattleState extends GameState{
 		if(enemy.hpLev <= 0) {
 			enemy.hpLev = 0;
 			System.out.println(enemy.name + " is a dead meme!");
+			dead = true;
+			enemy.hpLev = enemy.hpMax;
 			Music.stopSound();
 			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
 			OverworldState.stateOverworldState();
@@ -158,6 +195,7 @@ public class BattleState extends GameState{
 			System.out.println(shrek.name + " is a dead meme!");
 			Player.die = true;
 			Music.stopSound();
+			Music.startSound("Music\\GOW1.wav", true);
 			Music.startSound2("SFX\\omae.wav", false);
 			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
 	
@@ -203,7 +241,9 @@ public class BattleState extends GameState{
 	g.setColor(Color.GREEN);
 	g.setFont(enemy.font);
 	g.drawString(enemy.name, eb.x, eb.y - 7);
+	if(!dead) {
 	g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
+	}
 	hpColor(enemy, g);
 	g.fillRect(49+eb.x, eb.y, (int) (230 * enemy.hpPercent), 19);
 }
