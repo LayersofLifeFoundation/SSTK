@@ -5,8 +5,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import FileSystem.Save;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
+import GameStateManager.OptionState;
 import GameStateManager.OverworldState;
 import Intro.InputState;
 import Intro.IntroductionState;
@@ -41,6 +43,18 @@ public class InputHandler implements KeyListener {
 				InputState.pushButton();
 			}
 		}
+		
+		if (Game.gameStateManager.getState() == Game.gameStateManager.optionState) {
+			if (keyCode == KeyEvent.VK_W) {
+				OptionState.moveUp();
+			}
+			if (keyCode == KeyEvent.VK_S) {
+				OptionState.moveDown();
+			}
+			if (keyCode == KeyEvent.VK_ENTER) {
+				OptionState.pushButton();
+			}
+		}
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
@@ -48,6 +62,9 @@ public class InputHandler implements KeyListener {
 			 */
 			if (keyCode == KeyEvent.VK_SPACE) {
 				OverworldState.interact();
+			}
+			if (keyCode == KeyEvent.VK_P) {
+				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
 			if (keyCode == KeyEvent.VK_W) {
 				try {

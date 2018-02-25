@@ -17,17 +17,20 @@ public class GameStateManager {
 
 	private int currentState = 1;
 	
-	private OverworldState overworld = new OverworldState();
+	public OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro  = new IntroductionState();
+	private OptionState options = new OptionState();
 	public static int overworldStateNumber = 0;
 	public int introState = 1;
 	public int introductionState = 2;
+	public int optionState = 3;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
 		gameStates.add(input);
 		gameStates.add(intro);
+		gameStates.add(options);
 	}
 
 	/*
