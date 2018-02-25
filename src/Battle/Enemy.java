@@ -39,35 +39,32 @@ import java.util.ArrayList;
 public class Enemy {
 		
 		//enemy hp
-		public static BufferedImage hpImg;
-		public static int barX = 229;
-		public static int barY = 19;
+		public BufferedImage hpImg;
+		public int barX = 229;
+		public int barY = 19;
 	
-		public static double hpLev = 70;
-		public static double hpPercent;
-		
-		public static int enemyNum = 0;
-		
-		
+		public double hpLev = 70;
+		public double hpPercent;
+				
 		
 		//read stuff for enemy/ player
-		public static Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
-		public static BufferedImage enemyPic;
-		public static String imgPath;
-		public static String name = "L";
-		public static double hpMax;
-		public static String m1;
-		public static int   m1d;
-		public static int   m1a;
-		public static String m2;
-		public static int   m2d;
-		public static int   m2a;
-		public static String m3;
-		public static int   m3d;
-		public static int   m3a;
-		public static String m4;
-		public static int   m4d;
-		public static int   m4a;
+		public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
+		public BufferedImage enemyPic;
+		public String imgPath;
+		public String name = "L";
+		public double hpMax;
+		public String m1;
+		public int   m1d;
+		public int   m1a;
+		public String m2;
+		public int   m2d;
+		public int   m2a;
+		public String m3;
+		public int   m3d;
+		public int   m3a;
+		public String m4;
+		public int   m4d;
+		public int   m4a;
 		
 		
 		
@@ -77,19 +74,11 @@ public class Enemy {
 		
 		public Enemy() {
 			//hpLev = hpMax;
-			try {
-				eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
-				
-			
-				System.out.println(imgPath);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		//	eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			
 		}
 
-		public static HpBar eb = new HpBar(hpImg, Game.WIDTH - 326, 50);
+	//	public static HpBar eb = new HpBar(hpImg, Game.WIDTH - 326, 50);
 		
 		public void tick() {
 			hpPercent = hpLev / hpMax;
@@ -100,10 +89,10 @@ public class Enemy {
 			//System.out.println(Moves.moves.get(0));
 		}
 		
-		public static void render(Graphics g) {
-			g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
+		public void render(Graphics g) {
+			//g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
 		//	g.drawImage(enemyPic, 700, 100, 350, 350, null);
-			
+			/*
 			if(hpLev <= hpMax / 4) {
 				g.setColor(Color.RED);
 			}else if(hpLev <= hpMax / 2) {
@@ -111,11 +100,10 @@ public class Enemy {
 			}else{
 				g.setColor(Color.GREEN);
 			}
-			g.fillRect(49+eb.x, eb.y, (int) (230 * hpPercent), 19);
+			*/
+		//	g.fillRect(49+eb.x, eb.y, (int) (230 * hpPercent), 19);
 			
-			g.setColor(Color.GREEN);
-			g.setFont(font);
-			g.drawString(name, eb.x, eb.y - 7);
+			
 	}
 		
 		public void setImage(String s) {

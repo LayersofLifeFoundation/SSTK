@@ -1,0 +1,15 @@
+/BattleShrek.png
+SHREK
+200
+The Roar
+20
+80
+Onion Barrage
+13
+95
+Dawngkay!
+29
+65
+Consider Therapy
+16
+90

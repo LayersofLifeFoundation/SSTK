@@ -118,49 +118,46 @@ public class MapRetrevial {
 		
 	}
 
-	public static void readEnemy() throws IOException {
+	public static void readEnemy(Enemy e, String mapName, String enemyName) throws IOException {
 		String line;
-		BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\DSU\\Documents\\GitHub\\ShrekSavesTheKids\\map\\World1\\Enemies.txt"));
-		int count = 0;
-		BattleState.nmy.clear();
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\" + enemyName));
+		//int count = 0;
 		
 		while((line = in.readLine()) != null) {
-				BattleState.nmy.add(new Enemy());	
-				BattleState.nmy.get(count).setImage(line);
+				e.setImage(line);
 				line = in.readLine();
-				BattleState.nmy.get(count).setName(line);
+				e.setName(line);
 				line = in.readLine();
-				BattleState.nmy.get(count).setHP(Double.parseDouble(line));
+				e.setHP(Double.parseDouble(line));
 				line = in.readLine();
-				BattleState.nmy.get(count).setM1(line);
+				e.setM1(line);
 				line = in.readLine();
-				BattleState.nmy.get(count).setM1d(Integer.parseInt(line));
+				e.setM1d(Integer.parseInt(line));
 				line = in.readLine();
-				BattleState.nmy.get(count).setM1a(Integer.parseInt(line));
+				e.setM1a(Integer.parseInt(line));
 				line = in.readLine();
 
-				BattleState.nmy.get(count).setM2(line);
+				e.setM2(line);
 				line = in.readLine();
-				BattleState.nmy.get(count).setM2d(Integer.parseInt(line));
+				e.setM2d(Integer.parseInt(line));
 				line = in.readLine();
-				BattleState.nmy.get(count).setM2a(Integer.parseInt(line));
-				line = in.readLine();
-				
-				BattleState.nmy.get(count).setM3(line);
-				line = in.readLine();
-				BattleState.nmy.get(count).setM3d(Integer.parseInt(line));
-				line = in.readLine();
-				BattleState.nmy.get(count).setM3a(Integer.parseInt(line));
+				e.setM2a(Integer.parseInt(line));
 				line = in.readLine();
 				
-				BattleState.nmy.get(count).setM4(line);
+				e.setM3(line);
 				line = in.readLine();
-				BattleState.nmy.get(count).setM4d(Integer.parseInt(line));
+				e.setM3d(Integer.parseInt(line));
 				line = in.readLine();
-				BattleState.nmy.get(count).setM4a(Integer.parseInt(line));
+				e.setM3a(Integer.parseInt(line));
 				line = in.readLine();
 				
-				count++;
+				e.setM4(line);
+				line = in.readLine();
+				e.setM4d(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM4a(Integer.parseInt(line));
+				line = in.readLine();
+
 		
 		}
 		

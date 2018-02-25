@@ -108,7 +108,7 @@ public class InputHandler implements KeyListener {
 			}
 			if (keyCode == KeyEvent.VK_B) {
 				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
-				BattleState.startBattleMusic();
+			BattleState.startBattleMusic();
 				}
 	}
 

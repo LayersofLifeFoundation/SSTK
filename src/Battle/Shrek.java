@@ -22,7 +22,7 @@ public class Shrek {
 		
 		 //player hp
 		static Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
-		public static BufferedImage hpImg;
+		//public static BufferedImage hpImg;
 		public static int barX = 230;
 		public static int barY = 19;
 		public static double hpMax = 200;
@@ -38,20 +38,14 @@ public class Shrek {
 		//bar.add(new HpBar());
 		public Shrek() {
 			hpLev = 329;
-			try {
-				pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
-				//pb2.hpImg = pb.hpImg;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			moves.add(new Button(0, 500, 400, "Start"));
 			moves.add(new Button(1,500, 440, "Exit"));
 			moves.add(new Button(0, 500, 400, "Start"));
 			moves.add(new Button(1,500, 440, "Exit"));
 		}
 
-		public static HpBar pb = new HpBar(hpImg, 40, 50);
+		//public static HpBar pb = new HpBar(hpImg, 40, 50);
 		
 		
 
@@ -75,12 +69,8 @@ public class Shrek {
 			}else{
 				g.setColor(Color.GREEN);
 			}
-			g.drawImage(pb.hpImg, pb.x, pb.y, 294, 24, null);
-			g.fillRect(49+pb.x, pb.y, (int) (230 * hpPercent), 19);
-
-			g.setFont(font);
-			g.setColor(Color.GREEN);
-			g.drawString("Shrek", pb.x, pb.y - 7);
+			//g.drawImage(pb.hpImg, pb.x, pb.y, 294, 24, null);
+			//g.fillRect(49+pb.x, pb.y, (int) (230 * hpPercent), 19);
 			
 			g.setFont(mFont);
 			for(Button b: moves) {
