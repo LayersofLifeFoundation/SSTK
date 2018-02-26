@@ -10,7 +10,7 @@ import Sounds.Music;
 
 public class Button {
 	
-	Font font = new Font("Courier New", Font.PLAIN, 30);
+	public static Font font = new Font("Courier New", Font.PLAIN, 30);
 	int actionNum;
 	int x, y;
 	String text;
@@ -53,4 +53,7 @@ public class Button {
 		g.drawString(text, x, y);
 	}
 
+	public void setFont(Font f) {
+		font = f;
+	}
 }

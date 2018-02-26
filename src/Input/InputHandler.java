@@ -54,6 +54,7 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_SPACE) {
 				BattleState.attack();
 			}
+
 		}
 		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
@@ -116,11 +117,13 @@ public class InputHandler implements KeyListener {
 			}else {
 				if(Music.boosted) {
 					Music.norm();
+					Player.dab = false;
 				}
 			}
 			if (keyCode == KeyEvent.VK_B) {
 				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
 			BattleState.startBattleMusic();
+			GameStateManager.battle.loadEnemy();
 				}
 	}
 
