@@ -47,11 +47,10 @@ public class BattleState extends GameState{
 
 			//tmp
 			MapRetrevial.readEnemy(shrek, "World1", true);
-			MapRetrevial.readEnemy(enemy, "World1" , false);
+		
 			shrek.enemyPic = ImageIO.read(getClass().getResource(shrek.imgPath));
 			shrek.hpLev = shrek.hpMax;
-			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
-			enemy.hpLev = enemy.hpMax;
+		
 			
 			moves.add(new Button(0,  262   - 208, 540, shrek.m1));
 			moves.add(new Button(1,  262*2 - 208, 540, shrek.m2));
@@ -68,6 +67,16 @@ public class BattleState extends GameState{
 	public static void startBattleMusic() {
 		Music.stopSound();
 		Music.startSound("Music\\SwampBattle.wav", true);
+	}
+	public void loadEnemy() {
+		try {
+			MapRetrevial.readEnemy(enemy, "World1" , false);
+			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		enemy.hpLev = enemy.hpMax;
 	}
 	
 	//move button select

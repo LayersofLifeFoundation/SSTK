@@ -1,4 +1,3 @@
-Shrek.txt
 Cool_Cat.txt
 Fat_Yoshi.txt
 Hacker.txt
