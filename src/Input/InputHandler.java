@@ -54,6 +54,7 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_SPACE) {
 				BattleState.attack();
 			}
+
 		}
 		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
