@@ -1,0 +1,19 @@
+\Cool_Cat.png
+Cool Cat
+130
+Boogie Woogie
+60
+45
+SFX\\BoogieWoogie.wav
+I love all kids
+15
+100
+SFX\\AllKids.wav
+Identify yourself!
+25
+95
+SFX\\Identify.wav
+Exquisite
+30
+80
+SFX\\Exquisite.wav
