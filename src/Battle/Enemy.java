@@ -46,12 +46,6 @@ public class Enemy {
 		public double hpLev;
 		public double hpPercent;
 				
-		//current move
-	//	public String en;
-		public int    ed;
-		public int    ea;
-		public int    es;
-		
 		//read stuff for enemy/ player
 		public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
 		public BufferedImage enemyPic;

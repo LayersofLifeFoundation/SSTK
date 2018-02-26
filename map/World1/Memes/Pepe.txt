@@ -1,19 +1,19 @@
-\hacker.png
-Hacker
-150
-Scanf()
+/Pepe.png
+Pepe
+100
+Hate Symbol
 60
 45
 SFX\\Smack.wav
-Fishing Gmail
+REEEEEEE
 15
 100
 SFX\\Smack.wav
-Green Text
+Feels Bad
 25
 95
 SFX\\Smack.wav
-Shutterstock
+Alt-Right
 30
 80
 SFX\\Smack.wav

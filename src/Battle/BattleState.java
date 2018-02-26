@@ -46,14 +46,14 @@ public class BattleState extends GameState{
 			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 
 			//tmp
-			MapRetrevial.readEnemy(shrek, "World1", "Shrek.txt");
-			MapRetrevial.readEnemy(enemy, "World1", "Fat_Yoshi.txt");
-			shrek.enemyPic = ImageIO.read(getClass().getResource("/BattleShrek.png"));
+			MapRetrevial.readEnemy(shrek, "World1", true);
+			MapRetrevial.readEnemy(enemy, "World1" , false);
+			shrek.enemyPic = ImageIO.read(getClass().getResource(shrek.imgPath));
 			shrek.hpLev = shrek.hpMax;
-			enemy.enemyPic = ImageIO.read(getClass().getResource("/Fat_Yoshi.png"));
+			System.out.println(enemy.imgPath);
+			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
 			enemy.hpLev = enemy.hpMax;
 			
-			System.out.println(shrek.imgPath);
 			moves.add(new Button(0,  262   - 208, 540, shrek.m1));
 			moves.add(new Button(1,  262*2 - 208, 540, shrek.m2));
 			moves.add(new Button(2,  262*3 - 208, 540, shrek.m3));
@@ -95,7 +95,7 @@ public class BattleState extends GameState{
 		int choice = RNG.nextInt() % 4;
 		Music.startSound2("SFX\\Hitmarker.wav", false);
 		playerAttack();
-		enemyMoveSelect();
+		enemyAttack();
 		
 		hpBound();
 		System.out.println("Shrek: " + shrek.hpLev);
@@ -103,31 +103,31 @@ public class BattleState extends GameState{
 	}
 	public static void playerAttack() {
 		if(selectedState == 0) {
-			System.out.println(shrek.name + " used " + shrek.m1);
+			System.out.println(shrek.name + " Used " + shrek.m1);
 			enemy.hpLev -= shrek.m1d;
 			//Music.startSound2(shrek.m1s, false);
 		}
 		if(selectedState == 1) {
-			System.out.println(shrek.name + " used " + shrek.m2);
+			System.out.println(shrek.name + " Used " + shrek.m2);
 			enemy.hpLev -= shrek.m2d;
 			//Music.startSound2(shrek.m2s, false);
 		}
 		if(selectedState == 2) {
-			System.out.println(shrek.name + " used " + shrek.m3);
+			System.out.println(shrek.name + " Used " + shrek.m3);
 			enemy.hpLev -= shrek.m3d;
 			//Music.startSound2(shrek.m2s, false);
 		}
 		if(selectedState == 3) {
-			System.out.println(shrek.name + " used " + shrek.m4);
+			System.out.println(shrek.name + " Used " + shrek.m4);
 			enemy.hpLev -= shrek.m4d;
 			//Music.startSound2(shrek.m2s, false);
 		}
 	}
-	public static void enemyMoveSelect() {
-		int choice = RNG.nextInt() % 4;	
-		int accurate = RNG.nextInt() % 100;	
+	public static void enemyAttack() {
+		int choice = Math.abs(RNG.nextInt() % 4);
+		int accurate = Math.abs(RNG.nextInt() % 100);	
 		if(choice == 0) {
-			System.out.println(enemy.name + " used " + enemy.m1);
+			System.out.println(enemy.name + " Used " + enemy.m1);
 			if(accurate <= enemy.m1a) {
 			shrek.hpLev -= enemy.m1d;
 			Music.startSound2(enemy.m1s, false);
@@ -135,7 +135,7 @@ public class BattleState extends GameState{
 				System.out.println(enemy.name + " missed!");
 		}
 		if(choice == 1) {
-			System.out.println(enemy.name + " used " + enemy.m2);
+			System.out.println(enemy.name + " Used " + enemy.m2);
 			if(accurate <= enemy.m2a) {
 			shrek.hpLev -= enemy.m2d;
 			Music.startSound2(enemy.m2s, false);
@@ -143,7 +143,7 @@ public class BattleState extends GameState{
 			System.out.println(enemy.name + " missed!");
 		}
 		if(choice == 2) {
-			System.out.println(enemy.name + " used " + enemy.m3);
+			System.out.println(enemy.name + " Used " + enemy.m3);
 			if(accurate <= enemy.m3a) {
 			shrek.hpLev -= enemy.m3d;
 			Music.startSound2(enemy.m3s, false);
@@ -151,7 +151,7 @@ public class BattleState extends GameState{
 				System.out.println(enemy.name + " missed!");
 		}
 		if(choice == 3) {
-			System.out.println(enemy.name + " used " + enemy.m4);
+			System.out.println(enemy.name + " Used " + enemy.m4);
 			if(accurate <= enemy.m3a) {
 			shrek.hpLev -= enemy.m4d;
 			Music.startSound2(enemy.m4s, false);
@@ -243,6 +243,7 @@ public class BattleState extends GameState{
 	g.drawString(enemy.name, eb.x, eb.y - 7);
 	g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
 	hpColor(enemy, g);
+	
 	g.fillRect(49+eb.x, eb.y, (int) (230 * enemy.hpPercent), 19);
 }
 }

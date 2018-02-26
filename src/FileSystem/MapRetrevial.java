@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Battle.BattleState;
 import Battle.Enemy;
@@ -118,11 +119,28 @@ public class MapRetrevial {
 		
 	}
 
-	public static void readEnemy(Enemy e, String mapName, String enemyName) throws IOException {
-		String line;
-		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\" + enemyName));
-		//int count = 0;
+	static Random rando = new Random();
+	static int enemyNo = -1;
+	
+	
+	public static void readEnemy(Enemy e, String mapName, boolean shrek) throws IOException {
 		
+		ArrayList<String> eNames = new ArrayList<String>();
+		BufferedReader in;
+		//String enemyName;
+		String line;
+		String memeName;
+		BufferedReader name = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "All_Meme_Names.txt"));
+		//int count = 0;
+		while((memeName = name.readLine()) != null) {
+		eNames.add(memeName);	
+		}
+		enemyNo = Math.abs(rando.nextInt() % eNames.size());
+		if(!shrek) {
+		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + eNames.get(enemyNo)));
+		}else {
+		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "Shrek.txt"));
+		}
 		while((line = in.readLine()) != null) {
 				e.setImage(line);
 				line = in.readLine();
