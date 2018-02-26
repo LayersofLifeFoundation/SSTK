@@ -116,6 +116,7 @@ public class InputHandler implements KeyListener {
 			}else {
 				if(Music.boosted) {
 					Music.norm();
+					Player.dab = false;
 				}
 			}
 			if (keyCode == KeyEvent.VK_B) {

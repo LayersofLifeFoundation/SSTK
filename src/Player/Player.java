@@ -35,9 +35,12 @@ public class Player {
 	public boolean punRight = false;
 	int dieAnime = 0;
 	public static boolean die = false;
-	public boolean dab = false;
+	public static boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";
+	
+	
+	
 	//static int barX = 229;
 	//static int barY = 19;
 	//public static double pHpMax = 10030;
@@ -286,9 +289,11 @@ public class Player {
 	}
 
 	public void Dab() {
+		dab = true;
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
+						
 			//hpLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
@@ -335,11 +340,10 @@ public class Player {
 			animateDie(dieAnime);
 			dieAnime++;
 		}
-		/*
-		if(hpLev > pHpMax) {
-			hpLev = pHpMax;
+		if(dab) {
+			Hitmarker.spam();
 		}
-	*/
+		
 	}
 
 	/*

@@ -18,7 +18,7 @@ import Player.Player;
 import Sounds.Music;
 import TextMap.TextMap;
 import java.io.*;
-
+import Player.Hitmarker;
 public class OverworldState extends GameState {
 	/*
 	 * GameState that loads the text base view that is used mostly for testing
@@ -27,6 +27,7 @@ public class OverworldState extends GameState {
 	public static MovementMap movMap = new MovementMap();
 	public static TextMap textMap = new TextMap();
 	public static Player player = new Player();
+	public static Hitmarker hitmarker = new Hitmarker();
 	public static ArrayList<Link> links = new ArrayList<Link>();
 	public BufferedImage map;
 	BufferedImage subMap;
@@ -173,6 +174,7 @@ public class OverworldState extends GameState {
 				1000 + player.returnY() * Game.PIXSIZE - 6 * Game.PIXSIZE, Game.WIDTH + 30, Game.HEIGHT + 30);
 		g.drawImage(subMap, 0, 0, null);
 		player.render(g);
+		hitmarker.render(g);
 		for (NPC npc : npcs) {
 			npc.render(g);
 		}
