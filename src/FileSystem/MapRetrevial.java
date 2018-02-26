@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+
 import Battle.BattleState;
 import Battle.Enemy;
 import GameStateManager.OverworldState;
@@ -184,7 +186,6 @@ public class MapRetrevial {
 				line = in.readLine();
 				e.setM4s(line);
 				line = in.readLine();
-		
 		}
 		
 	}

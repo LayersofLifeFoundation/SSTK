@@ -50,7 +50,6 @@ public class BattleState extends GameState{
 			MapRetrevial.readEnemy(enemy, "World1" , false);
 			shrek.enemyPic = ImageIO.read(getClass().getResource(shrek.imgPath));
 			shrek.hpLev = shrek.hpMax;
-			System.out.println(enemy.imgPath);
 			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
 			enemy.hpLev = enemy.hpMax;
 			

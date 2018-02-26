@@ -5,7 +5,7 @@ Scanf()
 60
 45
 SFX\\Smack.wav
-Fishing Gmail
+Phishing Email
 15
 100
 SFX\\Smack.wav
