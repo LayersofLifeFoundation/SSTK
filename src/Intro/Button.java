@@ -3,8 +3,13 @@ package Intro;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.IOException;
 
+<<<<<<< HEAD
 import Battle.BattleState;
+=======
+import FileSystem.Save;
+>>>>>>> master
 import GameStateManager.Game;
 import Sounds.Music;
 
@@ -36,9 +41,23 @@ public class Button {
 			Music.stopSound();
 			Game.gameStateManager.changeState(2);
 			IntroductionState.startIntroState();
+			try {
+				Save.load();
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(actionNum == 1) {
 			Game.stop();
-		}	
+		}else if(actionNum == 2) {
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+		}else if(actionNum == 3) {
+			Save.save();
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+		}
 	}
 	
 	
