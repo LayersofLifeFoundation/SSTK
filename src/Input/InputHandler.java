@@ -13,6 +13,8 @@ import Intro.InputState;
 import Intro.IntroductionState;
 import Player.Player;
 import Sounds.Music;
+import FileSystem.Save;
+import GameStateManager.OptionState;
 
 public class InputHandler implements KeyListener {
 
@@ -42,8 +44,24 @@ public class InputHandler implements KeyListener {
 				InputState.pushButton();
 			}
 		}
+
+		if (Game.gameStateManager.getState() == Game.gameStateManager.optionState) {
+			if (keyCode == KeyEvent.VK_W) {
+				OptionState.moveUp();
+			}
+			if (keyCode == KeyEvent.VK_S) {
+				OptionState.moveDown();
+			}
+			if (keyCode == KeyEvent.VK_ENTER) {
+				OptionState.pushButton();
+			}
+		}
 		
-		//in battle
+		if (keyCode == KeyEvent.VK_P) {
+			Game.gameStateManager.changeState(Game.gameStateManager.optionState);
+		}
+
+		// in battle
 		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
 			if (keyCode == KeyEvent.VK_D) {
 				BattleState.moveRight();
@@ -70,7 +88,7 @@ public class InputHandler implements KeyListener {
 					// TODO Auto-generated catch block
 					// e.printStackTrace();
 				}
-				
+
 			}
 			if (keyCode == KeyEvent.VK_A) {
 				try {
@@ -114,18 +132,18 @@ public class InputHandler implements KeyListener {
 				if (!Music.boosted) {
 					Music.boost();
 				}
-			}else {
-				if(Music.boosted) {
+			} else {
+				if (Music.boosted) {
 					Music.norm();
 					Player.dab = false;
 				}
 			}
 			if (keyCode == KeyEvent.VK_B) {
 				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
-			BattleState.startBattleMusic();
-			GameStateManager.battle.loadEnemy();
-				}
-	}
+				BattleState.startBattleMusic();
+				GameStateManager.battle.loadEnemy();
+			}
+		}
 
 	}
 

@@ -5,11 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.io.IOException;
 
-<<<<<<< HEAD
 import Battle.BattleState;
-=======
 import FileSystem.Save;
->>>>>>> master
 import GameStateManager.Game;
 import Sounds.Music;
 

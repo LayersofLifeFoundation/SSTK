@@ -19,20 +19,24 @@ public class GameStateManager {
 
 	private int currentState = 1;
 	
-	private OverworldState overworld = new OverworldState();
+	
+	OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro  = new IntroductionState();
+	private OptionState options = new OptionState();
 	public static BattleState battle = new BattleState();
 	
-	public int overworldStateNumber = 0;
-	public int introState = 1;
-	public int introductionState = 2;
-	public int battleStateNum = 3;
+	public static int overworldStateNumber = 0;
+	public int introState           = 1;
+	public int introductionState    = 2;
+	public int optionState          = 3;
+	public int battleStateNum       = 4;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
 		gameStates.add(input);
 		gameStates.add(intro);
+		gameStates.add(options);
 		gameStates.add(battle);
 	}
 
