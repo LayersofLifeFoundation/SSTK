@@ -5,13 +5,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.io.IOException;
 
+<<<<<<< HEAD
+import Battle.BattleState;
+=======
 import FileSystem.Save;
+>>>>>>> master
 import GameStateManager.Game;
 import Sounds.Music;
 
 public class Button {
 	
-	Font font = new Font("Courier New", Font.PLAIN, 30);
+	public static Font font = new Font("Courier New", Font.PLAIN, 30);
 	int actionNum;
 	int x, y;
 	String text;
@@ -56,6 +60,8 @@ public class Button {
 		}
 	}
 	
+	
+	
 	public void render(Graphics g) {
 		g.setFont(font);
 		g.setColor(Color.RED);
@@ -66,4 +72,7 @@ public class Button {
 		g.drawString(text, x, y);
 	}
 
+	public void setFont(Font f) {
+		font = f;
+	}
 }

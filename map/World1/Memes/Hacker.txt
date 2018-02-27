@@ -1,0 +1,19 @@
+/Hacker.png
+Hacker
+150
+Scanf()
+60
+45
+SFX\\Smack.wav
+Phishing Email
+15
+100
+SFX\\Smack.wav
+Green Text
+25
+95
+SFX\\Smack.wav
+Shutterstock
+30
+80
+SFX\\Smack.wav

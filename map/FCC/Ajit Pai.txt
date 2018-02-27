@@ -1,0 +1,19 @@
+\AjitPai
+Ajit Pai
+130
+Do You Even English, bro?
+60
+45
+SFX\\EnglishBro.wav
+Fidget Spinners
+15
+100
+SFX\\FidgetSpinners.wav
+Quality
+25
+95
+SFX\\Quality.wav
+Tell the Truth
+30
+80
+SFX\\Truth.wav

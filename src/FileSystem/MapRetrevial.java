@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
+import javax.imageio.ImageIO;
+
+import Battle.BattleState;
+import Battle.Enemy;
 import GameStateManager.OverworldState;
 import Maps.Link;
 import NPC.NPC;
+import Battle.*;
 
 public class MapRetrevial {
 	
@@ -93,12 +99,11 @@ public class MapRetrevial {
 		int count = 0;
 		OverworldState.npcs.clear();
 		
-		
-		
-	
 		while((line = in.readLine()) != null) {
-				OverworldState.npcs.add(new NPC());
-				OverworldState.npcs.get(count).setName(line);
+				
+			OverworldState.npcs.add(new NPC());
+
+			OverworldState.npcs.get(count).setName(line);
 				line = in.readLine();
 				OverworldState.npcs.get(count).setX(Integer.parseInt(line));
 				line = in.readLine();
@@ -116,4 +121,73 @@ public class MapRetrevial {
 		
 	}
 
+	static Random rando = new Random();
+	static int enemyNo = -1;
+	
+	
+	public static void readEnemy(Enemy e, String mapName, boolean shrek) throws IOException {
+		
+		ArrayList<String> eNames = new ArrayList<String>();
+		BufferedReader in;
+		//String enemyName;
+		String line;
+		String memeName;
+		BufferedReader name = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "All_Meme_Names.txt"));
+		//int count = 0;
+		while((memeName = name.readLine()) != null) {
+		eNames.add(memeName);	
+		}
+		enemyNo = Math.abs(rando.nextInt() % eNames.size());
+		if(!shrek) {
+		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + eNames.get(enemyNo)));
+		}else {
+		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "Shrek.txt"));
+		}
+		while((line = in.readLine()) != null) {
+				e.setImage(line);
+				line = in.readLine();
+				e.setName(line);
+				line = in.readLine();
+				e.setHP(Double.parseDouble(line));
+				line = in.readLine();
+				
+				e.setM1(line);
+				line = in.readLine();
+				e.setM1d(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM1a(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM1s(line);
+				line = in.readLine();
+				
+				e.setM2(line);
+				line = in.readLine();
+				e.setM2d(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM2a(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM2s(line);
+				line = in.readLine();
+				
+				e.setM3(line);
+				line = in.readLine();
+				e.setM3d(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM3a(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM3s(line);
+				line = in.readLine();
+				
+				e.setM4(line);
+				line = in.readLine();
+				e.setM4d(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM4a(Integer.parseInt(line));
+				line = in.readLine();
+				e.setM4s(line);
+				line = in.readLine();
+		}
+		
+	}
+	
 }

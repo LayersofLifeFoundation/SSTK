@@ -5,10 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import FileSystem.Save;
+import Battle.BattleState;
 import GameStateManager.Game;
 import GameStateManager.GameStateManager;
-import GameStateManager.OptionState;
 import GameStateManager.OverworldState;
 import Intro.InputState;
 import Intro.IntroductionState;
@@ -44,27 +43,25 @@ public class InputHandler implements KeyListener {
 			}
 		}
 		
-		if (Game.gameStateManager.getState() == Game.gameStateManager.optionState) {
-			if (keyCode == KeyEvent.VK_W) {
-				OptionState.moveUp();
+		//in battle
+		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
+			if (keyCode == KeyEvent.VK_D) {
+				BattleState.moveRight();
 			}
-			if (keyCode == KeyEvent.VK_S) {
-				OptionState.moveDown();
+			if (keyCode == KeyEvent.VK_A) {
+				BattleState.moveLeft();
 			}
-			if (keyCode == KeyEvent.VK_ENTER) {
-				OptionState.pushButton();
+			if (keyCode == KeyEvent.VK_SPACE) {
+				BattleState.attack();
 			}
-		}
 
+		}
 		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
 			/*
 			 * Key bounds for the OverworldState
 			 */
 			if (keyCode == KeyEvent.VK_SPACE) {
 				OverworldState.interact();
-			}
-			if (keyCode == KeyEvent.VK_P) {
-				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
 			if (keyCode == KeyEvent.VK_W) {
 				try {
@@ -73,6 +70,7 @@ public class InputHandler implements KeyListener {
 					// TODO Auto-generated catch block
 					// e.printStackTrace();
 				}
+				
 			}
 			if (keyCode == KeyEvent.VK_A) {
 				try {
@@ -119,9 +117,14 @@ public class InputHandler implements KeyListener {
 			}else {
 				if(Music.boosted) {
 					Music.norm();
+					Player.dab = false;
 				}
 			}
-		
+			if (keyCode == KeyEvent.VK_B) {
+				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
+			BattleState.startBattleMusic();
+			GameStateManager.battle.loadEnemy();
+				}
 	}
 
 	}

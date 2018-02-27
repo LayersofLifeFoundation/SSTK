@@ -3,8 +3,10 @@ package GameStateManager;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import Battle.BattleState;
 import Intro.InputState;
 import Intro.IntroductionState;
+import Sounds.Music;
 
 
 
@@ -13,24 +15,25 @@ public class GameStateManager {
 	 * Class that decides what should run at what time
 	 */
 
-	private ArrayList<GameState> gameStates = new ArrayList<GameState>();
+	public ArrayList<GameState> gameStates = new ArrayList<GameState>();
 
 	private int currentState = 1;
 	
-	public OverworldState overworld = new OverworldState();
+	private OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro  = new IntroductionState();
-	private OptionState options = new OptionState();
-	public static int overworldStateNumber = 0;
+	public static BattleState battle = new BattleState();
+	
+	public int overworldStateNumber = 0;
 	public int introState = 1;
 	public int introductionState = 2;
-	public int optionState = 3;
+	public int battleStateNum = 3;
 	
 	public GameStateManager() {
 		gameStates.add(overworld);
 		gameStates.add(input);
 		gameStates.add(intro);
-		gameStates.add(options);
+		gameStates.add(battle);
 	}
 
 	/*
@@ -46,6 +49,8 @@ public class GameStateManager {
 	public void tick() {
 
 		gameStates.get(currentState).tick();
+		
+		
 	}
 
 	
