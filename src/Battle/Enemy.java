@@ -69,45 +69,14 @@ public class Enemy {
 		public int   m4a;
 		public String m4s;
 		
-		
-		
-		
+				
+		public void tick() {		
 
-		
-		
-		public Enemy() {
-			//hpLev = hpMax;
-		//	eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
-			
-		}
-
-	//	public static HpBar eb = new HpBar(hpImg, Game.WIDTH - 326, 50);
-		
-		public void tick() {
-			hpPercent = hpLev / hpMax;
-			if(hpLev > hpMax) {
-				hpLev = hpMax;
-			}	
-			
-			//System.out.println(Moves.moves.get(0));
 		}
 		
 		public void render(Graphics g) {
-			//g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
-		//	g.drawImage(enemyPic, 700, 100, 350, 350, null);
-			/*
-			if(hpLev <= hpMax / 4) {
-				g.setColor(Color.RED);
-			}else if(hpLev <= hpMax / 2) {
-				g.setColor(Color.YELLOW);	
-			}else{
-				g.setColor(Color.GREEN);
-			}
-			*/
-		//	g.fillRect(49+eb.x, eb.y, (int) (230 * hpPercent), 19);
-			
-			
-	}
+		
+		}
 		
 		public void setImage(String s) {
 			imgPath = s;

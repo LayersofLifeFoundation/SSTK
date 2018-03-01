@@ -31,8 +31,6 @@ public class BattleState extends GameState {
 	public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 50);
 	public static Enemy enemy = new Enemy();
 	public static Enemy shrek = new Enemy();
-	public ArrayList<Enemy> nmy = new ArrayList<Enemy>();
-	public ArrayList<Enemy> plr = new ArrayList<Enemy>();
 	public static ArrayList<Button> moves = new ArrayList<Button>();
 	public static int selectedState = 0;
 	public static Random RNG = new Random();
@@ -81,6 +79,7 @@ public class BattleState extends GameState {
 	// move button select
 	public static void moveRight() {
 		moves.get(selectedState).deselect();
+		Music.startSound2("SFX\\Hitmarker.wav", false);
 		if (selectedState == 3) {
 			selectedState = 0;
 		} else {
@@ -91,6 +90,7 @@ public class BattleState extends GameState {
 
 	public static void moveLeft() {
 		moves.get(selectedState).deselect();
+		Music.startSound2("SFX\\Hitmarker.wav", false);
 		if (selectedState == 0) {
 			selectedState = 3;
 		} else {
@@ -99,13 +99,11 @@ public class BattleState extends GameState {
 		moves.get(selectedState).select();
 	}
 
+	//Executes the attack 
 	public static void attack() {
-		int choice = RNG.nextInt() % 4;
-		Music.startSound2("SFX\\Hitmarker.wav", false);
 		enemyPlayerAttack(shrek, enemy);
 		enemyPlayerAttack(enemy, shrek);
 
-		hpBound();
 		System.out.println("Shrek: " + shrek.hpLev);
 		System.out.println("Enemy: " + enemy.hpLev);
 	}
@@ -201,7 +199,7 @@ public class BattleState extends GameState {
 	public void tick() {
 		enemy.tick();
 		shrek.tick();
-
+		hpBound();
 	}
 
 	public void render(Graphics g) {

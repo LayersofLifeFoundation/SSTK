@@ -58,7 +58,7 @@ public class Music {
 			audioClip2.open(audioStream2);
 			gainControl2 =  (FloatControl) audioClip2.getControl(FloatControl.Type.MASTER_GAIN);
 			//Lower Volume
-			gainControl2.setValue(-10.0f);
+			gainControl2.setValue(-15.0f);
 			audioClip2.start();
 			if(loop) {
 			audioClip2.loop(-1);

@@ -133,7 +133,7 @@ public class InputHandler implements KeyListener {
 					Music.boost();
 				}
 			} else {
-				if (Music.boosted) {
+				if (Music.boosted && keyCode != KeyEvent.VK_SPACE) {
 					Music.norm();
 					Player.dab = false;
 				}
