@@ -26,7 +26,7 @@ public class InputHandler implements KeyListener {
 		String keyChar = KeyEvent.getKeyText(a.getKeyChar());
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.introductionState) {
-			if (keyCode == KeyEvent.VK_ENTER) {
+			if (keyCode == KeyEvent.VK_SPACE) {
 				Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
 				Music.stopSound();
 				OverworldState.stateOverworldState();
@@ -40,7 +40,7 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_S) {
 				InputState.moveDown();
 			}
-			if (keyCode == KeyEvent.VK_ENTER) {
+			if (keyCode == KeyEvent.VK_SPACE) {
 				InputState.pushButton();
 			}
 		}
@@ -52,8 +52,12 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_S) {
 				OptionState.moveDown();
 			}
-			if (keyCode == KeyEvent.VK_ENTER) {
+			if (keyCode == KeyEvent.VK_SPACE) {
 				OptionState.pushButton();
+			}
+			if(keyCode == KeyEvent.VK_ESCAPE) {
+				OptionState.inInv = false;
+				OptionState.itemM.inMenu = false;
 			}
 		}
 		
