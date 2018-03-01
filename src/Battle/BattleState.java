@@ -31,7 +31,7 @@ public class BattleState extends GameState {
 	public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 50);
 	public static Enemy enemy = new Enemy();
 	public static Enemy shrek = new Enemy();
-	public static ArrayList<Button> moves = new ArrayList<Button>();
+	public static ArrayList<Button> buttons = new ArrayList<Button>();
 	public static int selectedState = 0;
 	public static Random RNG = new Random();
 	public static String message;
@@ -43,16 +43,17 @@ public class BattleState extends GameState {
 			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 
-			MapRetrevial.readEnemy(shrek, "World1", true);
+			MapRetrevial.loadEnemy(shrek, "World1");
 
 			shrek.enemyPic = ImageIO.read(getClass().getResource(shrek.imgPath));
 			shrek.hpLev = shrek.hpMax;
+			shrek.hpPercent = shrek.hpLev / shrek.hpMax;
 
-			moves.add(new Button(0, 262 - 208, 540, shrek.m1));
-			moves.add(new Button(1, 262 * 2 - 208, 540, shrek.m2));
-			moves.add(new Button(2, 262 * 3 - 208, 540, shrek.m3));
-			moves.add(new Button(3, 262 * 4 - 208, 540, shrek.m4));
-			moves.get(selectedState).select();
+			for(int i = 0; i < 4; i++) {
+				buttons.add(new Button(i, 54 * (i + 1), 540, shrek.moves.get(i).name));
+			}
+			
+			buttons .get(selectedState).select();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -67,89 +68,81 @@ public class BattleState extends GameState {
 
 	public void loadEnemy() {
 		try {
-			MapRetrevial.readEnemy(enemy, "World1", false);
+			MapRetrevial.loadEnemy(enemy, "World1");
 			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		enemy.hpLev = enemy.hpMax;
+		enemy.hpPercent = enemy.hpLev / enemy.hpMax;
 	}
 
 	// move button select
 	public static void moveRight() {
-		moves.get(selectedState).deselect();
+		buttons.get(selectedState).deselect();
 		Music.startSound2("SFX\\Hitmarker.wav", false);
 		if (selectedState == 3) {
 			selectedState = 0;
 		} else {
 			selectedState++;
 		}
-		moves.get(selectedState).select();
+		buttons.get(selectedState).select();
 	}
 
 	public static void moveLeft() {
-		moves.get(selectedState).deselect();
+		buttons.get(selectedState).deselect();
 		Music.startSound2("SFX\\Hitmarker.wav", false);
 		if (selectedState == 0) {
 			selectedState = 3;
 		} else {
 			selectedState--;
 		}
-		moves.get(selectedState).select();
+		buttons.get(selectedState).select();
 	}
 
 	//Executes the attack 
 	public static void attack() {
-		enemyPlayerAttack(shrek, enemy);
-		enemyPlayerAttack(enemy, shrek);
+		hpBound();
+		useMove(shrek);
+		hpBound();
+		useMove(enemy);
+		hpBound();
+		
 
 		System.out.println("Shrek: " + shrek.hpLev);
 		System.out.println("Enemy: " + enemy.hpLev);
 	}
 
-	// simulates offense attacking defense
-	public static void enemyPlayerAttack(Enemy offense, Enemy defense) {
-		int tmp = selectedState;
-		if (offense.equals(enemy)) {
-			selectedState = Math.abs(RNG.nextInt() % 4);
-		}
+	// uses enemy e's attack on other party
+	public static void useMove(Enemy e) {
+		int eChoice = Math.abs(RNG.nextInt() % 4);
 		int accurate = Math.abs(RNG.nextInt() % 100);
-		if (selectedState == 0) {
-			message = offense.name + " Used " + offense.m1;
-			if (accurate <= offense.m1a) {
-				defense.hpLev -= offense.m1d;
-				Music.startSound2(offense.m1s, false);
+		Moves current = null;
+		Enemy offense = e;
+		Enemy defense = null;
+		if(e.equals(enemy)) {
+			current = enemy.moves.get(eChoice);
+			System.out.println("E" + enemy.hpMax);
+			System.out.println(enemy.hpMax);
+			defense = shrek;
+		}
+		else if(e.equals(shrek)) {
+			current = shrek.moves.get(selectedState);
+			System.out.println("S" + shrek.hpMax);
+			System.out.println(shrek.hpMax);
+			defense = enemy;
+		}		
+			message = e.name + " Used " + current.name;
+			if (accurate <= current.accuracy) {
+				defense.hpLev -= current.damage;
+				Music.startSound2(current.sound, false);
 			} else
 				message += " But Missed!";
-		}
-		if (selectedState == 1) {
-			message += offense.name + " Used " + offense.m2;
-			if (accurate <= offense.m2a) {
-				defense.hpLev -= offense.m2d;
-				Music.startSound2(offense.m2s, false);
-			} else
-				message += " But Missed!";
-		}
-		if (selectedState == 2) {
-			message = offense.name + " Used " + offense.m3;
-			if (accurate <= offense.m3a) {
-				defense.hpLev -= offense.m3d;
-				Music.startSound2(offense.m3s, false);
-			} else
-				message += " But Missed!";
-		}
-		if (selectedState == 3) {
-			message = offense.name + " Used " + offense.m4;
-			if (accurate <= offense.m4a) {
-				defense.hpLev -= offense.m4d;
-				Music.startSound2(offense.m4s, false);
-			} else
-				message += " But Missed!";
-		}
+	
 		System.out.println(message);
 		message = "";
-		selectedState = tmp;
+		//selectedState = tmp;
 		
 	}
 
@@ -199,7 +192,7 @@ public class BattleState extends GameState {
 	public void tick() {
 		enemy.tick();
 		shrek.tick();
-		hpBound();
+		
 	}
 
 	public void render(Graphics g) {
@@ -208,7 +201,7 @@ public class BattleState extends GameState {
 
 		// draw buttons
 		g.setFont(font);
-		for (Button b : moves) {
+		for (Button b : buttons) {
 			Button.font = new Font("Franklin Gothic Demi Cond", Font.PLAIN, 35);
 			b.render(g);
 		}
@@ -235,7 +228,6 @@ public class BattleState extends GameState {
 		g.drawString(enemy.name, eb.x, eb.y - 7);
 		g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
 		hpColor(enemy, g);
-
 		g.fillRect(49 + eb.x, eb.y, (int) (230 * enemy.hpPercent), 19);
 	}
 }

@@ -1,6 +1,7 @@
 package FileSystem;
 
 import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,180 +15,156 @@ import GameStateManager.OverworldState;
 import Maps.Link;
 import NPC.NPC;
 import Battle.*;
+import Battle.Moves;
 
 public class MapRetrevial {
-	
+
 	/*
 	 * Central place for all functions needed to read files for the Overworld
 	 */
-	
-	
-	
+
 	/*
-	 * Function to transfer values into double array map from the the given text file
+	 * Function to transfer values into double array map from the the given text
+	 * file
 	 */
-	public static void retriveMovementMap(int[][] map, String mapName ) throws IOException {
+	public static void retriveMovementMap(int[][] map, String mapName) throws IOException {
 		String line;
-		BufferedReader in = new BufferedReader(new FileReader("map\\"+ mapName + "\\movement.txt"));
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\movement.txt"));
 		int count = 0;
-		while((line = in.readLine()) != null) {
-			for(int i = 0; i < line.length();i++) {
+		while ((line = in.readLine()) != null) {
+			for (int i = 0; i < line.length(); i++) {
 				map[count][i] = Integer.parseInt(line.substring(i, i + 1));
 			}
 			count++;
 		}
 	}
-	
-	
+
 	/*
-	 * Does the same thing but for the Text map that is shown for testing 
+	 * Does the same thing but for the Text map that is shown for testing
 	 * 
 	 */
-	public static void retriveTextMap(String[][] map, String mapName ) throws IOException {
+	public static void retriveTextMap(String[][] map, String mapName) throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\TextMaps\\" + mapName + "\\map.txt"));
-		for(int i = 0; i < 50; i++) {
-			for(int k = 0; k < 50; k++) {
+		for (int i = 0; i < 50; i++) {
+			for (int k = 0; k < 50; k++) {
 				map[i][k] = " ";
 			}
 		}
 		int count = 0;
-		while((line = in.readLine()) != null) {
-			for(int i = 0; i < line.length();i++) {
+		while ((line = in.readLine()) != null) {
+			for (int i = 0; i < line.length(); i++) {
 				map[count][i] = line.substring(i, i + 1);
 			}
 			count++;
 		}
 		retiveLinks(OverworldState.links, mapName);
 	}
-	
+
 	/*
 	 * Populates the ArrayList links that allows transfer between different areas
 	 */
-	
+
 	public static void retiveLinks(ArrayList<Link> links, String mapName) throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\TextMaps\\" + mapName + "\\links.txt"));
 		int count = 0;
 		links.clear();
-		
-		
-	
-		while((line = in.readLine()) != null) {
-				links.add(new Link());
-				links.get(count).setX(Integer.parseInt(line));
-				line = in.readLine();
-				links.get(count).setY(Integer.parseInt(line));
-				line = in.readLine();
-				links.get(count).setToX(Integer.parseInt(line));
-				line = in.readLine();
-				links.get(count).setToY(Integer.parseInt(line));
-				line = in.readLine();
-				links.get(count).setLinkMovement(line);
-				line = in.readLine();
-				links.get(count).setLinkText(line);
-				line = in.readLine();
-				links.get(count).setNextTrack(line);
-				count++;
-		
+
+		while ((line = in.readLine()) != null) {
+			links.add(new Link());
+			links.get(count).setX(Integer.parseInt(line));
+			line = in.readLine();
+			links.get(count).setY(Integer.parseInt(line));
+			line = in.readLine();
+			links.get(count).setToX(Integer.parseInt(line));
+			line = in.readLine();
+			links.get(count).setToY(Integer.parseInt(line));
+			line = in.readLine();
+			links.get(count).setLinkMovement(line);
+			line = in.readLine();
+			links.get(count).setLinkText(line);
+			line = in.readLine();
+			links.get(count).setNextTrack(line);
+			count++;
+
 		}
 	}
-	
+
 	public static void readNPC(String mapName) throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\NPC.txt"));
 		int count = 0;
 		OverworldState.npcs.clear();
-		
-		while((line = in.readLine()) != null) {
-				
+
+		while ((line = in.readLine()) != null) {
+
 			OverworldState.npcs.add(new NPC());
 
 			OverworldState.npcs.get(count).setName(line);
-				line = in.readLine();
-				OverworldState.npcs.get(count).setX(Integer.parseInt(line));
-				line = in.readLine();
-				OverworldState.npcs.get(count).setY(Integer.parseInt(line));
-				line = in.readLine();
-				OverworldState.npcs.get(count).setR(Integer.parseInt(line));
-				line = in.readLine();
-				OverworldState.npcs.get(count).setC(Integer.parseInt(line));
-				line = in.readLine();
-				OverworldState.npcs.get(count).setText(line);
-				OverworldState.npcs.get(count).setSprite();
-				count++;
-		
+			line = in.readLine();
+			OverworldState.npcs.get(count).setX(Integer.parseInt(line));
+			line = in.readLine();
+			OverworldState.npcs.get(count).setY(Integer.parseInt(line));
+			line = in.readLine();
+			OverworldState.npcs.get(count).setR(Integer.parseInt(line));
+			line = in.readLine();
+			OverworldState.npcs.get(count).setC(Integer.parseInt(line));
+			line = in.readLine();
+			OverworldState.npcs.get(count).setText(line);
+			OverworldState.npcs.get(count).setSprite();
+			count++;
+
 		}
-		
+
 	}
 
 	static Random rando = new Random();
 	static int enemyNo = -1;
+
 	
-	
-	public static void readEnemy(Enemy e, String mapName, boolean shrek) throws IOException {
-		
-		ArrayList<String> eNames = new ArrayList<String>();
-		BufferedReader in;
-		//String enemyName;
+	public static void loadEnemy(Enemy e, String mapName) throws IOException {
+		Random rando = new Random();
+		int enemyNo; 
+		enemyNo = Math.abs(rando.nextInt() % 4) + 2;
 		String line;
-		String memeName;
-		BufferedReader name = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "All_Meme_Names.txt"));
-		//int count = 0;
-		while((memeName = name.readLine()) != null) {
-		eNames.add(memeName);	
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\Test.txt"));
+		if(e.equals(BattleState.shrek)) {
+			enemyNo = 1;
 		}
-		enemyNo = Math.abs(rando.nextInt() % eNames.size());
-		if(!shrek) {
-		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + eNames.get(enemyNo)));
-		}else {
-		in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\" + "Shrek.txt"));
+		
+
+		// do this until you find the rand mon
+		for (int j = 0; j < enemyNo; j++) {
+
+			line = in.readLine();
+			e.setImage(line);
+
+			line = in.readLine();
+			e.setName(line);
+			line = in.readLine();
+			e.setHP(Double.parseDouble(line));
+			//e.moves.clear();
+			// read four moves and store them
+			for (int i = 0; i < 4; i++) {
+				e.moves.add(new Moves());
+
+				line = in.readLine();
+				e.moves.get(i).setName(line);
+				line = in.readLine();
+				e.moves.get(i).setDamage(Integer.parseInt(line));
+				line = in.readLine();
+				e.moves.get(i).setAccuracy(Integer.parseInt(line));
+				line = in.readLine();
+				e.moves.get(i).setSound(line);
+				// System.out.println(Moves.moves.get(i).name);
+				// System.out.println(Moves.moves.get(i).damage);
+				// System.out.println(Moves.moves.get(i).accuracy);
+				// System.out.println(Moves.moves.get(i).sound);
+			}
+
 		}
-		while((line = in.readLine()) != null) {
-				e.setImage(line);
-				line = in.readLine();
-				e.setName(line);
-				line = in.readLine();
-				e.setHP(Double.parseDouble(line));
-				line = in.readLine();
-				
-				e.setM1(line);
-				line = in.readLine();
-				e.setM1d(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM1a(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM1s(line);
-				line = in.readLine();
-				
-				e.setM2(line);
-				line = in.readLine();
-				e.setM2d(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM2a(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM2s(line);
-				line = in.readLine();
-				
-				e.setM3(line);
-				line = in.readLine();
-				e.setM3d(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM3a(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM3s(line);
-				line = in.readLine();
-				
-				e.setM4(line);
-				line = in.readLine();
-				e.setM4d(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM4a(Integer.parseInt(line));
-				line = in.readLine();
-				e.setM4s(line);
-				line = in.readLine();
-		}
+		System.out.println("NUM: " + enemyNo);
 		
 	}
-	
 }
