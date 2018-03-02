@@ -136,7 +136,7 @@ public class MapRetrevial {
 
 		// do this until you find the rand mon
 		for (int j = 0; j < enemyNo; j++) {
-
+			e.moves.clear();
 			line = in.readLine();
 			e.setImage(line);
 
@@ -144,7 +144,7 @@ public class MapRetrevial {
 			e.setName(line);
 			line = in.readLine();
 			e.setHP(Double.parseDouble(line));
-			//e.moves.clear();
+			
 			// read four moves and store them
 			for (int i = 0; i < 4; i++) {
 				e.moves.add(new Moves());
@@ -157,10 +157,10 @@ public class MapRetrevial {
 				e.moves.get(i).setAccuracy(Integer.parseInt(line));
 				line = in.readLine();
 				e.moves.get(i).setSound(line);
-				// System.out.println(Moves.moves.get(i).name);
-				// System.out.println(Moves.moves.get(i).damage);
-				// System.out.println(Moves.moves.get(i).accuracy);
-				// System.out.println(Moves.moves.get(i).sound);
+				// System.out.println(e.moves.get(i).name);
+				// System.out.println(e.moves.get(i).damage);
+				// System.out.println(e.moves.get(i).accuracy);
+				// System.out.println(e.moves.get(i).sound);
 			}
 
 		}

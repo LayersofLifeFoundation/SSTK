@@ -24,7 +24,6 @@ import Battle.*;
 import FileSystem.MapRetrevial;
 
 public class BattleState extends GameState {
-	static boolean dead;
 	public BufferedImage hpImg;
 	public HpBar pb = new HpBar(hpImg, 40, 50);
 	public HpBar eb = new HpBar(hpImg, 700, 50);
@@ -50,7 +49,7 @@ public class BattleState extends GameState {
 			shrek.hpPercent = shrek.hpLev / shrek.hpMax;
 
 			for(int i = 0; i < 4; i++) {
-				buttons.add(new Button(i, 54 * (i + 1), 540, shrek.moves.get(i).name));
+				buttons.add(new Button(i, 262 * (i + 1) - 208, 540, shrek.moves.get(i).name));
 			}
 			
 			buttons .get(selectedState).select();
@@ -60,12 +59,37 @@ public class BattleState extends GameState {
 			e.printStackTrace();
 		}
 	}
+	
+	// move button select
+		public static void moveRight() {
+			buttons.get(selectedState).deselect();
+			Music.startSound2("SFX\\Hitmarker.wav", false);
+			if (selectedState == 3) {
+				selectedState = 0;
+			} else {
+				selectedState++;
+			}
+			buttons.get(selectedState).select();
+		}
+
+		public static void moveLeft() {
+			buttons.get(selectedState).deselect();
+			Music.startSound2("SFX\\Hitmarker.wav", false);
+			if (selectedState == 0) {
+				selectedState = 3;
+			} else {
+				selectedState--;
+			}
+			buttons.get(selectedState).select();
+		}
+
 
 	public static void startBattleMusic() {
 		Music.stopSound();
 		Music.startSound("Music\\SwampBattle.wav", true);
 	}
 
+	//update new enemy info
 	public void loadEnemy() {
 		try {
 			MapRetrevial.loadEnemy(enemy, "World1");
@@ -78,37 +102,13 @@ public class BattleState extends GameState {
 		enemy.hpPercent = enemy.hpLev / enemy.hpMax;
 	}
 
-	// move button select
-	public static void moveRight() {
-		buttons.get(selectedState).deselect();
-		Music.startSound2("SFX\\Hitmarker.wav", false);
-		if (selectedState == 3) {
-			selectedState = 0;
-		} else {
-			selectedState++;
-		}
-		buttons.get(selectedState).select();
-	}
-
-	public static void moveLeft() {
-		buttons.get(selectedState).deselect();
-		Music.startSound2("SFX\\Hitmarker.wav", false);
-		if (selectedState == 0) {
-			selectedState = 3;
-		} else {
-			selectedState--;
-		}
-		buttons.get(selectedState).select();
-	}
-
-	//Executes the attack 
+	
+	//Executes the attack when button is pushed
 	public static void attack() {
-		hpBound();
 		useMove(shrek);
 		hpBound();
 		useMove(enemy);
 		hpBound();
-		
 
 		System.out.println("Shrek: " + shrek.hpLev);
 		System.out.println("Enemy: " + enemy.hpLev);
@@ -123,14 +123,10 @@ public class BattleState extends GameState {
 		Enemy defense = null;
 		if(e.equals(enemy)) {
 			current = enemy.moves.get(eChoice);
-			System.out.println("E" + enemy.hpMax);
-			System.out.println(enemy.hpMax);
 			defense = shrek;
 		}
 		else if(e.equals(shrek)) {
 			current = shrek.moves.get(selectedState);
-			System.out.println("S" + shrek.hpMax);
-			System.out.println(shrek.hpMax);
 			defense = enemy;
 		}		
 			message = e.name + " Used " + current.name;
@@ -142,8 +138,6 @@ public class BattleState extends GameState {
 	
 		System.out.println(message);
 		message = "";
-		//selectedState = tmp;
-		
 	}
 
 	public void hpColor(Enemy e, Graphics g) {
@@ -156,6 +150,7 @@ public class BattleState extends GameState {
 		}
 	}
 
+	//improve later
 	public static void hpBound() {
 		shrek.hpPercent = shrek.hpLev / shrek.hpMax;
 		if (shrek.hpLev > shrek.hpMax) {
@@ -171,7 +166,6 @@ public class BattleState extends GameState {
 		if (enemy.hpLev <= 0) {
 			enemy.hpLev = 0;
 			System.out.println(enemy.name + " is a dead meme!");
-			dead = true;
 			enemy.hpLev = enemy.hpMax;
 			Music.stopSound();
 			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
@@ -212,6 +206,7 @@ public class BattleState extends GameState {
 		// g.drawRect(700, 100, 350, 350); //Enema's square
 		g.drawRect(40, 480, 1010, 100); // Attack Options
 
+		//player/enemy render into one clean function
 		// player stuff
 		g.drawImage(shrek.enemyPic, 40, 100, 350, 350, null);
 		g.setColor(Color.GREEN);

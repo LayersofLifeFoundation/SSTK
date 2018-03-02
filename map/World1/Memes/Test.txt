@@ -55,22 +55,22 @@ Shutterstock
 30
 80
 SFX\\Smack.wav
-/Cool_Cat.png
-Cool Cat
-130
-Boogie Woogie
-60
-45
-SFX\\BoogieWoogie.wav
-I love all kids
-15
+/Fat_Yoshi.png
+FAT YOSHI
+75
+Meet Shrek
+20
+85
+SFX\\smack.wav
+Simple Request
+29
+65
+SFX\\smack.wav
+VoRe?
 100
-SFX\\AllKids.wav
-Identify yourself!
-25
+3
+SFX\\smack.wav
+Jelly Belly
+12
 95
-SFX\\Identify.wav
-Exquisite
-30
-80
-SFX\\Exquisite.wav
+SFX\\smack.wav

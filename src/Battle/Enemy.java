@@ -43,7 +43,7 @@ public class Enemy {
 		public BufferedImage enemyPic;
 		public String imgPath;
 		public String name;
-		public static ArrayList<Moves> moves = new ArrayList<Moves>();
+		public ArrayList<Moves> moves = new ArrayList<Moves>();
 		
 		
 				
@@ -63,11 +63,9 @@ public class Enemy {
 		}
 		public void setHP(double i) {
 			hpMax = i;
-
 		}
-}
 	
-
+}
 
 
 	
