@@ -1,6 +1,7 @@
 package Player;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -17,7 +18,6 @@ public class Player {
 	static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-	//public static BufferedImage hpImg;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -38,16 +38,7 @@ public class Player {
 	public static boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";
-	
-	
-	
-	//static int barX = 229;
-	//static int barY = 19;
-	//public static double pHpMax = 10030;
-	//current HP
-	//public static double hpLev;
-	//public static double pHpPercent;
-	// returns the sprite at the specified index of the sprite sheet
+
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
 		return image;
@@ -58,9 +49,7 @@ public class Player {
 		
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
-			//hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 		} catch (IOException e) {
-			// e.printStackTrace();
 		}
 		currentSprite = grabImage(spriteSheet, 3, 1);
 	}
@@ -102,11 +91,6 @@ public class Player {
 				}
 				moveLeft = true;
 				facing = "Left";
-				//Music.stopSound();
-		//		Music.startSound2("SFX\\omae.wav", true);
-				//Music.startSound2("SFX\\Airhorn.wav", true);
-				//Music.startSound2("SFX\\Hello_There.wav", true);
-				//Music.startSound2("SFX\\Hitmarker.wav", true);
 			}
 		}
 	}
@@ -281,11 +265,7 @@ public class Player {
 			currentSprite = grabImage(spriteSheet, 7, 13);
 		} else if (i >= tim * 19 && i < tim * 20) {
 			currentSprite = grabImage(spriteSheet, 8, 4);
-		} else {
-			die = false;
-			dieAnime = 0;
-			isMoving = false;
-		}
+		} 
 	}
 
 	public void Dab() {
@@ -351,7 +331,12 @@ public class Player {
 	 */
 	public static void render(Graphics g) {
 		g.drawImage(currentSprite, Game.WIDTH / 2 - Game.WIDTH / 2 % 49, Game.HEIGHT / 2 - Game.HEIGHT / 2 % 49, null);
-	
+		
+		if(die) {
+			g.setColor(Color.RED);
+			g.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 100));
+			g.drawString("GAME OVER",  150 , Game.HEIGHT / 2 - 100);
+		}
 	
 	//draw HP bar 294X24px
 	//green starts at px49 and ends at px279 

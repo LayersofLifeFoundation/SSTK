@@ -29,23 +29,18 @@ import java.io.*;
 import java.util.ArrayList;
 public class Enemy {
 		
-		//enemy hp
 		public BufferedImage hpImg;
 		public int barX = 229;
 		public int barY = 19;
-	
 		public double hpLev;
 		public double hpMax;
 		public double hpPercent;
-				
-		//read stuff for enemy/ player
 		public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 30);
 		public BufferedImage enemyPic;
 		public String imgPath;
 		public String name;
 		public ArrayList<Moves> moves = new ArrayList<Moves>();
-		
-		
+		public boolean rip = false;
 				
 		public void tick() {		
 

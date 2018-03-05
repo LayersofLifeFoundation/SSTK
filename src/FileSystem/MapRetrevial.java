@@ -124,31 +124,27 @@ public class MapRetrevial {
 
 	
 	public static void loadEnemy(Enemy e, String mapName) throws IOException {
+		System.out.println("Loading Character Now");
 		Random rando = new Random();
 		int enemyNo; 
+		//%5 is tmp this is # of mons in area
 		enemyNo = Math.abs(rando.nextInt() % 4) + 2;
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\Test.txt"));
-		if(e.equals(BattleState.shrek)) {
+		if(e.equals(BattleState.shrek)) 
 			enemyNo = 1;
-		}
-		
-
 		// do this until you find the rand mon
 		for (int j = 0; j < enemyNo; j++) {
 			e.moves.clear();
 			line = in.readLine();
 			e.setImage(line);
-
 			line = in.readLine();
 			e.setName(line);
 			line = in.readLine();
 			e.setHP(Double.parseDouble(line));
-			
 			// read four moves and store them
 			for (int i = 0; i < 4; i++) {
 				e.moves.add(new Moves());
-
 				line = in.readLine();
 				e.moves.get(i).setName(line);
 				line = in.readLine();
@@ -157,14 +153,8 @@ public class MapRetrevial {
 				e.moves.get(i).setAccuracy(Integer.parseInt(line));
 				line = in.readLine();
 				e.moves.get(i).setSound(line);
-				// System.out.println(e.moves.get(i).name);
-				// System.out.println(e.moves.get(i).damage);
-				// System.out.println(e.moves.get(i).accuracy);
-				// System.out.println(e.moves.get(i).sound);
 			}
-
 		}
-		System.out.println("NUM: " + enemyNo);
-		
+		System.out.println("Done! Loaded " + e.name);	
 	}
 }

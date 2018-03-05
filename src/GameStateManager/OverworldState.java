@@ -7,9 +7,9 @@ import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-
 import javax.imageio.ImageIO;
 
+import Battle.BattleState;
 import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
@@ -67,7 +67,9 @@ public class OverworldState extends GameState {
 
 	public static void stateOverworldState() {
 
-		Music.startSound(swampMusic, true); 
+		Music.startSound(swampMusic, true);
+		GameStateManager.battle.loadEnemy(BattleState.enemy);
+
 	}
 
 	public static boolean NPCPresent(int x, int y) {

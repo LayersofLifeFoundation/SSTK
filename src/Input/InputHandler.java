@@ -141,11 +141,6 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_B) {
 				
 				BattleState.startBattleMusic();
-				GameStateManager.battle.loadEnemy();
-				 System.out.println(BattleState.shrek.moves.get(2).name);
-				 //System.out.println(BattleState.shrek.moves.get(1).damage);
-				 //System.out.println(BattleState.shrek.moves.get(2).accuracy);
-				 //System.out.println(BattleState.shrek.moves.get(3).sound);
 				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
 			}
 		}

@@ -38,15 +38,11 @@ public class BattleState extends GameState {
 	public BattleState() {
 
 		try {
-
+			//load hb bar outlines
 			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
-
-			MapRetrevial.loadEnemy(shrek, "World1");
-
-			shrek.enemyPic = ImageIO.read(getClass().getResource(shrek.imgPath));
-			shrek.hpLev = shrek.hpMax;
-			shrek.hpPercent = shrek.hpLev / shrek.hpMax;
+			//initialize shrek
+			loadEnemy(shrek);
 
 			for(int i = 0; i < 4; i++) {
 				buttons.add(new Button(i, 262 * (i + 1) - 208, 540, shrek.moves.get(i).name));
@@ -59,30 +55,6 @@ public class BattleState extends GameState {
 			e.printStackTrace();
 		}
 	}
-	
-	// move button select
-		public static void moveRight() {
-			buttons.get(selectedState).deselect();
-			Music.startSound2("SFX\\Hitmarker.wav", false);
-			if (selectedState == 3) {
-				selectedState = 0;
-			} else {
-				selectedState++;
-			}
-			buttons.get(selectedState).select();
-		}
-
-		public static void moveLeft() {
-			buttons.get(selectedState).deselect();
-			Music.startSound2("SFX\\Hitmarker.wav", false);
-			if (selectedState == 0) {
-				selectedState = 3;
-			} else {
-				selectedState--;
-			}
-			buttons.get(selectedState).select();
-		}
-
 
 	public static void startBattleMusic() {
 		Music.stopSound();
@@ -90,28 +62,23 @@ public class BattleState extends GameState {
 	}
 
 	//update new enemy info
-	public void loadEnemy() {
+	 // currently loads in overworldstate
+	public void loadEnemy(Enemy e) {
 		try {
-			MapRetrevial.loadEnemy(enemy, "World1");
-			enemy.enemyPic = ImageIO.read(getClass().getResource(enemy.imgPath));
-		} catch (IOException e) {
+			MapRetrevial.loadEnemy(e, "World1");
+			e.enemyPic = ImageIO.read(getClass().getResource(e.imgPath));
+		} catch (IOException j) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			j.printStackTrace();
 		}
-		enemy.hpLev = enemy.hpMax;
-		enemy.hpPercent = enemy.hpLev / enemy.hpMax;
+		e.hpLev = e.hpMax;
+		e.hpPercent = e.hpLev / e.hpMax;
 	}
-
-	
+		
 	//Executes the attack when button is pushed
 	public static void attack() {
 		useMove(shrek);
-		hpBound();
 		useMove(enemy);
-		hpBound();
-
-		System.out.println("Shrek: " + shrek.hpLev);
-		System.out.println("Enemy: " + enemy.hpLev);
 	}
 
 	// uses enemy e's attack on other party
@@ -138,8 +105,30 @@ public class BattleState extends GameState {
 	
 		System.out.println(message);
 		message = "";
+		hpBound(defense);
 	}
 
+	//keeps hp within appropriate range and determines if the defense dies
+	public static void hpBound(Enemy e) {
+		if (e.hpLev > e.hpMax) {
+			e.hpLev = e.hpMax;
+		}
+		if (e.hpLev <= 0) {
+			e.hpLev = 0;
+			System.out.println(e.name + " is a dead meme!");
+			e.rip = true;
+			Music.stopSound();
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+			OverworldState.stateOverworldState();
+		}
+		if (e.hpLev > e.hpMax)
+			e.hpLev = e.hpMax;
+		e.hpPercent = e.hpLev / e.hpMax;
+	}
+	
+	public void tick() {
+	}
+	
 	public void hpColor(Enemy e, Graphics g) {
 		if (e.hpLev <= e.hpMax / 4) {
 			g.setColor(Color.RED);
@@ -148,45 +137,6 @@ public class BattleState extends GameState {
 		} else {
 			g.setColor(Color.GREEN);
 		}
-	}
-
-	//improve later
-	public static void hpBound() {
-		shrek.hpPercent = shrek.hpLev / shrek.hpMax;
-		if (shrek.hpLev > shrek.hpMax) {
-			shrek.hpLev = shrek.hpMax;
-		}
-		if (shrek.hpLev < 0) {
-			shrek.hpLev = 0;
-		}
-		enemy.hpPercent = enemy.hpLev / enemy.hpMax;
-		if (enemy.hpLev > enemy.hpMax) {
-			enemy.hpLev = enemy.hpMax;
-		}
-		if (enemy.hpLev <= 0) {
-			enemy.hpLev = 0;
-			System.out.println(enemy.name + " is a dead meme!");
-			enemy.hpLev = enemy.hpMax;
-			Music.stopSound();
-			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
-			OverworldState.stateOverworldState();
-		}
-		if (shrek.hpLev <= 0) {
-			shrek.hpLev = 0;
-			System.out.println(shrek.name + " is a dead meme!");
-			Player.die = true;
-			Music.stopSound();
-			Music.startSound("Music\\GOW1.wav", true);
-			Music.startSound2("SFX\\omae.wav", false);
-			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
-
-		}
-	}
-
-	public void tick() {
-		enemy.tick();
-		shrek.tick();
-		
 	}
 
 	public void render(Graphics g) {
@@ -224,5 +174,27 @@ public class BattleState extends GameState {
 		g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
 		hpColor(enemy, g);
 		g.fillRect(49 + eb.x, eb.y, (int) (230 * enemy.hpPercent), 19);
+	}
+	
+    // move button select
+	public static void moveRight() {
+		buttons.get(selectedState).deselect();
+		Music.startSound2("SFX\\Hitmarker.wav", false);
+		if (selectedState == 3) {
+			selectedState = 0;
+		} else {
+			selectedState++;
+		}
+		buttons.get(selectedState).select();
+	}
+	public static void moveLeft() {
+		buttons.get(selectedState).deselect();
+		Music.startSound2("SFX\\Hitmarker.wav", false);
+		if (selectedState == 0) {
+			selectedState = 3;
+		} else {
+			selectedState--;
+		}
+		buttons.get(selectedState).select();
 	}
 }
