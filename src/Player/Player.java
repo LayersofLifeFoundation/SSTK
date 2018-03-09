@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Battle.BattleState;
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
 import Sounds.Music;
@@ -34,7 +35,6 @@ public class Player {
 	int punRightAnime = 0;
 	public boolean punRight = false;
 	int dieAnime = 0;
-	public static boolean die = false;
 	public static boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";
@@ -45,8 +45,8 @@ public class Player {
 	}
 
 	public Player() {
-		//hpLev = 229;
-		
+		isMoving = false;
+
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
 		} catch (IOException e) {
@@ -159,7 +159,7 @@ public class Player {
 	}
 
 	public void animateDown(int i) {
-		int speed = 9;
+		int speed = 6;
 		if (i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 3, 1);
@@ -173,7 +173,7 @@ public class Player {
 	}
 
 	public void animateUp(int i) {
-		int speed = 9;
+		int speed = 6;
 		if (i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 4, 1);
@@ -187,7 +187,7 @@ public class Player {
 	}
 
 	public void punchRight(int i) {
-		int speed = 9;
+		int speed = 5;
 		isMoving = true;
 		if (i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 5, 1);
@@ -316,7 +316,7 @@ public class Player {
 			punRightAnime++;
 		}
 
-		if (die) {
+		if (BattleState.shrek.rip) {
 			animateDie(dieAnime);
 			dieAnime++;
 		}
@@ -331,25 +331,6 @@ public class Player {
 	 */
 	public static void render(Graphics g) {
 		g.drawImage(currentSprite, Game.WIDTH / 2 - Game.WIDTH / 2 % 49, Game.HEIGHT / 2 - Game.HEIGHT / 2 % 49, null);
-		
-		if(die) {
-			g.setColor(Color.RED);
-			g.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 100));
-			g.drawString("GAME OVER",  150 , Game.HEIGHT / 2 - 100);
-		}
-	
-	//draw HP bar 294X24px
-	//green starts at px49 and ends at px279 
-	/*	g.drawImage(hpImg, 0, 0, 294, 24, null);
-		if(hpLev <= pHpMax / 4) {
-			g.setColor(Color.RED);
-		}else if(hpLev <= pHpMax / 2) {
-			g.setColor(Color.YELLOW);	
-		}else{
-			g.setColor(Color.GREEN);
-		}
-		g.fillRect(49, 0, (int) (barX * pHpPercent), barY);
-	*/
 	}
 
 	/*

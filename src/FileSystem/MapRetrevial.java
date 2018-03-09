@@ -130,7 +130,7 @@ public class MapRetrevial {
 		//%5 is tmp this is # of mons in area
 		enemyNo = Math.abs(rando.nextInt() % 4) + 2;
 		String line;
-		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Memes" + "\\Test.txt"));
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Enemies.txt"));
 		if(e.equals(BattleState.shrek)) 
 			enemyNo = 1;
 		// do this until you find the rand mon

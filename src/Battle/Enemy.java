@@ -1,37 +1,14 @@
 package Battle;
 
-import GameStateManager.Game;
-import GameStateManager.GameState;
-import GameStateManager.GameStateManager;
-import Sounds.Music;
-
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import javax.imageio.ImageIO;
 
-import FileSystem.MapRetrevial;
-import javax.imageio.ImageIO;
-
-import FileSystem.MapRetrevial;
-import Maps.Link;
-import Maps.MovementMap;
-import NPC.NPC;
-import Player.Player;
-import Sounds.Music;
-import TextMap.TextMap;
-import java.io.*;
-import java.util.ArrayList;
 public class Enemy {
 		
 		public BufferedImage hpImg;
-		public int barX = 229;
-		public int barY = 19;
+		//current hp level
 		public double hpLev;
 		public double hpMax;
 		public double hpPercent;

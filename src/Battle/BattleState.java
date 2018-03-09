@@ -10,20 +10,17 @@ import Sounds.Music;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Random;
 import Player.Player;
-
 import javax.imageio.ImageIO;
-import Battle.*;
 
 import FileSystem.MapRetrevial;
 
 public class BattleState extends GameState {
+	public BufferedImage bkg;	
 	public BufferedImage hpImg;
 	public HpBar pb = new HpBar(hpImg, 40, 50);
 	public HpBar eb = new HpBar(hpImg, 700, 50);
@@ -38,7 +35,8 @@ public class BattleState extends GameState {
 	public BattleState() {
 
 		try {
-			//load hb bar outlines
+			bkg = ImageIO.read(getClass().getResource("/W1BKG.jpg"));
+			//load hp bar outlines
 			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 			//initialize shrek
@@ -48,68 +46,76 @@ public class BattleState extends GameState {
 				buttons.add(new Button(i, 262 * (i + 1) - 208, 540, shrek.moves.get(i).name));
 			}
 			
-			buttons .get(selectedState).select();
+			buttons.get(selectedState).select();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public static void startBattleMusic() {
+	public static String bs = "omae.wav";
+	//plays battle-start sound and start battle state when the track finishes
+	//The check for finishing the sound is in OverworldState's tick() for now
+	public static void startSwampBattleMusic() {
 		Music.stopSound();
-		Music.startSound("Music\\SwampBattle.wav", true);
+		Music.startSound("SFX\\" + bs, false);
 	}
 
 	//update new enemy info
-	 // currently loads in overworldstate
+	 // currently preloads enemy in overworldstate
 	public void loadEnemy(Enemy e) {
 		try {
 			MapRetrevial.loadEnemy(e, "World1");
 			e.enemyPic = ImageIO.read(getClass().getResource(e.imgPath));
-		} catch (IOException j) {
-			// TODO Auto-generated catch block
-			j.printStackTrace();
+		} catch (IOException i) {
+			i.printStackTrace();
 		}
 		e.hpLev = e.hpMax;
 		e.hpPercent = e.hpLev / e.hpMax;
+		e.rip = false;
 	}
 		
 	//Executes the attack when button is pushed
 	public static void attack() {
-		useMove(shrek);
+		//speed stat can easily be added here
 		useMove(enemy);
+		useMove(shrek);
 	}
 
 	// uses enemy e's attack on other party
 	public static void useMove(Enemy e) {
-		int eChoice = Math.abs(RNG.nextInt() % 4);
-		int accurate = Math.abs(RNG.nextInt() % 100);
-		Moves current = null;
-		Enemy offense = e;
-		Enemy defense = null;
-		if(e.equals(enemy)) {
-			current = enemy.moves.get(eChoice);
-			defense = shrek;
-		}
-		else if(e.equals(shrek)) {
-			current = shrek.moves.get(selectedState);
-			defense = enemy;
-		}		
+		if(!e.rip) {
+			message = "";
+			int eChoice = Math.abs(RNG.nextInt() % 4);
+			int accurate = Math.abs(RNG.nextInt() % 100);
+			Moves current = null;
+			Enemy offense = e;
+			Enemy defense = null;
+			//who is attacking who
+			if(e.equals(enemy)) {
+				current = enemy.moves.get(eChoice);
+				defense = shrek;
+			}
+			else if(e.equals(shrek)) {
+				current = shrek.moves.get(selectedState);
+				defense = enemy;
+			}		
+			//update dialogue and use move
 			message = e.name + " Used " + current.name;
 			if (accurate <= current.accuracy) {
 				defense.hpLev -= current.damage;
 				Music.startSound2(current.sound, false);
 			} else
 				message += " But Missed!";
-	
 		System.out.println(message);
-		message = "";
+		//check for a kill on recieving side
 		hpBound(defense);
+		}
 	}
 
-	//keeps hp within appropriate range and determines if the defense dies
+	//keeps hp within appropriate range and checks for a kill
 	public static void hpBound(Enemy e) {
+		e.hpPercent = e.hpLev / e.hpMax;
 		if (e.hpLev > e.hpMax) {
 			e.hpLev = e.hpMax;
 		}
@@ -120,15 +126,17 @@ public class BattleState extends GameState {
 			Music.stopSound();
 			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
 			OverworldState.stateOverworldState();
-		}
-		if (e.hpLev > e.hpMax)
-			e.hpLev = e.hpMax;
-		e.hpPercent = e.hpLev / e.hpMax;
+			if(e.equals(shrek)) {
+				OverworldState.gameOver();
+			}
+		}	
 	}
 	
 	public void tick() {
+		
 	}
 	
+	//changes the color of the hp Bar according to health level 
 	public void hpColor(Enemy e, Graphics g) {
 		if (e.hpLev <= e.hpMax / 4) {
 			g.setColor(Color.RED);
@@ -140,6 +148,9 @@ public class BattleState extends GameState {
 	}
 
 	public void render(Graphics g) {
+		g.drawImage(bkg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+		g.setColor(Color.BLACK);
+		g.fillRect(40, 480, 1010, 100); // Attack Outline
 		enemy.render(g);
 		shrek.render(g);
 
@@ -151,12 +162,12 @@ public class BattleState extends GameState {
 		}
 
 		// test stuff
-		g.setColor(Color.MAGENTA);
-		// g.drawRect(40, 100, 350, 350); //Shrek's square
-		// g.drawRect(700, 100, 350, 350); //Enema's square
-		g.drawRect(40, 480, 1010, 100); // Attack Options
+		
+		 //g.drawRect(40, 100, 350, 350); //Shrek's square
+		 //g.drawRect(700, 100, 350, 350); //Enemy's square
+		
 
-		//player/enemy render into one clean function
+		//Redundant player/enemy rendering. will improve later 
 		// player stuff
 		g.drawImage(shrek.enemyPic, 40, 100, 350, 350, null);
 		g.setColor(Color.GREEN);
