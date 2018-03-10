@@ -65,7 +65,7 @@ public class OverworldState extends GameState {
 
 	public static void stateOverworldState() {
 		Music.startSound(swampMusic, true);
-		GameStateManager.battle.loadEnemy(BattleState.enemy);
+		GameStateManager.battle.nextEnemy(BattleState.enemy);
 		Player.isMoving = false;
 	}
 
@@ -161,9 +161,10 @@ public class OverworldState extends GameState {
 			}
 		} catch (ConcurrentModificationException e) {
 		}
-		//hard coded audio name rn
-		//hopefully this will change with the map in the future
-		if(Music.audioClip.getMicrosecondLength() <= Music.audioClip.getMicrosecondPosition() && Music.audioFile.getName().equals(BattleState.bs)) {
+		//*This is when the BattleState starts*
+		//It is triggered when a key sound finishes
+		if(Music.audioClip.getMicrosecondLength() <= Music.audioClip.getMicrosecondPosition() 
+				&& Music.audioFile.getName().equals(BattleState.bs)) {
 			Player.isMoving = true;
 			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
 			Music.startSound("Music\\SwampBattle.wav", true);	
@@ -176,9 +177,7 @@ public class OverworldState extends GameState {
 	public static void gameOver() {
 			Music.stopSound();
 			Music.startSound("Music\\GOW1.wav", true);
-		}
-	
-	
+	}
 	/*
 	 * Passes down the render function
 	 */

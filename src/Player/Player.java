@@ -129,7 +129,6 @@ public class Player {
 			moveRight = false;
 			rightAnime = 0;
 			isMoving = false;
-
 		}
 	}
 
@@ -154,7 +153,6 @@ public class Player {
 			moveLeft = false;
 			leftAnime = 0;
 			isMoving = false;
-
 		}
 	}
 
@@ -273,21 +271,15 @@ public class Player {
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
-						
-			//hpLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
-			//hpLev++;
 		}
 	}
 
 	public void tick() {
-		//pHpPercent = hpLev / pHpMax;
-		
 		if (moveUp) {
 			animateUp(upAnime);
-			// isMoving = true;
 			upAnime++;
 		}
 

@@ -21,50 +21,48 @@ import FileSystem.MapRetrevial;
 
 public class BattleState extends GameState {
 	public BufferedImage bkg;	
-	public BufferedImage hpImg;
-	public HpBar pb = new HpBar(hpImg, 40, 50);
-	public HpBar eb = new HpBar(hpImg, 700, 50);
 	public Font font = new Font("Gill Sans Ultra Bold", Font.PLAIN, 50);
 	public static Enemy enemy = new Enemy();
 	public static Enemy shrek = new Enemy();
 	public static ArrayList<Button> buttons = new ArrayList<Button>();
 	public static int selectedState = 0;
 	public static Random RNG = new Random();
-	public static String message;
+	public static String message = "";
 
 	public BattleState() {
 
 		try {
 			bkg = ImageIO.read(getClass().getResource("/W1BKG.jpg"));
-			//load hp bar outlines
-			pb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
-			eb.hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
+			//static hp bar shells
+			shrek.bar = new HpBar(ImageIO.read(getClass().getResource("/HPBar.png")), 40, 50);
+			enemy.bar = new HpBar(ImageIO.read(getClass().getResource("/HPBar.png")), 700, 50);
 			//initialize shrek
-			loadEnemy(shrek);
-
+			nextEnemy(shrek);
 			for(int i = 0; i < 4; i++) {
 				buttons.add(new Button(i, 262 * (i + 1) - 208, 540, shrek.moves.get(i).name));
 			}
-			
 			buttons.get(selectedState).select();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static String bs = "omae.wav";
-	//plays battle-start sound and start battle state when the track finishes
+	//plays battle-start sound and starts BattleState when the track finishes
 	//The check for finishing the sound is in OverworldState's tick() for now
-	public static void startSwampBattleMusic() {
+	public static String bs = "Hello_There.wav";
+	public static void startSwampBattle() {
 		Music.stopSound();
 		Music.startSound("SFX\\" + bs, false);
+		message += "A Wild " + enemy.name + " Appeared!";
+		System.out.println(message);
 	}
 
 	//update new enemy info
-	 // currently preloads enemy in overworldstate
-	public void loadEnemy(Enemy e) {
+	//currently called in overworldstate
+	//later they may be stored in arrays for more efficiency 
+	public void nextEnemy(Enemy e) {
 		try {
+			//"World1" is tmp this will be current map name
 			MapRetrevial.loadEnemy(e, "World1");
 			e.enemyPic = ImageIO.read(getClass().getResource(e.imgPath));
 		} catch (IOException i) {
@@ -89,9 +87,7 @@ public class BattleState extends GameState {
 			int eChoice = Math.abs(RNG.nextInt() % 4);
 			int accurate = Math.abs(RNG.nextInt() % 100);
 			Moves current = null;
-			Enemy offense = e;
 			Enemy defense = null;
-			//who is attacking who
 			if(e.equals(enemy)) {
 				current = enemy.moves.get(eChoice);
 				defense = shrek;
@@ -108,7 +104,7 @@ public class BattleState extends GameState {
 			} else
 				message += " But Missed!";
 		System.out.println(message);
-		//check for a kill on recieving side
+		//check for a kill on receiving side
 		hpBound(defense);
 		}
 	}
@@ -136,56 +132,40 @@ public class BattleState extends GameState {
 		
 	}
 	
-	//changes the color of the hp Bar according to health level 
-	public void hpColor(Enemy e, Graphics g) {
-		if (e.hpLev <= e.hpMax / 4) {
-			g.setColor(Color.RED);
-		} else if (e.hpLev <= e.hpMax / 2) {
-			g.setColor(Color.YELLOW);
-		} else {
-			g.setColor(Color.GREEN);
-		}
-	}
-
 	public void render(Graphics g) {
 		g.drawImage(bkg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g.setColor(Color.BLACK);
-		g.fillRect(40, 480, 1010, 100); // Attack Outline
-		enemy.render(g);
-		shrek.render(g);
-
-		// draw buttons
+		g.fillRect(40, 480, 1010, 100); // textbox Outline
 		g.setFont(font);
 		for (Button b : buttons) {
 			Button.font = new Font("Franklin Gothic Demi Cond", Font.PLAIN, 35);
 			b.render(g);
-		}
-
-		// test stuff
-		
-		 //g.drawRect(40, 100, 350, 350); //Shrek's square
-		 //g.drawRect(700, 100, 350, 350); //Enemy's square
-		
-
-		//Redundant player/enemy rendering. will improve later 
-		// player stuff
+		}	
 		g.drawImage(shrek.enemyPic, 40, 100, 350, 350, null);
-		g.setColor(Color.GREEN);
-		g.setFont(shrek.font);
-		g.drawString(shrek.name, pb.x, pb.y - 7);
-		g.drawImage(pb.hpImg, pb.x, pb.y, 294, 24, null);
-		hpColor(shrek, g);
-		g.fillRect(49 + pb.x, pb.y, (int) (230 * shrek.hpPercent), 19);
-
-		// enemy stuff
 		g.drawImage(enemy.enemyPic, 700, 100, 350, 350, null);
-		g.setColor(Color.GREEN);
-		g.setFont(enemy.font);
-		g.drawString(enemy.name, eb.x, eb.y - 7);
-		g.drawImage(eb.hpImg, eb.x, eb.y, 294, 24, null);
-		hpColor(enemy, g);
-		g.fillRect(49 + eb.x, eb.y, (int) (230 * enemy.hpPercent), 19);
+		drawHp(shrek, g);
+		drawHp(enemy, g);
 	}
+	
+	public void drawHp(Enemy e, Graphics g) {
+		g.setColor(Color.GREEN);
+		g.setFont(e.font);
+		g.drawString(e.name, e.bar.x, e.bar.y - 7);
+		g.drawImage(e.bar.hpImg, e.bar.x, e.bar.y, 294, 24, null);
+		hpColor(e, g);
+		g.fillRect(49 + e.bar.x, e.bar.y, (int) (230 * e.hpPercent), 19);
+	}
+	
+	//changes the color of the hp Bar according to health level 
+		public void hpColor(Enemy e, Graphics g) {
+			if (e.hpLev <= e.hpMax / 4) {
+				g.setColor(Color.RED);
+			} else if (e.hpLev <= e.hpMax / 2) {
+				g.setColor(Color.YELLOW);
+			} else {
+				g.setColor(Color.GREEN);
+			}
+		}
 	
     // move button select
 	public static void moveRight() {

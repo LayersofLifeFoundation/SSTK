@@ -43,6 +43,8 @@ public class Music {
 			}
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
+			System.out.println("There won't be a time you will die whilst dabbing in final game noob");
+			System.out.println("You can't break it without pushing 3");
 		}catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}

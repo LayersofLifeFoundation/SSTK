@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Enemy {
 		
-		public BufferedImage hpImg;
 		//current hp level
 		public double hpLev;
 		public double hpMax;
@@ -18,15 +17,8 @@ public class Enemy {
 		public String name;
 		public ArrayList<Moves> moves = new ArrayList<Moves>();
 		public boolean rip = false;
+		public HpBar bar;
 				
-		public void tick() {		
-
-		}
-		
-		public void render(Graphics g) {
-		
-		}
-		
 		public void setImage(String s) {
 			imgPath = s;
 		}
@@ -36,7 +28,6 @@ public class Enemy {
 		public void setHP(double i) {
 			hpMax = i;
 		}
-	
 }
 
 

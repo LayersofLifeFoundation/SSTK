@@ -127,13 +127,12 @@ public class MapRetrevial {
 		System.out.println("Loading Character Now");
 		Random rando = new Random();
 		int enemyNo; 
-		//%5 is tmp this is # of mons in area
+		//%4 is tmp this is # of mons in area
 		enemyNo = Math.abs(rando.nextInt() % 4) + 2;
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Enemies.txt"));
 		if(e.equals(BattleState.shrek)) 
 			enemyNo = 1;
-		// do this until you find the rand mon
 		for (int j = 0; j < enemyNo; j++) {
 			e.moves.clear();
 			line = in.readLine();

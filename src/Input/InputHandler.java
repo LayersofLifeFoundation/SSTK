@@ -144,7 +144,7 @@ public class InputHandler implements KeyListener {
 
 				if (keyCode == KeyEvent.VK_B) {
 					Player.isMoving = true;
-					BattleState.startSwampBattleMusic();
+					BattleState.startSwampBattle();
 					
 				}
 			}
