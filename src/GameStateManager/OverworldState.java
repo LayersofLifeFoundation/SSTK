@@ -7,9 +7,9 @@ import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-
 import javax.imageio.ImageIO;
 
+import Battle.BattleState;
 import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
@@ -60,14 +60,13 @@ public class OverworldState extends GameState {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		movMap.printMap();
-
+		//movMap.printMap();
 	}
 
 	public static void stateOverworldState() {
-
-		Music.startSound(swampMusic, true); 
+		Music.startSound(swampMusic, true);
+		GameStateManager.battle.nextEnemy(BattleState.enemy);
+		Player.isMoving = false;
 	}
 
 	public static boolean NPCPresent(int x, int y) {
@@ -161,10 +160,24 @@ public class OverworldState extends GameState {
 				link.tick();
 			}
 		} catch (ConcurrentModificationException e) {
-
+		}
+		//*This is when the BattleState starts*
+		//It is triggered when a key sound finishes
+		if(Music.audioClip.getMicrosecondLength() <= Music.audioClip.getMicrosecondPosition() 
+				&& Music.audioFile.getName().equals(BattleState.bs)) {
+			Player.isMoving = true;
+			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
+			Music.startSound("Music\\SwampBattle.wav", true);	
 		}
 	}
-
+	
+	//Game Over actions
+	//GO str is rendered below
+	//music will be unique based on map in future 
+	public static void gameOver() {
+			Music.stopSound();
+			Music.startSound("Music\\GOW1.wav", true);
+	}
 	/*
 	 * Passes down the render function
 	 */
@@ -190,6 +203,12 @@ public class OverworldState extends GameState {
 				g.drawString(lines.get(i), 20, Game.HEIGHT - Game.PIXSIZE * 3 + 70 + 30 * (i - currentLine));
 			}
 		}
-
+		
+		if(BattleState.shrek.rip) {
+			g.setColor(Color.RED);
+			g.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 100));
+			g.drawString("GAME OGRE",  150 , Game.HEIGHT / 2 - 100);
+		}
+		
 	}
 }

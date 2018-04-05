@@ -1,12 +1,14 @@
 package Player;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Battle.BattleState;
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
 import Sounds.Music;
@@ -17,7 +19,6 @@ public class Player {
 	static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-	//public static BufferedImage hpImg;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -34,33 +35,21 @@ public class Player {
 	int punRightAnime = 0;
 	public boolean punRight = false;
 	int dieAnime = 0;
-	public static boolean die = false;
 	public static boolean dab = false;
 	boolean dabState = false;
 	String facing = "Down";
-	
-	
-	
-	//static int barX = 229;
-	//static int barY = 19;
-	//public static double pHpMax = 10030;
-	//current HP
-	//public static double hpLev;
-	//public static double pHpPercent;
-	// returns the sprite at the specified index of the sprite sheet
+
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
 		return image;
 	}
 
 	public Player() {
-		//hpLev = 229;
-		
+		isMoving = false;
+
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource("/Sprite_Sheet.png"));
-			//hpImg = ImageIO.read(getClass().getResource("/HPBar.png"));
 		} catch (IOException e) {
-			// e.printStackTrace();
 		}
 		currentSprite = grabImage(spriteSheet, 3, 1);
 	}
@@ -102,11 +91,6 @@ public class Player {
 				}
 				moveLeft = true;
 				facing = "Left";
-				//Music.stopSound();
-		//		Music.startSound2("SFX\\omae.wav", true);
-				//Music.startSound2("SFX\\Airhorn.wav", true);
-				//Music.startSound2("SFX\\Hello_There.wav", true);
-				//Music.startSound2("SFX\\Hitmarker.wav", true);
 			}
 		}
 	}
@@ -145,7 +129,6 @@ public class Player {
 			moveRight = false;
 			rightAnime = 0;
 			isMoving = false;
-
 		}
 	}
 
@@ -170,12 +153,11 @@ public class Player {
 			moveLeft = false;
 			leftAnime = 0;
 			isMoving = false;
-
 		}
 	}
 
 	public void animateDown(int i) {
-		int speed = 9;
+		int speed = 6;
 		if (i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 3, 1);
@@ -189,7 +171,7 @@ public class Player {
 	}
 
 	public void animateUp(int i) {
-		int speed = 9;
+		int speed = 6;
 		if (i >= 0 && i < speed) {
 			isMoving = true;
 			currentSprite = grabImage(spriteSheet, 4, 1);
@@ -203,7 +185,7 @@ public class Player {
 	}
 
 	public void punchRight(int i) {
-		int speed = 9;
+		int speed = 5;
 		isMoving = true;
 		if (i >= 0 && i < speed) {
 			currentSprite = grabImage(spriteSheet, 5, 1);
@@ -281,11 +263,7 @@ public class Player {
 			currentSprite = grabImage(spriteSheet, 7, 13);
 		} else if (i >= tim * 19 && i < tim * 20) {
 			currentSprite = grabImage(spriteSheet, 8, 4);
-		} else {
-			die = false;
-			dieAnime = 0;
-			isMoving = false;
-		}
+		} 
 	}
 
 	public void Dab() {
@@ -293,21 +271,15 @@ public class Player {
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
-						
-			//hpLev++;
 		} else {
 			currentSprite = grabImage(spriteSheet, 8, 3);
 			dabState = false;
-			//hpLev++;
 		}
 	}
 
 	public void tick() {
-		//pHpPercent = hpLev / pHpMax;
-		
 		if (moveUp) {
 			animateUp(upAnime);
-			// isMoving = true;
 			upAnime++;
 		}
 
@@ -336,7 +308,7 @@ public class Player {
 			punRightAnime++;
 		}
 
-		if (die) {
+		if (BattleState.shrek.rip) {
 			animateDie(dieAnime);
 			dieAnime++;
 		}
@@ -351,20 +323,6 @@ public class Player {
 	 */
 	public static void render(Graphics g) {
 		g.drawImage(currentSprite, Game.WIDTH / 2 - Game.WIDTH / 2 % 49, Game.HEIGHT / 2 - Game.HEIGHT / 2 % 49, null);
-	
-	
-	//draw HP bar 294X24px
-	//green starts at px49 and ends at px279 
-	/*	g.drawImage(hpImg, 0, 0, 294, 24, null);
-		if(hpLev <= pHpMax / 4) {
-			g.setColor(Color.RED);
-		}else if(hpLev <= pHpMax / 2) {
-			g.setColor(Color.YELLOW);	
-		}else{
-			g.setColor(Color.GREEN);
-		}
-		g.fillRect(49, 0, (int) (barX * pHpPercent), barY);
-	*/
 	}
 
 	/*

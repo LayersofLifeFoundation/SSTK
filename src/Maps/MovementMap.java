@@ -31,9 +31,9 @@ public class MovementMap {
 	public static void printMap() {
 		for(int i = 0; i < 10; i++) {
 			for(int k = 0; k < 10; k++) {
-				System.out.print(map[i][k] + " ");
+				//System.out.print(map[i][k] + " ");
 			}
-			System.out.println();
+			//System.out.println();
 		}
 
 	}
