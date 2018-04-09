@@ -78,7 +78,7 @@ public class InputHandler implements KeyListener {
 			}
 
 		}
-		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
+		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber ) {
 			/*
 			 * Key bounds for the OverworldState
 			 */

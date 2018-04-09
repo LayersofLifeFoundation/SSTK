@@ -20,9 +20,6 @@ import TextMap.TextMap;
 import java.io.*;
 import Player.Hitmarker;
 public class OverworldState extends GameState {
-	/*
-	 * GameState that loads the text base view that is used mostly for testing
-	 */
 
 	public static MovementMap movMap = new MovementMap();
 	public static TextMap textMap = new TextMap();
@@ -41,7 +38,6 @@ public class OverworldState extends GameState {
 	Font font = new Font("Courier New", Font.PLAIN, 30);
 	Font bold = new Font("Courier New", Font.BOLD, 30);
 	static String npcName;
-
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
 
 
@@ -67,6 +63,7 @@ public class OverworldState extends GameState {
 		Music.startSound(swampMusic, true);
 		GameStateManager.battle.nextEnemy(BattleState.enemy);
 		Player.isMoving = false;
+		///coming = false;
 	}
 
 	public static boolean NPCPresent(int x, int y) {
@@ -148,13 +145,48 @@ public class OverworldState extends GameState {
 			}
 		} while (n < dialog.length());
 	}
-
+	//If player is in encounter box, walk to them, talk, and start battle
+	public boolean encounterBoxCk(int npcX, int npcY,char direc,  int dist){
+		if(direc == 'l') {
+		}else if(direc == 'r' && npcY == player.y && npcX + 1 > player.x - dist) {
+				return true;
+		}else if(direc == 'u') {
+			
+		}else if(direc == 'd') {
+				
+	}
+		return false;
+	}
+	
+	
+	public void encounter() {
+		
+	}
+	
 	/*
 	 * Passing down the tick() function even more to any object that needs to update
 	 */
+	int start = 0;
 	public void tick() {
 		player.tick();
-
+		
+		if(encounterBoxCk(31, 32, 'r', 10) && start == 0) {
+			try {
+				player.moveLeft();
+				interact();
+			} catch (InterruptedException e) {
+			}
+			if(inDialog)
+				start = 1;
+		}
+			if(start == 1) {
+			Player.isMoving = true;
+			BattleState.bs = "FidgetSpinners.wav";
+			BattleState.startSwampBattle();
+			start = 2;
+		}
+		
+		
 		try {
 			for (Link link : links) {
 				link.tick();
@@ -182,9 +214,8 @@ public class OverworldState extends GameState {
 	 * Passes down the render function
 	 */
 	public void render(Graphics g) {
-		// textMap.render(g);
 		subMap = map.getSubimage(1000 + player.returnX() * Game.PIXSIZE - 11 * Game.PIXSIZE,
-				1000 + player.returnY() * Game.PIXSIZE - 6 * Game.PIXSIZE, Game.WIDTH + 30, Game.HEIGHT + 30);
+			1000 + player.returnY() * Game.PIXSIZE - 6 * Game.PIXSIZE, Game.WIDTH + 30, Game.HEIGHT + 30);
 		g.drawImage(subMap, 0, 0, null);
 		player.render(g);
 		hitmarker.render(g);

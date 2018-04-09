@@ -15,8 +15,8 @@ import Sounds.Music;
 
 public class Player {
 
-	static int x = 7;
-	static int y = 10;
+	public static int x = 7;
+	public static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
 	int noAnime = 0;
@@ -37,7 +37,7 @@ public class Player {
 	int dieAnime = 0;
 	public static boolean dab = false;
 	boolean dabState = false;
-	String facing = "Down";
+	public String facing = "Down";
 
 	public static BufferedImage grabImage(BufferedImage img, int row, int col) {
 		BufferedImage image = img.getSubimage((col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
@@ -278,6 +278,7 @@ public class Player {
 	}
 
 	public void tick() {
+		
 		if (moveUp) {
 			animateUp(upAnime);
 			upAnime++;
