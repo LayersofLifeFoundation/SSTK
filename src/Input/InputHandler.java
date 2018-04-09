@@ -60,7 +60,7 @@ public class InputHandler implements KeyListener {
 				OptionState.itemM.inMenu = false;
 			}
 		}
-		
+
 		if (keyCode == KeyEvent.VK_P) {
 			Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 		}
@@ -119,37 +119,40 @@ public class InputHandler implements KeyListener {
 				}
 			}
 
-			if (keyCode == KeyEvent.VK_1) {
-				OverworldState.player.punLeft = true;
-			}
-
-			if (keyCode == KeyEvent.VK_2) {
-				OverworldState.player.punRight = true;
-			}
-
-			if (keyCode == KeyEvent.VK_3) {
-				OverworldState.player.die = true;
-			}
-
-			if (keyCode == KeyEvent.VK_4) {
-				OverworldState.player.Dab();
-				if (!Music.boosted) {
-					Music.boost();
+			if (!Player.isMoving) {
+				if (keyCode == KeyEvent.VK_1) {
+					OverworldState.player.punLeft = true;
 				}
-			} else {
-				if (Music.boosted) {
-					Music.norm();
-					Player.dab = false;
+
+				if (keyCode == KeyEvent.VK_2) {
+					OverworldState.player.punRight = true;
 				}
-			}
-			if (keyCode == KeyEvent.VK_B) {
-				
-				BattleState.startBattleMusic();
-				GameStateManager.battle.loadEnemy();
-				Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
+
+				if (keyCode == KeyEvent.VK_3) {
+					BattleState.shrek.rip = true;
+					Music.stopSound();
+					Music.startSound("Music\\GOW1.wav", true);
+				}
+
+				if (keyCode == KeyEvent.VK_4) {
+					OverworldState.player.Dab();
+					if (!Music.boosted) {
+						Music.boost();
+					}
+				} else {
+					if (Music.boosted && keyCode != KeyEvent.VK_SPACE) {
+						Music.norm();
+						Player.dab = false;
+					}
+				}
+
+				if (keyCode == KeyEvent.VK_B) {
+					Player.isMoving = true;
+					BattleState.startSwampBattle();
+					
+				}
 			}
 		}
-
 	}
 
 	public void keyReleased(KeyEvent a) {

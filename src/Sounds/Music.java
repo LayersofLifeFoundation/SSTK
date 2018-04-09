@@ -43,6 +43,8 @@ public class Music {
 			}
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
+			System.out.println("There won't be a time you will die whilst dabbing in final game noob");
+			System.out.println("You can't break it without pushing 3");
 		}catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +60,7 @@ public class Music {
 			audioClip2.open(audioStream2);
 			gainControl2 =  (FloatControl) audioClip2.getControl(FloatControl.Type.MASTER_GAIN);
 			//Lower Volume
-			gainControl2.setValue(-10.0f);
+			gainControl2.setValue(-15.0f);
 			audioClip2.start();
 			if(loop) {
 			audioClip2.loop(-1);
