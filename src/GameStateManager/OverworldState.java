@@ -3,10 +3,11 @@ package GameStateManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+
 import javax.imageio.ImageIO;
 
 import Battle.BattleState;
@@ -14,11 +15,10 @@ import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
 import NPC.NPC;
+import Player.Hitmarker;
 import Player.Player;
 import Sounds.Music;
 import TextMap.TextMap;
-import java.io.*;
-import Player.Hitmarker;
 public class OverworldState extends GameState {
 	/*
 	 * GameState that loads the text base view that is used mostly for testing
@@ -136,7 +136,7 @@ public class OverworldState extends GameState {
 				n = dialog.length();
 			} else {
 				int i = maxPer;
-				while (!dialog.substring(i, i + 1).equals(" ")) {
+				while (!dialog.substring(n + i, n + i + 1).equals(" ")) {
 					i--;
 				}
 				line = dialog.substring(n, n + i);

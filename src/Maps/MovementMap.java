@@ -18,11 +18,9 @@ public class MovementMap {
 	/*
 	 * Returns if the given x and y can be a valid place for the player
 	 */
-	public static boolean canMoveTo(int x, int y) {
-		if(map[y][x] == 0) {
-			return true;
-		}
-		return false;
+	public static int canMoveTo(int x, int y) {
+		return map[y][x];
+		
 	}
 	
 	/*
