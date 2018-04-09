@@ -119,7 +119,7 @@ public class MapRetrevial {
 
 	}
 
-	static Random rando = new Random();
+	static Random rando = new Random(); 
 	static int enemyNo = -1;
 
 	
