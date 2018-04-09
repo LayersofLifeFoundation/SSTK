@@ -8,6 +8,7 @@ import java.io.IOException;
 import Battle.BattleState;
 import FileSystem.Save;
 import GameStateManager.Game;
+import GameStateManager.OptionState;
 import Sounds.Music;
 
 public class Button {
@@ -54,6 +55,9 @@ public class Button {
 		}else if(actionNum == 3) {
 			Save.save();
 			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+		}else if(actionNum == 4) {
+			OptionState.inInv = true;
+			OptionState.itemM.inMenu = true;
 		}
 	}
 	

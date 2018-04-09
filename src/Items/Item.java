@@ -1,8 +1,15 @@
 package Items;
 
-public class Item {
+public abstract class Item {
 
-	String name;
+	
+	public void use() {
+		
+	}
+	
+	public abstract String returnName();
+	
+	public abstract int returnQ();
 	
 	
 }
