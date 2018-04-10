@@ -1,7 +1,5 @@
 package Player;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -11,7 +9,6 @@ import javax.imageio.ImageIO;
 import Battle.BattleState;
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
-import Sounds.Music;
 
 public class Player {
 
@@ -19,6 +16,7 @@ public class Player {
 	public static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
+	int battlePer = 20;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -60,9 +58,12 @@ public class Player {
 	public void moveUp() throws InterruptedException {
 		if (!OverworldState.inDialog) {
 			if (!moveUp && !isMoving) {
-				if (OverworldState.movMap.canMoveTo(x, y - 1) && !OverworldState.NPCPresent(x, y - 1)) {
+				if (OverworldState.movMap.canMoveTo(x, y - 1) != 1 && !OverworldState.NPCPresent(x, y - 1)) {
 					y -= 1;
-					System.out.println("X: "+ x + "\nY: " + y);
+					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+						if(Math.random() * 100 < battlePer)
+							BattleState.startSwampBattle();
+					}
 				}
 				moveUp = true;
 				facing = "Up";
@@ -73,9 +74,12 @@ public class Player {
 	public void moveDown() throws InterruptedException {
 		if (!OverworldState.inDialog) {
 			if (!moveDown && !isMoving) {
-				if (OverworldState.movMap.canMoveTo(x, y + 1) && !OverworldState.NPCPresent(x, y + 1)) {
+				if (OverworldState.movMap.canMoveTo(x, y + 1) != 1 && !OverworldState.NPCPresent(x, y + 1)) {
 					y += 1;
-					
+					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+						if(Math.random() * 100 < battlePer)
+							BattleState.startSwampBattle();
+					}
 				}
 				moveDown = true;
 				facing = "Down";
@@ -86,8 +90,12 @@ public class Player {
 	public void moveLeft() throws InterruptedException {
 		if (!OverworldState.inDialog) {
 			if (!moveLeft && !isMoving) {
-				if (OverworldState.movMap.canMoveTo(x - 1, y) && !OverworldState.NPCPresent(x - 1, y)) {
+				if (OverworldState.movMap.canMoveTo(x - 1, y) != 1 && !OverworldState.NPCPresent(x - 1, y)) {
 					x -= 1;
+					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+						if(Math.random() * 100 < battlePer)
+							BattleState.startSwampBattle();
+					}
 				}
 				moveLeft = true;
 				facing = "Left";
@@ -98,8 +106,12 @@ public class Player {
 	public void moveRight() throws InterruptedException {
 		if (!OverworldState.inDialog) {
 			if (!moveRight && !isMoving) {
-				if (OverworldState.movMap.canMoveTo(x + 1, y) && !OverworldState.NPCPresent(x + 1, y)) {
+				if (OverworldState.movMap.canMoveTo(x + 1, y) != 1 && !OverworldState.NPCPresent(x + 1, y)) {
 					x += 1;
+					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+						if(Math.random() * 100 < battlePer)
+							BattleState.startSwampBattle();
+					}
 				}
 				moveRight = true;
 				facing = "Right";

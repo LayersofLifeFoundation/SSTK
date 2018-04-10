@@ -36,7 +36,7 @@ Alt-Right
 30
 80
 SFX\\Smack.wav
-/Hacker.png
+/h.png
 Hacker
 150
 Scanf()
