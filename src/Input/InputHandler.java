@@ -78,7 +78,7 @@ public class InputHandler implements KeyListener {
 			}
 
 		}
-		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber) {
+		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber && !OverworldState.disableKeys) {
 			/*
 			 * Key bounds for the OverworldState
 			 */
@@ -92,7 +92,6 @@ public class InputHandler implements KeyListener {
 					// TODO Auto-generated catch block
 					// e.printStackTrace();
 				}
-
 			}
 			if (keyCode == KeyEvent.VK_A) {
 				try {
@@ -118,7 +117,7 @@ public class InputHandler implements KeyListener {
 					e.printStackTrace();
 				}
 			}
-
+			
 			if (!Player.isMoving) {
 				if (keyCode == KeyEvent.VK_1) {
 					OverworldState.player.punLeft = true;

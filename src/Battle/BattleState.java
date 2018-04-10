@@ -50,7 +50,7 @@ public class BattleState extends GameState {
 
 	//plays battle-start sound and starts BattleState when the track finishes
 	//The check for finishing the sound is in OverworldState's tick() for now
-	public static String bs = "BoogieWoogie.wav";
+	public static String bs = "Exquisite.wav";
 	public static void startSwampBattle() {
 		Music.stopSound();
 		Music.startSound("SFX\\" + bs, false);

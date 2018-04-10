@@ -20,6 +20,7 @@ public class NPC {
 	String dialog;
 	BufferedImage sprite;
 	BufferedImage spriteSheet;
+	public Boolean talked = false;
 	
 	public NPC() {
 		try {
