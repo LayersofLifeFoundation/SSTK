@@ -39,6 +39,7 @@ public class OverworldState extends GameState {
 	Font bold = new Font("Courier New", Font.BOLD, 30);
 	static String npcName;
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
+	public static boolean disableKeys;
 
 
 	/*
@@ -63,8 +64,8 @@ public class OverworldState extends GameState {
 		Music.startSound(swampMusic, true);
 		GameStateManager.battle.nextEnemy(BattleState.enemy);
 		Player.isMoving = false;
-		///coming = false;
-	}
+		disableKeys = false;
+		}
 
 	public static boolean NPCPresent(int x, int y) {
 		for (NPC npc : npcs) {
@@ -145,18 +146,52 @@ public class OverworldState extends GameState {
 			}
 		} while (n < dialog.length());
 	}
+	
 	//If player is in encounter box, walk to them, talk, and start battle
-	public boolean encounterBoxCk(int npcX, int npcY,char direc,  int dist){
-		if(direc == 'l') {
-		}else if(direc == 'r' && npcY == player.y && npcX + 1 > player.x - dist) {
-				return true;
-		}else if(direc == 'u') {
-			
-		}else if(direc == 'd') {
+	public void encounterBoxCk(int npcNum, char direc,  int dist){
+	if(!npcs.get(npcNum).talked) {	
+	    int npcX = npcs.get(npcNum).x;
+		int npcY = npcs.get(npcNum).y;
+		boolean inBox = false;
+		
+		if(direc == 'l' && npcY == player.y && npcX < player.x + dist && npcX > player.x && !inDialog) {
+			inBox = true;
+			try {
+				player.moveRight();
+			} catch (InterruptedException e) {
+		    }
+		}else if(direc == 'r' && npcY == player.y && npcX > player.x - dist && npcX < player.x && !inDialog) {
+			inBox = true;
+			try {
+				player.moveLeft();
 				
+			} catch (InterruptedException e) {
+			}
+		}else if(direc == 'u' && npcX == player.x && npcY < player.y + dist && npcY > player.y && !inDialog) {
+			inBox = true;
+			try {
+				player.moveDown();
+			} catch (InterruptedException e) {
+		    }
+		}else if(direc == 'd' && npcX == player.x && npcY > player.y - dist && npcY < player.y && !inDialog ) {
+			inBox = true;
+			try {
+				player.moveUp();
+			} catch (InterruptedException e) {
+		    }
+		}
+		if(inBox) {
+			interact();
+			disableKeys = true;
+			if(inDialog){
+				Player.isMoving = true;
+				BattleState.bs = "FidgetSpinners.wav";
+				BattleState.startSwampBattle();
+				npcs.get(npcNum).talked = true;
+			}
+		}
 	}
-		return false;
-	}
+}
 	
 	
 	public void encounter() {
@@ -170,22 +205,15 @@ public class OverworldState extends GameState {
 	public void tick() {
 		player.tick();
 		
-		if(encounterBoxCk(31, 32, 'r', 10) && start == 0) {
-			try {
-				player.moveLeft();
-				interact();
-			} catch (InterruptedException e) {
-			}
-			if(inDialog)
-				start = 1;
-		}
-			if(start == 1) {
-			Player.isMoving = true;
-			BattleState.bs = "FidgetSpinners.wav";
-			BattleState.startSwampBattle();
-			start = 2;
-		}
-		
+		//toward end
+		encounterBoxCk(6, 'r', 10);
+		//border control
+		encounterBoxCk(11, 'l', 20);
+		encounterBoxCk(10, 'l', 2);
+		//on bend
+		encounterBoxCk(5  , 'd', 5);
+		//sign
+		encounterBoxCk(4  , 'u', 7);	
 		
 		try {
 			for (Link link : links) {
