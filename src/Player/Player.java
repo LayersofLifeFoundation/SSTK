@@ -16,7 +16,7 @@ public class Player {
 	public static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-	int battlePer = 20;
+	int battlePer = 100;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -129,7 +129,7 @@ public class Player {
 			moveRight = false;
 			rightAnime = 0;
 			isMoving = false;
-			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+			if(OverworldState.movMap.canMoveTo(x, y) == 2) {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
@@ -160,7 +160,7 @@ public class Player {
 			moveLeft = false;
 			leftAnime = 0;
 			isMoving = false;
-			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+			if(OverworldState.movMap.canMoveTo(x, y) == 2) {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
@@ -181,7 +181,7 @@ public class Player {
 			moveDown = false;
 			downAnime = 0;
 			isMoving = false;
-			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+			if(OverworldState.movMap.canMoveTo(x, y) == 2) {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
@@ -202,7 +202,7 @@ public class Player {
 			moveUp = false;
 			upAnime = 0;
 			isMoving = false;
-			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+			if(OverworldState.movMap.canMoveTo(x, y) == 2) {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
