@@ -41,7 +41,6 @@ public class OverworldState extends GameState {
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
 	public static boolean disableKeys;
 
-
 	/*
 	 * loading and initializing objects in OverworldState
 	 */
@@ -192,12 +191,7 @@ public class OverworldState extends GameState {
 		}
 	}
 }
-	
-	
-	public void encounter() {
 		
-	}
-	
 	/*
 	 * Passing down the tick() function even more to any object that needs to update
 	 */
@@ -205,15 +199,16 @@ public class OverworldState extends GameState {
 	public void tick() {
 		player.tick();
 		
+		//add ckBoxes here Ryan
 		//toward end
 		encounterBoxCk(6, 'r', 10);
 		//border control
 		encounterBoxCk(11, 'l', 20);
 		encounterBoxCk(10, 'l', 2);
 		//on bend
-		encounterBoxCk(5  , 'd', 5);
+		encounterBoxCk(5 , 'd', 5);
 		//sign
-		encounterBoxCk(4  , 'u', 7);	
+		encounterBoxCk(4 , 'u', 7);	
 		
 		try {
 			for (Link link : links) {
