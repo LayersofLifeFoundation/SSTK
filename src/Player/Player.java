@@ -133,6 +133,7 @@ public class Player {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
+					BattleState.bs = "Hello_There.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -164,6 +165,7 @@ public class Player {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
+					BattleState.bs = "Hello_There.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -185,6 +187,7 @@ public class Player {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
+					BattleState.bs = "Hello_There.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -206,6 +209,7 @@ public class Player {
 				if(Math.random() * 100 < battlePer)
 				{
 					Player.isMoving = true;
+					BattleState.bs = "Hello_There.wav";
 					BattleState.startSwampBattle();
 				}
 			}

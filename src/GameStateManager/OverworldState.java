@@ -236,7 +236,7 @@ public class OverworldState extends GameState {
 				&& Music.audioFile.getName().equals(BattleState.bs)) {
 			Player.isMoving = true;
 			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
-			Music.startSound("Music\\SwampBattle.wav", true);	
+			Music.startSound("Music\\VerBat.wav", true);	
 		}
 	}
 	
