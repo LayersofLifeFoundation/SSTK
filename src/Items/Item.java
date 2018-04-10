@@ -2,6 +2,9 @@ package Items;
 
 public abstract class Item {
 
+	/*
+	 * abstract class used for itemManager
+	 */
 	
 	public void use() {
 		

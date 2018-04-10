@@ -17,12 +17,14 @@ public class GameStateManager {
 
 	private int currentState = 1;
 
+	//Different states in the game
 	OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro = new IntroductionState();
 	public OptionState options = new OptionState();
 	public static BattleState battle = new BattleState();
 
+	//Corresponding number to the game states
 	public static int overworldStateNumber = 0;
 	public int introState = 1;
 	public int introductionState = 2;
@@ -30,6 +32,7 @@ public class GameStateManager {
 	public int battleStateNum = 4;
 
 	public GameStateManager() {
+		//adding all the states to an arraylist
 		gameStates.add(overworld);
 		gameStates.add(input);
 		gameStates.add(intro);

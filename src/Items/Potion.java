@@ -4,6 +4,10 @@ import Battle.BattleState;
 import GameStateManager.OverworldState;
 
 public class Potion extends Item{
+	
+	/*
+	 * Item for Every Potion Type
+	 */
 
 	String name;
 	int value;
@@ -26,6 +30,9 @@ public class Potion extends Item{
 		q = quantity;
 	}
 	
+	/*
+	 *Uses the item
+	 */
 	public void use() {
 		BattleState.shrek.hpLev += value;
 		System.out.println(BattleState.shrek.hpLev);
@@ -33,10 +40,16 @@ public class Potion extends Item{
 		q--;
 	}
 	
+	/*
+	 *returns the name of the given item
+	 */
 	public String returnName() {
 		return name;
 	}
 	
+	/*
+	 * Returns the Quantity of the item
+	 */
 	public int returnQ() {
 		System.out.println(q);
 		return q;

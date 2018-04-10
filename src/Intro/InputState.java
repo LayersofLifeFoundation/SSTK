@@ -12,7 +12,9 @@ import GameStateManager.GameState;
 import Sounds.Music;
 
 public class InputState extends GameState{
-	
+	/*
+	 * Game state for the main menu
+	 */
 	Font font  = new Font("Courier New", Font.PLAIN, 80);
 	static int selectedState = 0;
 	
@@ -25,10 +27,16 @@ public class InputState extends GameState{
 		Music.startSound("Music\\TitleScreen.wav", true);
 	}
 	
+	/*
+	 * interacts with the selected button
+	 */
 	public static void pushButton() {
 		buttons.get(selectedState).press();
 	}
 	
+	/*
+	 * moves the selected button up
+	 */
 	public static void moveUp() {
 		buttons.get(selectedState).deselect();
 		if(selectedState == 0) {
@@ -39,6 +47,9 @@ public class InputState extends GameState{
 		buttons.get(selectedState).select();
 	}
 	
+	/*
+	 * moves the selected button down
+	 */
 	public static void moveDown() {
 		buttons.get(selectedState).deselect();
 		if(selectedState == 1) {

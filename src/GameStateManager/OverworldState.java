@@ -69,6 +69,9 @@ public class OverworldState extends GameState {
 		Player.isMoving = false;
 	}
 
+	/*
+	 * returns if an npc is standing at given location
+	 */
 	public static boolean NPCPresent(int x, int y) {
 		for (NPC npc : npcs) {
 			if (npc.x == x && npc.y == y) {
@@ -78,14 +81,19 @@ public class OverworldState extends GameState {
 		return false;
 	}
 
+	/*
+	 * Determines what action should be taken on the press of the spacebar
+	 */
 	public static void interact() {
 		if (inDialog) {
+			//scrolling through dialog box
 			currentLine += 3;
 			if (currentLine >= lines.size()) {
 				inDialog = false;
 			}
 
 		} else {
+			//checking if the player is trying to interact with an NPC
 			for (NPC npc : npcs) {
 				if (player.getFacing().equals("Up")) {
 					if (npc.x == player.returnX() && npc.y == player.returnY() - 1) {
@@ -120,6 +128,9 @@ public class OverworldState extends GameState {
 		}
 	}
 
+	/*
+	 * Breaks up a line of text into smaller parts that fit on screen
+	 */
 	public static void calculateLines() {
 		currentLine = 0;
 		lines.clear();
@@ -128,6 +139,7 @@ public class OverworldState extends GameState {
 		String line;
 		do {
 			if (n + maxPer > dialog.length()) {
+				//case for the last line
 				line = dialog.substring(n, dialog.length());
 				if(line.substring(0, 1).equals(" ")) {
 					line = line.substring(1, line.length());
@@ -136,10 +148,12 @@ public class OverworldState extends GameState {
 				n = dialog.length();
 			} else {
 				int i = maxPer;
+				//setting i to a space to not cut off words
 				while (!dialog.substring(n + i, n + i + 1).equals(" ")) {
 					i--;
 				}
 				line = dialog.substring(n, n + i);
+				//getting rid of any extra spaces
 				if(line.substring(0, 1).equals(" ")) {
 					line = line.substring(1, line.length());
 				}
@@ -192,6 +206,7 @@ public class OverworldState extends GameState {
 			npc.render(g);
 		}
 		if (inDialog) {
+			//displays the dialog box
 			g.setFont(bold);
 			g.setColor(Color.WHITE);
 			g.fillRect(0, Game.HEIGHT - Game.PIXSIZE * 3, Game.WIDTH + 10, Game.HEIGHT);
