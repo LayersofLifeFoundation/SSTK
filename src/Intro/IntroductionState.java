@@ -17,6 +17,10 @@ import Sounds.Music;
 public class IntroductionState extends GameState{
 	BufferedImage shrek;
 	
+	/*
+	 * State the plays the intro
+	 */
+	
 	public IntroductionState() {
 		try {
 			shrek = ImageIO.read(getClass().getResource("/Shrek.png"));

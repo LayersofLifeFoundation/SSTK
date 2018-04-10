@@ -60,10 +60,7 @@ public class Player {
 			if (!moveUp && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x, y - 1) != 1 && !OverworldState.NPCPresent(x, y - 1)) {
 					y -= 1;
-					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
-						if(Math.random() * 100 < battlePer)
-							BattleState.startSwampBattle();
-					}
+					
 				}
 				moveUp = true;
 				facing = "Up";
@@ -76,10 +73,7 @@ public class Player {
 			if (!moveDown && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x, y + 1) != 1 && !OverworldState.NPCPresent(x, y + 1)) {
 					y += 1;
-					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
-						if(Math.random() * 100 < battlePer)
-							BattleState.startSwampBattle();
-					}
+					
 				}
 				moveDown = true;
 				facing = "Down";
@@ -92,10 +86,7 @@ public class Player {
 			if (!moveLeft && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x - 1, y) != 1 && !OverworldState.NPCPresent(x - 1, y)) {
 					x -= 1;
-					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
-						if(Math.random() * 100 < battlePer)
-							BattleState.startSwampBattle();
-					}
+					
 				}
 				moveLeft = true;
 				facing = "Left";
@@ -108,10 +99,7 @@ public class Player {
 			if (!moveRight && !isMoving) {
 				if (OverworldState.movMap.canMoveTo(x + 1, y) != 1 && !OverworldState.NPCPresent(x + 1, y)) {
 					x += 1;
-					if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
-						if(Math.random() * 100 < battlePer)
-							BattleState.startSwampBattle();
-					}
+					
 				}
 				moveRight = true;
 				facing = "Right";
@@ -141,6 +129,13 @@ public class Player {
 			moveRight = false;
 			rightAnime = 0;
 			isMoving = false;
+			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+				if(Math.random() * 100 < battlePer)
+				{
+					Player.isMoving = true;
+					BattleState.startSwampBattle();
+				}
+			}
 		}
 	}
 
@@ -165,6 +160,13 @@ public class Player {
 			moveLeft = false;
 			leftAnime = 0;
 			isMoving = false;
+			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+				if(Math.random() * 100 < battlePer)
+				{
+					Player.isMoving = true;
+					BattleState.startSwampBattle();
+				}
+			}
 		}
 	}
 
@@ -179,6 +181,13 @@ public class Player {
 			moveDown = false;
 			downAnime = 0;
 			isMoving = false;
+			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+				if(Math.random() * 100 < battlePer)
+				{
+					Player.isMoving = true;
+					BattleState.startSwampBattle();
+				}
+			}
 		}
 	}
 
@@ -193,6 +202,13 @@ public class Player {
 			moveUp = false;
 			upAnime = 0;
 			isMoving = false;
+			if(OverworldState.movMap.canMoveTo(x, y - 1) == 2) {
+				if(Math.random() * 100 < battlePer)
+				{
+					Player.isMoving = true;
+					BattleState.startSwampBattle();
+				}
+			}
 		}
 	}
 

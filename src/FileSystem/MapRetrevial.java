@@ -24,7 +24,7 @@ public class MapRetrevial {
 	 */
 
 	/*
-	 * Function to transfer values into double array map from the the given text
+	 * Function to transfer values into double array from the the given text
 	 * file
 	 */
 	public static void retriveMovementMap(int[][] map, String mapName) throws IOException {
@@ -40,17 +40,21 @@ public class MapRetrevial {
 	}
 
 	/*
-	 * Does the same thing but for the Text map that is shown for testing
+	 * Reads in a text map from a file into a double array
 	 * 
+	 * Not Currently used outside of early testing
 	 */
 	public static void retriveTextMap(String[][] map, String mapName) throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\TextMaps\\" + mapName + "\\map.txt"));
+		//Resets the current array to clear any other values
 		for (int i = 0; i < 50; i++) {
 			for (int k = 0; k < 50; k++) {
 				map[i][k] = " ";
 			}
 		}
+		
+		//Reading in the values
 		int count = 0;
 		while ((line = in.readLine()) != null) {
 			for (int i = 0; i < line.length(); i++) {
@@ -58,6 +62,8 @@ public class MapRetrevial {
 			}
 			count++;
 		}
+		
+		//Call to start retrieving "Links" which are points in the map that transfer the player to a different map 
 		retiveLinks(OverworldState.links, mapName);
 	}
 
@@ -72,6 +78,8 @@ public class MapRetrevial {
 		links.clear();
 
 		while ((line = in.readLine()) != null) {
+			
+			//setting all the variables for the links
 			links.add(new Link());
 			links.get(count).setX(Integer.parseInt(line));
 			line = in.readLine();
@@ -91,6 +99,11 @@ public class MapRetrevial {
 		}
 	}
 
+	
+	
+	/*
+	 * Reads in the variables for the NPCs in a map
+	 */
 	public static void readNPC(String mapName) throws IOException {
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\NPC.txt"));
@@ -118,9 +131,6 @@ public class MapRetrevial {
 		}
 
 	}
-
-	static Random rando = new Random(); 
-	static int enemyNo = -1;
 
 	
 	public static void loadEnemy(Enemy e, String mapName) throws IOException {

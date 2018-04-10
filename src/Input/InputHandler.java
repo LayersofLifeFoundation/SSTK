@@ -74,7 +74,7 @@ public class InputHandler implements KeyListener {
 				BattleState.moveLeft();
 			}
 			if (keyCode == KeyEvent.VK_SPACE) {
-				BattleState.attack();
+				BattleState.action();
 			}
 
 		}

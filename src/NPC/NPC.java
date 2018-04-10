@@ -31,11 +31,18 @@ public class NPC {
 		}
 	}
 	
+	/*
+	 * Gets the sprite for the npc
+	 */
 	public static BufferedImage grabImage(BufferedImage img, int row, int col){
 		BufferedImage image = img.getSubimage( (col - 1) * OGPIX, (row - 1) * OGPIX, OGPIX, OGPIX);
 		return image;
 	}
 	
+	
+	/*
+	 * Setters used when reading in the NPC file in MapRetreival
+	 */
 	public void setX(int n) {
 		x = n;
 	}

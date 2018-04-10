@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import GameStateManager.Game;
 
 public class ItemManager {
+	/*
+	 * inventory system for the game
+	 */
 
 	ArrayList<Item> items = new ArrayList<Item>();
 	Font font = new Font("Courier New", Font.PLAIN, 20);
@@ -20,6 +23,9 @@ public class ItemManager {
 		items.add(new Potion(0, 100));
 	}
 
+	/*
+	 * uses the selected item
+	 */
 	public void use() {
 		if (selected >= 0) {
 			items.get(selected).use();
@@ -34,6 +40,9 @@ public class ItemManager {
 
 	}
 
+	/*
+	 * moves the selected item up one
+	 */
 	public void MoveUp() {
 		selected--;
 		if (selected < 0) {
@@ -41,6 +50,9 @@ public class ItemManager {
 		}
 	}
 
+	/*
+	 * move the selected item down one
+	 */
 	public void MoveDown() {
 		selected++;
 		if (selected >= items.size()) {
@@ -55,6 +67,8 @@ public class ItemManager {
 		g.setColor(Color.WHITE);
 		g.drawString("Items", Game.WIDTH - 160, 40);
 		g.setFont(font);
+		
+		//Drawing a filled in or empty square depending on if the player is in their inventory
 		if (!inMenu) {
 			g.drawRect(Game.WIDTH - 235, 50 + 20 * selected, 10, 10);
 		} else {

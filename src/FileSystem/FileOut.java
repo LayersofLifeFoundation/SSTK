@@ -14,7 +14,7 @@ public class FileOut {
 	 * using buffered reader and buffered writter
 	 * 
 	 * 
-	 * 
+	 * Not Used in the main program 
 	 */
 	
 	public static void read() throws IOException {

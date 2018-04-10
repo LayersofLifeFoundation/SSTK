@@ -25,23 +25,27 @@ public class Game extends Canvas implements Runnable {
 	 */
 
 	JFrame frame;
-
+	
+	//Dimensions of the JFrame
 	public final static int WIDTH = 1080;
 	public final static int HEIGHT = WIDTH / 16 * 9;
-	public final static int PIXSIZE = 49;
-	public final static String Title = "PokeDAB";
+	public final static String Title = "Shrek Saves the Kids";
 	public final Dimension gameSize = new Dimension(WIDTH, HEIGHT);
-
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	
+	//Pixel Size of the tiles used for placing the character and other computations
+	public final static int PIXSIZE = 49;
+	
+	
 	
 	InputHandler IH;
 	public static GameStateManager gameStateManager = new GameStateManager();
-	
-	FileOut test = new FileOut();
 	public static Thread thread;
 
 	static boolean gameRunning = false;
 
+	
+	//Main loop that runs the program
 	public void run() {
 		while (gameRunning) {
 			
@@ -49,6 +53,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 
 			try {
+				//Sets the refresh speed in milliseconds (about 60 fps)
 				thread.sleep(17);
 
 			} catch (Exception e) {
@@ -59,6 +64,9 @@ public class Game extends Canvas implements Runnable {
 
 	}
 
+	/*
+	 * Starts the game
+	 */
 	public synchronized void start() {
 		gameRunning = true;
 		thread = new Thread(this);
@@ -66,13 +74,21 @@ public class Game extends Canvas implements Runnable {
 
 	}
 
+	/*
+	 * Stops the game
+	 */
 	public synchronized static void stop() {
 		gameRunning = false;
 		System.exit(0);
 	}
 
+	
+	
 	public Game() throws IOException {
 
+		/*
+		 * A lot of JFrame preferences and initialization
+		 */
 		setMinimumSize(gameSize);
 		setMaximumSize(gameSize);
 		setPreferredSize(gameSize);
@@ -92,7 +108,6 @@ public class Game extends Canvas implements Runnable {
 		IH = new InputHandler();
 		frame.addKeyListener(IH);
 	
-		test.print();
 
 		gameRunning = true;
 		
@@ -118,13 +133,16 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 
+		
+		//black background
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
+		
 		gameStateManager.render(g);
 
-			g.dispose();
+		g.dispose();
 		bs.show();
 	}
 

@@ -12,7 +12,11 @@ import GameStateManager.OverworldState;
 public class Save {
 
 	
-	
+	/*
+	 * Saves all the values of the overworld state to a file 
+	 * 
+	 * Currently only the x and y position of the player
+	 */
 	public static void save() {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("Save\\save.txt"));
@@ -26,6 +30,12 @@ public class Save {
 		}
 	}
 	
+	
+	/*
+	 * Loads all the values in the overworld state to a file
+	 * 
+	 * currently only saves the x and y values of the player
+	 */
 	public static void load() throws NumberFormatException, IOException {
 		BufferedReader in = new BufferedReader(new FileReader("Save\\save.txt"));
 		OverworldState.player.setX(Integer.parseInt(in.readLine()));
