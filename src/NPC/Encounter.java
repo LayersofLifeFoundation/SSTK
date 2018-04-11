@@ -1,28 +1,38 @@
 package NPC;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import Battle.BattleState;
 import GameStateManager.OverworldState;
 
 public class Encounter {
 
 	public static boolean disableKeys;
-
-	// If OverworldState.player is in encounter box, walk to them, talk, and start
-	// battle
-	public static void encounterBoxCk(int npcNum, char direc, int dist) {
+	
+	public int npcNum;
+	public String direc;
+	public int dist;
+	
+	public void tick() {
+		//System.out.println(npcNum);
+		//System.out.println(direc);
+		//System.out.println(dist);
+		
 		if (!OverworldState.npcs.get(npcNum).talked) {
 			int npcX = OverworldState.npcs.get(npcNum).x;
 			int npcY = OverworldState.npcs.get(npcNum).y;
 			boolean inBox = false;
-
-			if (direc == 'l' && npcY == OverworldState.player.y && npcX < OverworldState.player.x + dist
+			//System.out.println(npcY);
+			if (direc.equals("l") && npcY == OverworldState.player.y && npcX < OverworldState.player.x + dist
 					&& npcX > OverworldState.player.x && !OverworldState.inDialog) {
 				inBox = true;
 				try {
 					OverworldState.player.moveRight();
 				} catch (InterruptedException e) {
 				}
-			} else if (direc == 'r' && npcY == OverworldState.player.y && npcX > OverworldState.player.x - dist
+			} else if (direc.equals("r") && npcY == OverworldState.player.y && npcX > OverworldState.player.x - dist
 					&& npcX < OverworldState.player.x && !OverworldState.inDialog) {
 				inBox = true;
 				try {
@@ -30,14 +40,14 @@ public class Encounter {
 
 				} catch (InterruptedException e) {
 				}
-			} else if (direc == 'u' && npcX == OverworldState.player.x && npcY < OverworldState.player.y + dist
+			} else if (direc.equals("u") && npcX == OverworldState.player.x && npcY < OverworldState.player.y + dist
 					&& npcY > OverworldState.player.y && !OverworldState.inDialog) {
-				inBox = true;
+					inBox = true;
 				try {
 					OverworldState.player.moveDown();
 				} catch (InterruptedException e) {
 				}
-			} else if (direc == 'd' && npcX == OverworldState.player.x && npcY > OverworldState.player.y - dist
+			} else if (direc.equals("d") && npcX == OverworldState.player.x && npcY > OverworldState.player.y - dist
 					&& npcY < OverworldState.player.y && !OverworldState.inDialog) {
 				inBox = true;
 				try {
@@ -57,9 +67,6 @@ public class Encounter {
 				}
 			}
 		}
-	}
-	
-	public void tick() {
 		
 				//toward end
 				//encounterBoxCk(6, 'r', 10);
@@ -69,9 +76,20 @@ public class Encounter {
 				//on bend
 				//Encounter.encounterBoxCk(5 , 'd', 5);
 				//sign
-				encounterBoxCk(4 , 'u', 7);	
-		
-		
+				//encounterBoxCk(4 , 'u', 7);	
 	}
+	
+	
+	public void setNpcNum(int n){
+		npcNum = n;
+	}
+	public void setDirec(String n) {
+		direc = n;
+	}
+	public void setDist(int n){
+		dist = n;
+	}
+	
+	
 	
 }

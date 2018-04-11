@@ -1,21 +1,18 @@
 package FileSystem;
 
 import java.io.BufferedReader;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
 import Battle.BattleState;
 import Battle.Enemy;
+import Battle.Moves;
 import GameStateManager.OverworldState;
 import Maps.Link;
+import NPC.Encounter;
 import NPC.NPC;
-import Battle.*;
-import Battle.Moves;
 
 public class MapRetrevial {
 
@@ -130,6 +127,28 @@ public class MapRetrevial {
 
 		}
 
+	}
+	public static void readEncounter(String mapName) throws IOException {
+		String line;
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Encounters.txt"));
+		int count = 0;
+		OverworldState.encounter.clear();
+		//System.out.println(mapName);
+		while ((line = in.readLine()) != null) {
+			
+			OverworldState.encounter.add(new Encounter());
+
+			OverworldState.encounter.get(count).setNpcNum(Integer.parseInt(line));
+		//	System.out.println(line);
+			line = in.readLine();
+			OverworldState.encounter.get(count).setDirec(line);
+			//System.out.println(line);
+			line = in.readLine();
+			OverworldState.encounter.get(count).setDist(Integer.parseInt(line));
+			//System.out.println(line);
+			count++;
+		}
+		in.close();
 	}
 
 	

@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import FileSystem.FileOut;
 import Input.InputHandler;
+import Sounds.Music;
 
 
 
@@ -44,6 +45,11 @@ public class Game extends Canvas implements Runnable {
 
 	static boolean gameRunning = false;
 
+	public static void restart() {
+		gameStateManager.overworld = new OverworldState();
+		Music.stopSound();
+		Music.startSound("Music\\TitleScreen.wav", true);
+	}
 	
 	//Main loop that runs the program
 	public void run() {

@@ -26,6 +26,11 @@ public class InputHandler implements KeyListener {
 		int keyCode = a.getKeyCode();
 		String keyChar = KeyEvent.getKeyText(a.getKeyChar());
 
+		if(keyCode == KeyEvent.VK_DELETE) {
+			Game.gameStateManager.changeState(Game.gameStateManager.introState);
+			Game.restart();
+		}
+		
 		if (Game.gameStateManager.getState() == Game.gameStateManager.introductionState) {
 			if (keyCode == KeyEvent.VK_SPACE) {
 				Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
