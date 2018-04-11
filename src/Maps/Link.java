@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 
+import Battle.BattleState;
+import FileSystem.MapRetrevial;
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
 import Sounds.Music;
@@ -52,6 +54,10 @@ public class Link {
 	public void tick() {
 		if(OverworldState.player.returnX() == x && OverworldState.player.returnY() == y) {
 			try {
+				MapRetrevial.readNPC(linkMovement);
+				MapRetrevial.readEncounter(linkMovement);
+				
+				
 				//Music.stopSound();
 				//Music.startSound(nextTrack, true);
 				
