@@ -45,7 +45,7 @@ public class OverworldState extends GameState {
 	public static boolean changeLinks = false;
 	public static String linksLocation;
 	public static String mapLocation;
-
+	public static String song = "Music\\All_Star_Chip.wav";
 	/*
 	 * loading and initializing objects in OverworldState
 	 */
@@ -75,7 +75,7 @@ public class OverworldState extends GameState {
 	}
 
 	public static void stateOverworldState() {
-		Music.startSound(swampMusic, true);
+		Music.startSound(song, true);
 		GameStateManager.battle.nextEnemy(BattleState.enemy);
 		Player.isMoving = false;
 		Encounter.disableKeys = false;

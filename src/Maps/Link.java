@@ -58,8 +58,10 @@ public class Link {
 				MapRetrevial.readEncounter(linkMovement);
 				
 				
-				//Music.stopSound();
-				//Music.startSound(nextTrack, true);
+				Music.stopSound();
+				Music.startSound(nextTrack, true);
+				
+				OverworldState.song = nextTrack;
 				
 				OverworldState.player.setX(toX);
 				OverworldState.player.setY(toY);

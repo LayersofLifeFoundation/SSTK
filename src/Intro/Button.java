@@ -53,10 +53,7 @@ public class Button {
 			Game.gameStateManager.changeState(2);
 			IntroductionState.startIntroState();
 			try {
-				//System.out.println(Game.gameStateManager.overworld.encounter.get(0).direc);
 				Save.load();
-				System.out.println(Game.gameStateManager.overworld.encounter.get(0).direc);
-
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

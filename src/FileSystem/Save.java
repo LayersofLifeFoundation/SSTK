@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import GameStateManager.Game;
 import GameStateManager.OverworldState;
+import Sounds.Music;
 
 public class Save {
 
@@ -28,7 +29,10 @@ public class Save {
 			write.write(Game.gameStateManager.overworld.linksLocation);
 			write.newLine();
 			write.write(Game.gameStateManager.overworld.mapLocation);
+			write.newLine();
+			write.write(Game.gameStateManager.overworld.song);
 			write.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +57,7 @@ public class Save {
 		String map = in.readLine();
 		Game.gameStateManager.overworld.mapLocation = map;
 		Game.gameStateManager.overworld.setMap(map);
-		
+		Game.gameStateManager.overworld.song = in.readLine();
 		MapRetrevial.readEncounter(s);
 	}
 }
