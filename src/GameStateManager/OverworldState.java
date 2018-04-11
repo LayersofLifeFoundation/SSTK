@@ -76,7 +76,9 @@ public class OverworldState extends GameState {
 
 	public static void stateOverworldState() {
 		Music.startSound(song, true);
-		GameStateManager.battle.nextEnemy(BattleState.enemy);
+		do {
+			GameStateManager.battle.nextEnemy(BattleState.enemy);
+		}while(BattleState.enemy.name == "Verizon Employee");
 		Player.isMoving = false;
 		Encounter.disableKeys = false;
 		}
@@ -191,7 +193,6 @@ public class OverworldState extends GameState {
 		for (Encounter e : encounter) {
 			e.tick();
 			count++;
-			System.out.println(encounter.indexOf(e));
 			
 		}
 		//*This is when the BattleState starts*

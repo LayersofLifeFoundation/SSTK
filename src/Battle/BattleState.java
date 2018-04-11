@@ -154,6 +154,18 @@ public class BattleState extends GameState {
 			e.rip = true;			
 		}
 	}
+	
+	public static void setEnemy(String s) {
+		do {
+			try {
+				MapRetrevial.loadEnemy(enemy, OverworldState.linksLocation);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}while(!enemy.name.equals(s));
+	}
+	
 
 	public void tick() {
 
