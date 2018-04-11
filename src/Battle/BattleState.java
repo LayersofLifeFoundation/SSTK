@@ -32,7 +32,8 @@ public class BattleState extends GameState {
 	static boolean inDialog = true;
 	Font dialogFont = new Font("Franklin Gothic Demi Cond", Font.PLAIN, 30);
 	static boolean shreksTurn = false;
-
+	public static String batMus;
+	
 	public BattleState() {
 
 		try {

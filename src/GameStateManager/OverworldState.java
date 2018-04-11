@@ -199,6 +199,7 @@ public class OverworldState extends GameState {
 			if(inDialog){
 				Player.isMoving = true;
 				BattleState.bs = "FidgetSpinners.wav";
+				BattleState.batMus = "VerBat.wav";
 				BattleState.startSwampBattle();
 				npcs.get(npcNum).talked = true;
 			}
@@ -230,13 +231,15 @@ public class OverworldState extends GameState {
 			}
 		} catch (ConcurrentModificationException e) {
 		}
+		
 		//*This is when the BattleState starts*
 		//It is triggered when a key sound finishes
+		
 		if(Music.audioClip.getMicrosecondLength() <= Music.audioClip.getMicrosecondPosition() 
 				&& Music.audioFile.getName().equals(BattleState.bs)) {
 			Player.isMoving = true;
 			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
-			Music.startSound("Music\\VerBat.wav", true);	
+			Music.startSound("Music\\" + BattleState.batMus, true);	
 		}
 	}
 	
