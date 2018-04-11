@@ -33,6 +33,7 @@ public class BattleState extends GameState {
 	Font dialogFont = new Font("Franklin Gothic Demi Cond", Font.PLAIN, 30);
 	static boolean shreksTurn = false;
 
+	
 	public BattleState() {
 
 		try {
@@ -51,10 +52,10 @@ public class BattleState extends GameState {
 		}
 	}
 
-
 	//plays battle-start sound and starts BattleState when the track finishes
 	//The check for finishing the sound is in OverworldState's tick() for now
-	public static String bs = "Exquisite.wav";
+	public static String bs;
+	public static String batMus;
 
 	public static void startSwampBattle() {
 		Music.stopSound();
@@ -66,7 +67,6 @@ public class BattleState extends GameState {
 
 	// update new enemy info
 	// currently called in overworldstate
-	// later they may be stored in arrays for more efficiency
 	public void nextEnemy(Enemy e) {
 		try {
 			// "World1" is tmp this will be current map name
@@ -105,7 +105,7 @@ public class BattleState extends GameState {
 			OverworldState.stateOverworldState();
 			return;
 		}
-		// speed stat can easily be added here
+		// speed stat can be added here
 		if(!shreksTurn) {
 			useMove(enemy);
 		}else {
@@ -151,8 +151,7 @@ public class BattleState extends GameState {
 		if (e.hpLev <= 0) {
 			e.hpLev = 0;
 			System.out.println(e.name + " is a dead meme!");
-			e.rip = true;
-			
+			e.rip = true;			
 		}
 	}
 
