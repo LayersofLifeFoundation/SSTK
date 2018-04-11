@@ -53,5 +53,7 @@ public class Save {
 		String map = in.readLine();
 		Game.gameStateManager.overworld.mapLocation = map;
 		Game.gameStateManager.overworld.setMap(map);
+		
+		MapRetrevial.readEncounter(s);
 	}
 }

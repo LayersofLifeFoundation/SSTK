@@ -25,7 +25,6 @@ public class OverworldState extends GameState {
 	public static MovementMap movMap = new MovementMap();
 	public static TextMap textMap = new TextMap();
 	public static Player player = new Player();
-	public static Encounter encounter = new Encounter();
 	public static Hitmarker hitmarker = new Hitmarker();
 	public static ArrayList<Link> links = new ArrayList<Link>();
 	public static BufferedImage map;
@@ -35,6 +34,7 @@ public class OverworldState extends GameState {
 	static String dialog;
 	static ArrayList<String> lines = new ArrayList<String>();
 	ArrayList<String> displayText = new ArrayList<String>();
+	public static ArrayList<Encounter> encounter = new ArrayList<Encounter>();
 	public static boolean inDialog = false;
 	static int currentLine = 0;
 	Font font = new Font("Courier New", Font.PLAIN, 30);
@@ -54,7 +54,8 @@ public class OverworldState extends GameState {
 		try {
 			movMap.loadMap("ShrekHouse");
 			MapRetrevial.retiveLinks(links, "ShrekHouse");
-			MapRetrevial.readNPC("ShrekHouse");
+			//MapRetrevial.readNPC("ShrekHouse");
+			//MapRetrevial.readEncounter("World1");
 			map = ImageIO.read(getClass().getResource("/map.png"));
 
 		} catch (IOException e) {
@@ -179,7 +180,6 @@ public class OverworldState extends GameState {
 	 */
 	public void tick() {
 		player.tick();
-		encounter.tick();
 			
 		try {
 			for (Link link : links) {
@@ -187,7 +187,13 @@ public class OverworldState extends GameState {
 			}
 		} catch (ConcurrentModificationException e) {
 		}
-		
+		int count = 0;
+		for (Encounter e : encounter) {
+			e.tick();
+			count++;
+			System.out.println(encounter.indexOf(e));
+			
+		}
 		//*This is when the BattleState starts*
 		//It is triggered when a key sound finishes
 		
