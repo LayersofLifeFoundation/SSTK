@@ -61,9 +61,6 @@ public class InputHandler implements KeyListener {
 			}
 		}
 
-		if (keyCode == KeyEvent.VK_P) {
-			Game.gameStateManager.changeState(Game.gameStateManager.optionState);
-		}
 
 		// in battle
 		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
@@ -84,6 +81,10 @@ public class InputHandler implements KeyListener {
 			 */
 			if (keyCode == KeyEvent.VK_SPACE) {
 				OverworldState.interact();
+			}
+
+			if (keyCode == KeyEvent.VK_P) {
+				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
 			if (keyCode == KeyEvent.VK_W) {
 				try {

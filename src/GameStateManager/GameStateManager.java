@@ -18,7 +18,7 @@ public class GameStateManager {
 	private int currentState = 1;
 
 	//Different states in the game
-	OverworldState overworld = new OverworldState();
+	public static OverworldState overworld = new OverworldState();
 	private InputState input = new InputState();
 	private IntroductionState intro = new IntroductionState();
 	public OptionState options = new OptionState();

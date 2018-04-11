@@ -26,7 +26,7 @@ public class OverworldState extends GameState {
 	public static Player player = new Player();
 	public static Hitmarker hitmarker = new Hitmarker();
 	public static ArrayList<Link> links = new ArrayList<Link>();
-	public BufferedImage map;
+	public static BufferedImage map;
 	BufferedImage subMap;
 
 	public static ArrayList<NPC> npcs = new ArrayList<NPC>();
@@ -40,6 +40,9 @@ public class OverworldState extends GameState {
 	static String npcName;
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
 	public static boolean disableKeys;
+	public static boolean changeLinks = false;
+	public static String linksLocation;
+	public static String mapLocation;
 
 	/*
 	 * loading and initializing objects in OverworldState
@@ -47,16 +50,25 @@ public class OverworldState extends GameState {
 	public OverworldState() {
 
 		try {
-			movMap.loadMap("World1");
-			textMap.loadMap("test");
-			MapRetrevial.readNPC("World1");
-			map = ImageIO.read(getClass().getResource("/Swamp_Map.png"));
+			movMap.loadMap("ShrekHouse");
+			MapRetrevial.retiveLinks(links, "ShrekHouse");
+			MapRetrevial.readNPC("ShrekHouse");
+			map = ImageIO.read(getClass().getResource("/map.png"));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//movMap.printMap();
+	}
+	
+	public void setMap(String m) {
+		try {
+			map = ImageIO.read(getClass().getResource(m));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void stateOverworldState() {
@@ -237,6 +249,15 @@ public class OverworldState extends GameState {
 			Player.isMoving = true;
 			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
 			Music.startSound("Music\\SwampBattle.wav", true);	
+		}
+		
+		if(changeLinks) {
+			try {
+				MapRetrevial.retiveLinks(links, linksLocation);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 
+import GameStateManager.Game;
 import GameStateManager.OverworldState;
 import Sounds.Music;
 
@@ -38,7 +39,7 @@ public class Link {
 	public void setLinkMovement(String s) {
 		linkMovement = s;
 	}
-	public void setLinkText(String s) {
+	public void setLinkMap(String s) {
 		linkText = s;
 	}
 	public void setNextTrack(String s) {
@@ -51,17 +52,19 @@ public class Link {
 	public void tick() {
 		if(OverworldState.player.returnX() == x && OverworldState.player.returnY() == y) {
 			try {
-				Music.stopSound();
-				Music.startSound(nextTrack, true);
+				//Music.stopSound();
+				//Music.startSound(nextTrack, true);
 				
 				OverworldState.player.setX(toX);
 				OverworldState.player.setY(toY);
 				
 				
 				OverworldState.movMap.loadMap(linkMovement);
-				OverworldState.textMap.loadMap(linkText);
-				
-				
+				System.out.println(linkText);
+				Game.gameStateManager.overworld.setMap(linkText);
+				Game.gameStateManager.overworld.mapLocation = linkText;
+				Game.gameStateManager.overworld.linksLocation = linkMovement;
+				Game.gameStateManager.overworld.changeLinks = true;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
