@@ -21,7 +21,7 @@ SFX\\smack.wav
 Pepe
 100
 Hate Symbol
-60
+45
 45
 SFX\\Smack.wav
 REEEEEEE
@@ -29,30 +29,30 @@ REEEEEEE
 100
 SFX\\Smack.wav
 Feels Bad
-25
+23
 95
 SFX\\Smack.wav
 Alt-Right
-30
+26
 80
 SFX\\Smack.wav
 /h.png
 Hacker
 150
 Scanf()
-60
+50
 45
 SFX\\Smack.wav
 Phishing Email
-15
+12
 100
 SFX\\Smack.wav
 Green Text
-25
+17
 95
 SFX\\Smack.wav
 Shutterstock
-30
+26
 80
 SFX\\Smack.wav
 /Fat_Yoshi.png
@@ -67,7 +67,7 @@ Simple Request
 65
 SFX\\smack.wav
 VoRe?
-100
+50
 3
 SFX\\smack.wav
 Jelly Belly
@@ -78,18 +78,37 @@ SFX\\smack.wav
 Cool Cat
 130
 Boogie Woogie
-60
+55
 45
 SFX\\BoogieWoogie.wav
-I love all kids
+I Love All Kids
 15
 100
 SFX\\AllKids.wav
-Identify yourself!
-25
+Identify Yourself!
+20
 95
 SFX\\Identify.wav
 Exquisite
-30
+27
 80
 SFX\\Exquisite.wav
+/VerizonEmp.png
+Verizon Employee
+145
+I Don't Know
+17
+90
+SFX\\smack.wav
+Hear That?
+25
+75
+SFX\\HearThat.wav
+1% Reliability
+32
+70
+SFX\\1Percent.wav
+Contract
+38
+55
+SFX\\smack.wav
