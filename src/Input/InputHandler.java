@@ -11,6 +11,7 @@ import GameStateManager.GameStateManager;
 import GameStateManager.OverworldState;
 import Intro.InputState;
 import Intro.IntroductionState;
+import NPC.Encounter;
 import Player.Player;
 import Sounds.Music;
 import FileSystem.Save;
@@ -61,9 +62,6 @@ public class InputHandler implements KeyListener {
 			}
 		}
 
-		if (keyCode == KeyEvent.VK_P) {
-			Game.gameStateManager.changeState(Game.gameStateManager.optionState);
-		}
 
 		// in battle
 		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
@@ -78,12 +76,16 @@ public class InputHandler implements KeyListener {
 			}
 
 		}
-		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber && !OverworldState.disableKeys) {
+		if (Game.gameStateManager.getState() == Game.gameStateManager.overworldStateNumber && !Encounter.disableKeys) {
 			/*
 			 * Key bounds for the OverworldState
 			 */
 			if (keyCode == KeyEvent.VK_SPACE) {
 				OverworldState.interact();
+			}
+
+			if (keyCode == KeyEvent.VK_P) {
+				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
 			if (keyCode == KeyEvent.VK_W) {
 				try {

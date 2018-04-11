@@ -14,6 +14,7 @@ import Battle.BattleState;
 import FileSystem.MapRetrevial;
 import Maps.Link;
 import Maps.MovementMap;
+import NPC.Encounter;
 import NPC.NPC;
 import Player.Hitmarker;
 import Player.Player;
@@ -24,9 +25,10 @@ public class OverworldState extends GameState {
 	public static MovementMap movMap = new MovementMap();
 	public static TextMap textMap = new TextMap();
 	public static Player player = new Player();
+	public static Encounter encounter = new Encounter();
 	public static Hitmarker hitmarker = new Hitmarker();
 	public static ArrayList<Link> links = new ArrayList<Link>();
-	public BufferedImage map;
+	public static BufferedImage map;
 	BufferedImage subMap;
 
 	public static ArrayList<NPC> npcs = new ArrayList<NPC>();
@@ -40,6 +42,9 @@ public class OverworldState extends GameState {
 	static String npcName;
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
 	public static boolean disableKeys;
+	public static boolean changeLinks = false;
+	public static String linksLocation;
+	public static String mapLocation;
 
 	/*
 	 * loading and initializing objects in OverworldState
@@ -47,10 +52,10 @@ public class OverworldState extends GameState {
 	public OverworldState() {
 
 		try {
-			movMap.loadMap("World1");
-			textMap.loadMap("test");
-			MapRetrevial.readNPC("World1");
-			map = ImageIO.read(getClass().getResource("/Swamp_Map.png"));
+			movMap.loadMap("ShrekHouse");
+			MapRetrevial.retiveLinks(links, "ShrekHouse");
+			MapRetrevial.readNPC("ShrekHouse");
+			map = ImageIO.read(getClass().getResource("/map.png"));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -58,12 +63,21 @@ public class OverworldState extends GameState {
 		}
 		//movMap.printMap();
 	}
+	
+	public void setMap(String m) {
+		try {
+			map = ImageIO.read(getClass().getResource(m));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void stateOverworldState() {
 		Music.startSound(swampMusic, true);
 		GameStateManager.battle.nextEnemy(BattleState.enemy);
 		Player.isMoving = false;
-		disableKeys = false;
+		Encounter.disableKeys = false;
 		}
 
 	/*
@@ -159,84 +173,38 @@ public class OverworldState extends GameState {
 			}
 		} while (n < dialog.length());
 	}
-	
-	//If player is in encounter box, walk to them, talk, and start battle
-	public void encounterBoxCk(int npcNum, char direc,  int dist){
-	if(!npcs.get(npcNum).talked) {	
-	    int npcX = npcs.get(npcNum).x;
-		int npcY = npcs.get(npcNum).y;
-		boolean inBox = false;
-		
-		if(direc == 'l' && npcY == player.y && npcX < player.x + dist && npcX > player.x && !inDialog) {
-			inBox = true;
-			try {
-				player.moveRight();
-			} catch (InterruptedException e) {
-		    }
-		}else if(direc == 'r' && npcY == player.y && npcX > player.x - dist && npcX < player.x && !inDialog) {
-			inBox = true;
-			try {
-				player.moveLeft();
-				
-			} catch (InterruptedException e) {
-			}
-		}else if(direc == 'u' && npcX == player.x && npcY < player.y + dist && npcY > player.y && !inDialog) {
-			inBox = true;
-			try {
-				player.moveDown();
-			} catch (InterruptedException e) {
-		    }
-		}else if(direc == 'd' && npcX == player.x && npcY > player.y - dist && npcY < player.y && !inDialog ) {
-			inBox = true;
-			try {
-				player.moveUp();
-			} catch (InterruptedException e) {
-		    }
-		}
-		if(inBox) {
-			interact();
-			disableKeys = true;
-			if(inDialog){
-				Player.isMoving = true;
-				BattleState.bs = "FidgetSpinners.wav";
-				BattleState.startSwampBattle();
-				npcs.get(npcNum).talked = true;
-			}
-		}
-	}
-}
-		
+			
 	/*
 	 * Passing down the tick() function even more to any object that needs to update
 	 */
-	int start = 0;
 	public void tick() {
 		player.tick();
-		
-		//add ckBoxes here Ryan
-		//toward end
-		encounterBoxCk(6, 'r', 10);
-		//border control
-		encounterBoxCk(11, 'l', 20);
-		encounterBoxCk(10, 'l', 2);
-		//on bend
-		encounterBoxCk(5 , 'd', 5);
-		//sign
-		encounterBoxCk(4 , 'u', 7);	
-		
+		encounter.tick();
+			
 		try {
 			for (Link link : links) {
 				link.tick();
 			}
 		} catch (ConcurrentModificationException e) {
 		}
+		
 		//*This is when the BattleState starts*
 		//It is triggered when a key sound finishes
+		
 		if(Music.audioClip.getMicrosecondLength() <= Music.audioClip.getMicrosecondPosition() 
 				&& Music.audioFile.getName().equals(BattleState.bs)) {
 			Player.isMoving = true;
 			Game.gameStateManager.changeState(Game.gameStateManager.battleStateNum);
-			Music.startSound("Music\\VerBat.wav", true);	
+			Music.startSound("Music\\" + BattleState.batMus, true);	
+		}
+		
+		if(changeLinks) {
+			try {
+				MapRetrevial.retiveLinks(links, linksLocation);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -274,10 +242,12 @@ public class OverworldState extends GameState {
 		}
 		
 		if(BattleState.shrek.rip) {
-			g.setColor(Color.RED);
 			g.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 100));
+			g.setColor(Color.BLACK);
+			g.drawString("GAME OGRE",  145 , Game.HEIGHT / 2 - 105);
+			g.setColor(Color.RED);
 			g.drawString("GAME OGRE",  150 , Game.HEIGHT / 2 - 100);
-		}
+			}
 		
 	}
 }

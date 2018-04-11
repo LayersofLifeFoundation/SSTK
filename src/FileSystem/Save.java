@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import GameStateManager.Game;
 import GameStateManager.OverworldState;
 
 public class Save {
@@ -23,6 +24,10 @@ public class Save {
 			write.write(OverworldState.player.returnX() + "");
 			write.newLine();
 			write.write(OverworldState.player.returnY()+ "");
+			write.newLine();
+			write.write(Game.gameStateManager.overworld.linksLocation);
+			write.newLine();
+			write.write(Game.gameStateManager.overworld.mapLocation);
 			write.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -40,5 +45,13 @@ public class Save {
 		BufferedReader in = new BufferedReader(new FileReader("Save\\save.txt"));
 		OverworldState.player.setX(Integer.parseInt(in.readLine()));
 		OverworldState.player.setY(Integer.parseInt(in.readLine()));
+		String s = in.readLine();
+		Game.gameStateManager.overworld.linksLocation = s;
+		Game.gameStateManager.overworld.movMap.loadMap(s);
+		MapRetrevial.retiveLinks(Game.gameStateManager.overworld.links, s);
+		MapRetrevial.readNPC(s);
+		String map = in.readLine();
+		Game.gameStateManager.overworld.mapLocation = map;
+		Game.gameStateManager.overworld.setMap(map);
 	}
 }

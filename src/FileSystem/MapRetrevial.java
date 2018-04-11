@@ -73,7 +73,7 @@ public class MapRetrevial {
 
 	public static void retiveLinks(ArrayList<Link> links, String mapName) throws IOException {
 		String line;
-		BufferedReader in = new BufferedReader(new FileReader("map\\TextMaps\\" + mapName + "\\links.txt"));
+		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\links.txt"));
 		int count = 0;
 		links.clear();
 
@@ -91,7 +91,7 @@ public class MapRetrevial {
 			line = in.readLine();
 			links.get(count).setLinkMovement(line);
 			line = in.readLine();
-			links.get(count).setLinkText(line);
+			links.get(count).setLinkMap(line);
 			line = in.readLine();
 			links.get(count).setNextTrack(line);
 			count++;

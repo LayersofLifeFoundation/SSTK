@@ -33,6 +33,7 @@ public class BattleState extends GameState {
 	Font dialogFont = new Font("Franklin Gothic Demi Cond", Font.PLAIN, 30);
 	static boolean shreksTurn = false;
 
+	
 	public BattleState() {
 
 		try {
@@ -54,6 +55,7 @@ public class BattleState extends GameState {
 	//plays battle-start sound and starts BattleState when the track finishes
 	//The check for finishing the sound is in OverworldState's tick() for now
 	public static String bs;
+	public static String batMus;
 
 	public static void startSwampBattle() {
 		Music.stopSound();

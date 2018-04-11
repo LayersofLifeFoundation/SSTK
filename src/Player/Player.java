@@ -16,7 +16,7 @@ public class Player {
 	public static int y = 10;
 	public static BufferedImage spriteSheet;
 	public static BufferedImage currentSprite;
-	int battlePer = 100;
+	int battlePer = 20;
 	int noAnime = 0;
 	public static boolean isMoving = false;
 	boolean moveUp = false;
@@ -134,6 +134,7 @@ public class Player {
 				{
 					Player.isMoving = true;
 					BattleState.bs = "Hello_There.wav";
+					BattleState.batMus = "SwampBattle.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -166,6 +167,7 @@ public class Player {
 				{
 					Player.isMoving = true;
 					BattleState.bs = "Hello_There.wav";
+					BattleState.batMus = "SwampBattle.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -188,6 +190,7 @@ public class Player {
 				{
 					Player.isMoving = true;
 					BattleState.bs = "Hello_There.wav";
+					BattleState.batMus = "SwampBattle.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -210,6 +213,7 @@ public class Player {
 				{
 					Player.isMoving = true;
 					BattleState.bs = "Hello_There.wav";
+					BattleState.batMus = "SwampBattle.wav";
 					BattleState.startSwampBattle();
 				}
 			}
@@ -310,7 +314,6 @@ public class Player {
 	}
 
 	public void tick() {
-		
 		if (moveUp) {
 			animateUp(upAnime);
 			upAnime++;
