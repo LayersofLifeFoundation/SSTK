@@ -41,13 +41,10 @@ public class OverworldState extends GameState {
 	Font bold = new Font("Courier New", Font.BOLD, 30);
 	static String npcName;
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
-<<<<<<< HEAD
 	public static boolean disableKeys;
 	public static boolean changeLinks = false;
 	public static String linksLocation;
 	public static String mapLocation;
-=======
->>>>>>> dcb858d71040c567a87707b4d83bbc1e29e44241
 
 	/*
 	 * loading and initializing objects in OverworldState
