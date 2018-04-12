@@ -78,7 +78,7 @@ public class OverworldState extends GameState {
 		Music.startSound(song, true);
 		do {
 			GameStateManager.battle.nextEnemy(BattleState.enemy);
-		}while(BattleState.enemy.name == "Verizon Employee");
+		}while(BattleState.enemy.name.equals("Verizon Employee"));
 		Player.isMoving = false;
 		Encounter.disableKeys = false;
 		}
