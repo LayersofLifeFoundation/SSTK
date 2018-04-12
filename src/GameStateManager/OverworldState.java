@@ -182,7 +182,7 @@ public class OverworldState extends GameState {
 	 */
 	public void tick() {
 		player.tick();
-			
+
 		try {
 			for (Link link : links) {
 				link.tick();
@@ -218,10 +218,7 @@ public class OverworldState extends GameState {
 	//Game Over actions
 	//GO str is rendered below
 	//music will be unique based on map in future 
-	public static void gameOver() {
-			Music.stopSound();
-			Music.startSound("Music\\GOW1.wav", true);
-	}
+	
 	/*
 	 * Passes down the render function
 	 */
