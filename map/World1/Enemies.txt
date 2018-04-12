@@ -1,20 +1,20 @@
 /BattleShrek.png
 SHREK
-200
+500
 The Roar
 200
 100
 SFX\\smack.wav
 Onion Barrage
-13
+17
 95
 SFX\\smack.wav
 Dawngkay!
-29
+36
 65
 SFX\\smack.wav
 Therapy
-16
+21
 90
 SFX\\smack.wav
 /Pepe.png
@@ -29,12 +29,12 @@ REEEEEEE
 100
 SFX\\Smack.wav
 Feels Bad
-23
+18
 95
 SFX\\Smack.wav
 Alt-Right
 26
-80
+75
 SFX\\Smack.wav
 /h.png
 Hacker
@@ -112,3 +112,22 @@ Contract
 38
 55
 SFX\\smack.wav
+/TheTomBom.png
+Tom Halverson
+250
+Check Email
+20
+85
+SFX\\BigSmak2.wav
+D2L Quiz
+25
+81
+SFX\\BigSmak2.wav
+No Anime
+15
+95
+SFX\\BigSmak2.wav
+cd CSC250
+30
+50
+SFX\\BigSmak2.wav
