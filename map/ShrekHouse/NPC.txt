@@ -10,18 +10,18 @@ PC
 3
 3
 Shrek is love. Shrek is Life.
-50 Foot Shrek
+55 Foot Shrek
 1
 4
 3
 3
-It's a 50 foot Shrek statue
-50 Foot Shrek
+It's a 55 foot Shrek statue
+55 Foot Shrek
 1
 5
 3
 3
-It's a 50 foot Shrek statue
+It's a 55 foot Shrek statue
 Bookshelf
 3
 1
@@ -29,7 +29,7 @@ Bookshelf
 3
 You look on the shelf. You see a book titled The Red Woods: Harambe Illuminati Fanfiction by JWEEB
 Bookshelf
-3
+2
 1
 3
 3

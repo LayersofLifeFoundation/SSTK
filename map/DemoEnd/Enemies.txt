@@ -112,3 +112,22 @@ Contract
 38
 55
 SFX\\smack.wav
+/TheTomBom.png
+Tom Halverson
+250
+Check Email
+20
+85
+SFX\\BigSmak2.wav
+D2L Quiz
+25
+81
+SFX\\BigSmak2.wav
+No Anime
+15
+95
+SFX\\BigSmak2.wav
+cd CSC250
+30
+50
+SFX\\BigSmak2.wav
