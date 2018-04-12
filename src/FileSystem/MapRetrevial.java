@@ -1,5 +1,4 @@
 package FileSystem;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -157,7 +156,7 @@ public class MapRetrevial {
 		Random rando = new Random();
 		int enemyNo; 
 		//%4 is tmp this is # of mons in area
-		enemyNo = Math.abs(rando.nextInt() % 4) + 2;
+		enemyNo = Math.abs(rando.nextInt() % 5) + 2;
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Enemies.txt"));
 		if(e.equals(BattleState.shrek)) 

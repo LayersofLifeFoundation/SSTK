@@ -93,18 +93,9 @@ public class BattleState extends GameState {
 	// Executes the attack when button is pushed
 	public static void attack() {
 		
-		if(shrek.rip) {
-			Music.stopSound();
-			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
-			OverworldState.stateOverworldState();
-			OverworldState.gameOver();
-			
-		}else if(enemy.rip) {
-			Music.stopSound();
-			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
-			OverworldState.stateOverworldState();
-			return;
-		}
+		
+		
+		
 		// speed stat can be added here
 		if(!shreksTurn) {
 			useMove(enemy);
@@ -112,8 +103,26 @@ public class BattleState extends GameState {
 		useMove(shrek);
 		}
 		shreksTurn = !shreksTurn;
+		
 	}
 
+	//End battle
+	public static void gameOver() {
+		if(shrek.rip) {
+			Music.stopSound();
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+			OverworldState.stateOverworldState();
+			Music.stopSound();
+			Music.startSound("Music\\GOW1.wav", true);
+			
+		}else if(enemy.rip) {
+			Music.stopSound();
+			Game.gameStateManager.changeState(Game.gameStateManager.overworldStateNumber);
+			OverworldState.stateOverworldState();
+			return;
+		}
+}
+	
 	// uses enemy e's attack on other party
 	public static void useMove(Enemy e) {
 		if (!e.rip) {
@@ -139,6 +148,7 @@ public class BattleState extends GameState {
 			System.out.println(message);
 			// check for a kill on receiving side
 			hpBound(defense);
+			gameOver();
 		}
 	}
 
@@ -154,9 +164,15 @@ public class BattleState extends GameState {
 			e.rip = true;			
 		}
 	}
+	
+	public static void setEnemy(String s) {
+		do {
+			GameStateManager.battle.nextEnemy(enemy);
+		}while(!enemy.name.equals(s));
+	}
+	
 
 	public void tick() {
-
 	}
 
 	public void render(Graphics g) {

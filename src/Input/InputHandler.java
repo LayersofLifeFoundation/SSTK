@@ -85,7 +85,7 @@ public class InputHandler implements KeyListener {
 			/*
 			 * Key bounds for the OverworldState
 			 */
-			if (keyCode == KeyEvent.VK_SPACE) {
+			if (keyCode == KeyEvent.VK_SPACE && !GameStateManager.battle.shrek.rip) {
 				OverworldState.interact();
 			}
 

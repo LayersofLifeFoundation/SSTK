@@ -76,7 +76,9 @@ public class OverworldState extends GameState {
 
 	public static void stateOverworldState() {
 		Music.startSound(song, true);
-		GameStateManager.battle.nextEnemy(BattleState.enemy);
+		do {
+			GameStateManager.battle.nextEnemy(BattleState.enemy);
+		}while(BattleState.enemy.name.equals("Verizon Employee"));
 		Player.isMoving = false;
 		Encounter.disableKeys = false;
 		}
@@ -180,7 +182,7 @@ public class OverworldState extends GameState {
 	 */
 	public void tick() {
 		player.tick();
-			
+
 		try {
 			for (Link link : links) {
 				link.tick();
@@ -191,7 +193,6 @@ public class OverworldState extends GameState {
 		for (Encounter e : encounter) {
 			e.tick();
 			count++;
-			System.out.println(encounter.indexOf(e));
 			
 		}
 		//*This is when the BattleState starts*
@@ -217,10 +218,7 @@ public class OverworldState extends GameState {
 	//Game Over actions
 	//GO str is rendered below
 	//music will be unique based on map in future 
-	public static void gameOver() {
-			Music.stopSound();
-			Music.startSound("Music\\GOW1.wav", true);
-	}
+	
 	/*
 	 * Passes down the render function
 	 */

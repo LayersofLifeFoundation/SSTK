@@ -12,8 +12,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import Battle.BattleState;
 import FileSystem.FileOut;
 import Input.InputHandler;
+import Player.Player;
 import Sounds.Music;
 
 
@@ -47,6 +49,8 @@ public class Game extends Canvas implements Runnable {
 
 	public static void restart() {
 		gameStateManager.overworld = new OverworldState();
+		BattleState.shrek.rip = false;
+		OverworldState.player.currentSprite = OverworldState.player.grabImage(Player.spriteSheet, 3, 1);
 		Music.stopSound();
 		Music.startSound("Music\\TitleScreen.wav", true);
 	}

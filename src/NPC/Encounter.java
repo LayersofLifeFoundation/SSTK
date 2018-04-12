@@ -62,6 +62,7 @@ public class Encounter {
 					OverworldState.player.isMoving = true;
 					BattleState.bs = "FidgetSpinners.wav";
 					BattleState.batMus = "VerBat.wav";
+					BattleState.setEnemy("Verizon Employee");
 					BattleState.startSwampBattle();
 					OverworldState.npcs.get(npcNum).talked = true;
 				}
