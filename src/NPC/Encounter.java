@@ -60,7 +60,7 @@ public class Encounter {
 				disableKeys = true;
 				if (OverworldState.inDialog) {
 					OverworldState.player.isMoving = true;
-					BattleState.bs = "FidgetSpinners.wav";
+					BattleState.bs = "VerStart.wav";
 					BattleState.batMus = "VerBat.wav";
 					BattleState.setEnemy("Verizon Employee");
 					BattleState.startSwampBattle();
