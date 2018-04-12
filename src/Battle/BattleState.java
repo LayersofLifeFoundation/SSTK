@@ -70,7 +70,7 @@ public class BattleState extends GameState {
 	public void nextEnemy(Enemy e) {
 		try {
 			// "World1" is tmp this will be current map name
-			MapRetrevial.loadEnemy(e, "World1");
+			MapRetrevial.loadEnemy(e, OverworldState.linksLocation);
 			e.enemyPic = ImageIO.read(getClass().getResource(e.imgPath));
 		} catch (IOException i) {
 			i.printStackTrace();
