@@ -1,0 +1,42 @@
+Fire Place
+8
+1
+3
+3
+You look at the fire. It fills you with determination.
+PC
+5
+1
+3
+3
+Shrek is love. Shrek is Life.
+55 Foot Shrek
+1
+4
+3
+3
+It's a 55 foot Shrek statue
+55 Foot Shrek
+1
+5
+3
+3
+It's a 55 foot Shrek statue
+Bookshelf
+3
+1
+3
+3
+You look on the shelf. You see a book titled The Red Woods: Harambe Illuminati Fanfiction by JWEEB
+Bookshelf
+2
+1
+3
+3
+You look on the shelf. You see a book titled GHIRAHIM X LINK: The Great Deku Tree's Last Stand by JWEEB
+Shrek's Diary
+8
+5
+3
+3
+Entry Date 4-20-07 Shrek and Skyrim have an eerily simular plot..... Coincidence I think not!
