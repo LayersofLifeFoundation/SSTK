@@ -303,7 +303,6 @@ public class Player {
 	}
 
 	public void Dab() {
-		dab = true;
 		if (dabState == false) {
 			currentSprite = grabImage(spriteSheet, 8, 2);
 			dabState = true;
