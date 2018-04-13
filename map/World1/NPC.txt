@@ -1,21 +1,9 @@
-Villager
-10
-3
-1
-1
-Woah slow down there! You can't be running around this swamp without protection. Here I have three weapons here for you, take your pick.
-Villager
-11
-3
-1
-2
-Ugh, why did you attack me?!?
 Loot-Box
 3
 44
 8
 1
-I will be a ground item! Grab your wallets and pay to win with your acquired currency. I cost $1,000,000. Would you like some pride and accomplishment?
+I will be a ground item! Grab your wallets and pay to win. I cost $1,000,000. Would you like some pride and accomplishment?
 Loot-Box
 41
 44
@@ -39,7 +27,7 @@ Verizon Employee
 32
 1
 5
-You there! Stop in the name of Capitalism!
+You there! Stop in the name of Capitalism! *seizes the means of production
 Dark Shrek
 44
 3
