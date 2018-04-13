@@ -27,7 +27,7 @@ public class GameStateManager {
 	//Corresponding number to the game states
 	public static int overworldStateNumber = 0;
 	public int introState = 1;
-	public int introductionState = 2;
+	public int introductionState = 2;          
 	public int optionState = 3;
 	public int battleStateNum = 4;
 
