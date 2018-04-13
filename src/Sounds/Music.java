@@ -13,6 +13,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import GameStateManager.GameStateManager;
+import GameStateManager.OverworldState;
+import Player.Player;
 
 public class Music {
 	public static Clip audioClip;
@@ -94,25 +96,28 @@ public class Music {
 	//changes current track to specified track at time position of previous track
 	public static void boost() {
 		boosted = true;
-		String newPath = "";
-		if(audioFile.getName().equals("All_Star_Chip.wav")) {
-			newPath = "Music\\XAll_Star_ChipX.wav";
+			if(audioFile.getName().equals("All_Star_Chip.wav")) {
+				String newPath = "";
+				newPath = "Music\\XAll_Star_ChipX.wav";
+				long time = audioClip.getMicrosecondPosition();
+				stopSound();
+				startSound(newPath, true);
+				audioClip.setMicrosecondPosition(time);	
+				OverworldState.player.dab = true;
 		}
-		long time = audioClip.getMicrosecondPosition();
-		stopSound();
-		startSound(newPath, true);
-		audioClip.setMicrosecondPosition(time);	
 	}
 	 
 	public static void norm() {
 		boosted = false;
-		String newPath = "";
+				
 		if(audioFile.getName().equals("XAll_Star_ChipX.wav")) {
+			String newPath = "";
 			newPath = "Music\\All_Star_Chip.wav";
+			OverworldState.player.dab = false;
+			long time = audioClip.getMicrosecondPosition();
+			stopSound();
+			startSound(newPath, true);
+			audioClip.setMicrosecondPosition(time);	
 		}
-		long time = audioClip.getMicrosecondPosition();
-		stopSound();
-		startSound(newPath, true);
-		audioClip.setMicrosecondPosition(time);	
 	}
 }

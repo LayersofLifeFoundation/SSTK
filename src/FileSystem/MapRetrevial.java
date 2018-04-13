@@ -145,6 +145,8 @@ public class MapRetrevial {
 			line = in.readLine();
 			OverworldState.encounter.get(count).setDist(Integer.parseInt(line));
 			//System.out.println(line);
+			line = in.readLine();
+			OverworldState.encounter.get(count).setEName(line);
 			count++;
 		}
 		in.close();
@@ -156,7 +158,7 @@ public class MapRetrevial {
 		Random rando = new Random();
 		int enemyNo; 
 		//%4 is tmp this is # of mons in area
-		enemyNo = Math.abs(rando.nextInt() % 5) + 2;
+		enemyNo = Math.abs(rando.nextInt() % 6) + 2;
 		String line;
 		BufferedReader in = new BufferedReader(new FileReader("map\\" + mapName + "\\Enemies.txt"));
 		if(e.equals(BattleState.shrek)) 

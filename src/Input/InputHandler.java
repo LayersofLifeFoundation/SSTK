@@ -61,7 +61,7 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_SPACE) {
 				OptionState.pushButton();
 			}
-			if(keyCode == KeyEvent.VK_ESCAPE) {
+			if(keyCode == KeyEvent.VK_ESCAPE || keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
 				OptionState.inInv = false;
 				OptionState.itemM.inMenu = false;
 			}
@@ -141,15 +141,14 @@ public class InputHandler implements KeyListener {
 				}
 
 				if (keyCode == KeyEvent.VK_4) {
-					OverworldState.player.Dab();
+					OverworldState.player.Dab();	
 					if (!Music.boosted) {
 						Music.boost();
 					}
 				} else {
 					if (Music.boosted && keyCode != KeyEvent.VK_SPACE) {
 						Music.norm();
-						Player.dab = false;
-					}
+						}
 				}
 
 				if (keyCode == KeyEvent.VK_B) {

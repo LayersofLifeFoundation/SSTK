@@ -4,7 +4,7 @@
 5
 ShrekHouse
 /map.png
-Music\\XffX.wav
+Music\\Interior_All_Star.wav
 44
 7
 1

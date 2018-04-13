@@ -14,6 +14,7 @@ public class Encounter {
 	public int npcNum;
 	public String direc;
 	public int dist;
+	String EName;
 	
 	public void tick() {
 		//System.out.println(npcNum);
@@ -60,9 +61,9 @@ public class Encounter {
 				disableKeys = true;
 				if (OverworldState.inDialog) {
 					OverworldState.player.isMoving = true;
-					BattleState.bs = "FidgetSpinners.wav";
+					BattleState.bs = "VerStart.wav";
 					BattleState.batMus = "VerBat.wav";
-					BattleState.setEnemy("Verizon Employee");
+					BattleState.setEnemy(EName);
 					BattleState.startSwampBattle();
 					OverworldState.npcs.get(npcNum).talked = true;
 				}
@@ -89,6 +90,9 @@ public class Encounter {
 	}
 	public void setDist(int n){
 		dist = n;
+	}
+	public void setEName(String s){
+		EName = s;
 	}
 	
 	

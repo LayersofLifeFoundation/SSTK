@@ -43,7 +43,7 @@ public class OverworldState extends GameState {
 	public static String swampMusic = "Music\\All_Star_Chip.wav";
 	public static boolean disableKeys;
 	public static boolean changeLinks = false;
-	public static String linksLocation;
+	public static String linksLocation = "World1";
 	public static String mapLocation;
 	public static String song = "Music\\All_Star_Chip.wav";
 	/*
@@ -78,7 +78,7 @@ public class OverworldState extends GameState {
 		Music.startSound(song, true);
 		do {
 			GameStateManager.battle.nextEnemy(BattleState.enemy);
-		}while(BattleState.enemy.name.equals("Verizon Employee"));
+		}while(BattleState.enemy.name.equals("Verizon Employee") || BattleState.enemy.name.equals("Tom Halverson"));
 		Player.isMoving = false;
 		Encounter.disableKeys = false;
 		}
