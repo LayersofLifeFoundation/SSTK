@@ -154,7 +154,7 @@ public class MapRetrevial {
 
 	
 	public static void loadEnemy(Enemy e, String mapName) throws IOException {
-		System.out.println("Loading Character Now");
+		//System.out.println("Loading Character Now");
 		Random rando = new Random();
 		int enemyNo; 
 		//%4 is tmp this is # of mons in area
@@ -184,6 +184,6 @@ public class MapRetrevial {
 				e.moves.get(i).setSound(line);
 			}
 		}
-		System.out.println("Done! Loaded " + e.name);	
+		//System.out.println("Done! Loaded " + e.name);	
 	}
 }

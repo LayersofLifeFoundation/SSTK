@@ -89,7 +89,7 @@ public class InputHandler implements KeyListener {
 				OverworldState.interact();
 			}
 
-			if (keyCode == KeyEvent.VK_P) {
+			if (keyCode == KeyEvent.VK_P || keyCode == KeyEvent.VK_ENTER) {
 				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
 			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
