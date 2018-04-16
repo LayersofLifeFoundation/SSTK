@@ -1,9 +1,21 @@
+Villager
+10
+3
+1
+1
+Woah slow down there! You can't be running around this swamp without protection. Here I have three weapons here for you, take your pick.
+Villager
+11
+3
+1
+2
+Enemies get the first hit on you. Make sure you can take at least one hit, unlike me.
 Loot-Box
 3
 44
 8
 1
-I will be a ground item! Grab your wallets and pay to win. I cost $1,000,000. Would you like some pride and accomplishment?
+I will be a ground item! Grab your wallets and pay to win with your acquired currency. I cost $1,000,000. Would you like some pride and accomplishment?
 Loot-Box
 41
 44
@@ -27,10 +39,40 @@ Verizon Employee
 32
 1
 5
-You there! Stop in the name of Capitalism! *seizes the means of production
+You there! Stop in the name of Capitalism!
 Dark Shrek
 44
 3
 2
 1
-Don't mind the partial trees. Ryan designed the map like this. Thought it would be cool or something. Maybe he thought it would be some kind of creative twist on modern map making. He's done this in the past when he made the tile pixel size a nice odd number like 49 instead of the traditional 48. I'm fine with a map that doesn't look like a grid, but 2/3rds of a tree!?!. Anyway, I wonder if he'll look at the code and figure out how to send out counter-roasts. But I like my odds because he hasn't touched the code yet!
+Look at this partial tree. It is fully representative of how well designed this demo is. Most content is available, but some of it is missing. However, you, as the player, are not aware of what is not present. There really isn't much missing except
+Cocky Villager
+3
+5
+1
+1
+If you're not like me, you'll eventually take damage. You can heal that off in your bag by pressing P. You can press escape to exit out of sub-menus.
+Shady Villager
+19
+6
+2
+3
+Hey, kid. Press and hold 4 if you want to have a good time. Trust me, you'll love it.
+Villager
+19
+8
+2
+3
+The Roar is Shrek's most powerful attack. However, there is a repercussion for taking the easy way through this.
+Villager
+21
+42
+1
+1
+These Verizon Employees have been corrupted by the vicious Chairman. Expect them to greet you with hostility.
+Jesus
+16
+21
+2
+3
+Hey, how's it going?

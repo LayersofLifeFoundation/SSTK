@@ -116,18 +116,18 @@ SFX\\smack.wav
 Tom Halverson
 250
 Check Email
-20
+24
 85
 SFX\\BigSmak2.wav
 D2L Quiz
-25
+32
 81
 SFX\\BigSmak2.wav
 No Anime
-15
+30
 95
 SFX\\BigSmak2.wav
 cd CSC250
-30
+50
 50
 SFX\\BigSmak2.wav

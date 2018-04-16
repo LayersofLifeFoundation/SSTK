@@ -2,7 +2,7 @@
 SHREK
 500
 The Roar
-200
+27
 100
 SFX\\TheRoar.wav
 Onion Barrage

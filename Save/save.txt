@@ -1,5 +1,5 @@
-10
-7
-World1
-/Swamp_Map.png
-Music\\All_Star_Chip.wav
+6
+4
+ShrekHouse
+/map.png
+Music\\BossRoad.wav
