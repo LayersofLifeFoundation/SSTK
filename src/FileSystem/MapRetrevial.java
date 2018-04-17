@@ -170,7 +170,7 @@ public class MapRetrevial {
 			line = in.readLine();
 			e.setName(line);
 			line = in.readLine();
-			e.setHP(Double.parseDouble(line)); 
+			e.setHP(Double.parseDouble(line));
 			// read four moves and store them
 			for (int i = 0; i < 4; i++) {
 				e.moves.add(new Moves());

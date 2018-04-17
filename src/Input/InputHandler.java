@@ -40,10 +40,10 @@ public class InputHandler implements KeyListener {
 		}
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.introState) {
-			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+			if (keyCode == KeyEvent.VK_W) {
 				InputState.moveUp();
 			}
-			if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+			if (keyCode == KeyEvent.VK_S) {
 				InputState.moveDown();
 			}
 			if (keyCode == KeyEvent.VK_SPACE) {
@@ -52,10 +52,10 @@ public class InputHandler implements KeyListener {
 		}
 
 		if (Game.gameStateManager.getState() == Game.gameStateManager.optionState) {
-			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+			if (keyCode == KeyEvent.VK_W) {
 				OptionState.moveUp();
 			}
-			if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+			if (keyCode == KeyEvent.VK_S) {
 				OptionState.moveDown();
 			}
 			if (keyCode == KeyEvent.VK_SPACE) {
@@ -70,10 +70,10 @@ public class InputHandler implements KeyListener {
 
 		// in battle
 		if (Game.gameStateManager.getState() == Game.gameStateManager.battleStateNum) {
-			if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+			if (keyCode == KeyEvent.VK_D) {
 				BattleState.moveRight();
 			}
-			if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+			if (keyCode == KeyEvent.VK_A) {
 				BattleState.moveLeft();
 			}
 			if (keyCode == KeyEvent.VK_SPACE) {
@@ -92,7 +92,7 @@ public class InputHandler implements KeyListener {
 			if (keyCode == KeyEvent.VK_P) {
 				Game.gameStateManager.changeState(Game.gameStateManager.optionState);
 			}
-			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+			if (keyCode == KeyEvent.VK_W) {
 				try {
 					OverworldState.player.moveUp();
 				} catch (InterruptedException e) {
@@ -100,7 +100,7 @@ public class InputHandler implements KeyListener {
 					// e.printStackTrace();
 				}
 			}
-			if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+			if (keyCode == KeyEvent.VK_A) {
 				try {
 					OverworldState.player.moveLeft();
 				} catch (InterruptedException e) {
@@ -108,7 +108,7 @@ public class InputHandler implements KeyListener {
 					// e.printStackTrace();
 				}
 			}
-			if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+			if (keyCode == KeyEvent.VK_S) {
 				try {
 					OverworldState.player.moveDown();
 				} catch (InterruptedException e) {
@@ -116,7 +116,7 @@ public class InputHandler implements KeyListener {
 					// e.printStackTrace();
 				}
 			}
-			if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+			if (keyCode == KeyEvent.VK_D) {
 				try {
 					OverworldState.player.moveRight();
 				} catch (InterruptedException e) {
