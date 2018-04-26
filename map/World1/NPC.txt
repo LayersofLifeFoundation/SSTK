@@ -1,10 +1,4 @@
 Villager
-10
-3
-1
-1
-Woah slow down there! You can't be running around this swamp without protection. Here I have three weapons here for you, take your pick.
-Villager
 11
 3
 1
