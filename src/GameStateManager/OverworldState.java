@@ -55,7 +55,7 @@ public class OverworldState extends GameState {
 			movMap.loadMap("ShrekHouse");
 			MapRetrevial.retiveLinks(links, "ShrekHouse");
 			//MapRetrevial.readNPC("ShrekHouse");
-			//MapRetrevial.readEncounter("World1");
+			MapRetrevial.readEncounter("World1");
 			map = ImageIO.read(getClass().getResource("/map.png"));
 
 		} catch (IOException e) {
@@ -244,6 +244,13 @@ public class OverworldState extends GameState {
 				g.drawString(lines.get(i), 20, Game.HEIGHT - Game.PIXSIZE * 3 + 70 + 30 * (i - currentLine));
 			}
 		}
+		//on screen instructions
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		g.drawString("P:     Menu", 5, 20);
+		g.drawString("Space: Interact", 5, 35);
+		g.drawString("Del:   Retart", 5, 50);
+		g.drawString("4:     ???", 5, 65);
 		
 		if(BattleState.shrek.rip) {
 			g.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 100));

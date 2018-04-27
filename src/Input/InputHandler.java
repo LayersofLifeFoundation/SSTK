@@ -126,6 +126,7 @@ public class InputHandler implements KeyListener {
 			}
 			
 			if (!Player.isMoving) {
+/*
 				if (keyCode == KeyEvent.VK_1) {
 					OverworldState.player.punLeft = true;
 				}
@@ -139,7 +140,7 @@ public class InputHandler implements KeyListener {
 					Music.stopSound();
 					Music.startSound("Music\\GOW1.wav", true);
 				}
-
+*/
 				if (keyCode == KeyEvent.VK_4) {
 					OverworldState.player.Dab();	
 					if (!Music.boosted) {
@@ -150,12 +151,13 @@ public class InputHandler implements KeyListener {
 						Music.norm();
 						}
 				}
-
+/*
 				if (keyCode == KeyEvent.VK_B) {
 					Player.isMoving = true;
 					BattleState.startSwampBattle();
-					
+				
 				}
+				*/
 			}
 		}
 	}

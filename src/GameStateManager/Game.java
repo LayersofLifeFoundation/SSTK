@@ -49,7 +49,7 @@ public class Game extends Canvas implements Runnable {
 
 	public static void restart() {
 		gameStateManager.overworld = new OverworldState();
-		BattleState.shrek.rip = false;
+		gameStateManager.battle.nextEnemy(BattleState.shrek);
 		OverworldState.player.currentSprite = OverworldState.player.grabImage(Player.spriteSheet, 3, 1);
 		Music.stopSound();
 		Music.startSound("Music\\TitleScreen.wav", true);
